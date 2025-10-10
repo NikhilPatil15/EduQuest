@@ -1,3 +1,4 @@
+// controllers/user.controller.ts
 import { asyncHandler } from '../utils/asyncHandler';
 import { ErrorResponse } from '../utils/errorResponse';
 import { User } from '../models/user.model';
@@ -11,11 +12,9 @@ import { refreshTokenSecret } from '../config/settings';
 const generateAccessAndRefreshTokens = async (userId: string) => {
 	try {
 		const user: IUser | any = await User.findById(userId);
-		// console.log(user);
+
 		const accessToken = user.generateAccessToken();
-		// console.log(accessToken);
 		const refreshToken = user.generateRefreshToken();
-		// console.log(refreshToken);
 
 		user.refreshToken = refreshToken;
 		await user.save({ validateBeforeSave: false });
@@ -27,25 +26,16 @@ const generateAccessAndRefreshTokens = async (userId: string) => {
 };
 
 const registerUser = asyncHandler(async (req: any, res: Response) => {
-	/* 1.get user details from frontend
-    2.validation - should not be empty
-    3.check if user already exists :username and email
-    4.check for images, check for avatar
-    5.upload them to cloudinary : avatar
-    6.create user object - create entry in db
-    7.remove password and  refresh token field from response
-    8.check for user creation
-      - if yes then return 
-      - no then catch block*/
-
 	const { fullName, userName, email, password } = req.body;
 	console.log('email: ', email);
 
 	if ([fullName, email, userName, password].some((field) => field?.trim() === '')) {
 		throw new ErrorResponse(400, 'All fields are required!');
 	}
+
 	console.log('req.body', req.body);
 	console.log('req.file: ', req.files);
+
 	const existedUser = await User.findOne({
 		$or: [{ userName }, { email }],
 	});
@@ -53,10 +43,8 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 	if (existedUser) {
 		throw new ErrorResponse(409, 'User with email or username already exists');
 	}
+
 	const avatarLocalPath = req.files?.avatar[0]?.path;
-
-	// const coverImageLocalPath = req.files?.coverImage[0]?.path;
-
 	let coverImageLocalPath;
 
 	if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
@@ -74,6 +62,7 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 		throw new ErrorResponse(400, 'Avatar image is required');
 	}
 
+	// ✅ Create user with EduQuest default values
 	const user: IUser = await User.create({
 		fullName,
 		avatar: {
@@ -83,36 +72,26 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 		email,
 		password,
 		userName: userName.toLowerCase(),
+		// EduQuest fields will use their default values
 	});
 
-	const userCreated = await User.findById(user._id)?.select('-password -refreshToken');
+	const userCreated = await User.findById(user._id).select('-password -refreshToken');
 
 	if (!userCreated) {
-		throw new ErrorResponse(500, 'Something went wrong while regestering the user!');
+		throw new ErrorResponse(500, 'Something went wrong while registering the user!');
 	}
 
-	return res.status(201).json(new SuccessResponse(200, userCreated, 'User registered succesfully'));
+	return res
+		.status(201)
+		.json(new SuccessResponse(200, userCreated, 'User registered successfully'));
 });
 
 const loginUser = asyncHandler(async (req: any, res: Response) => {
-	/* 
-    1.req.body => data
-    2.username or email
-    3.find the user
-    4.check is user exists in db
-    5.check password
-    6.if password doesnt match then give warning or error
-    7.if correct then generate access and refresh token  
-    8.send this tokens through cookies 
-    */
-
 	const { userName, email, password } = req.body;
 
 	if (!userName && !email) {
 		throw new ErrorResponse(400, 'username or email is required');
 	}
-
-	/* condition if only one them is needed to login :if(!(userName || email)) */
 
 	const userExists: IUser | any = await User.findOne({
 		$or: [{ userName }, { email }],
@@ -127,6 +106,9 @@ const loginUser = asyncHandler(async (req: any, res: Response) => {
 	if (!isPasswordValid) {
 		throw new ErrorResponse(401, 'Incorrect Password!');
 	}
+
+	// ✅ Update daily streak on login
+	await userExists.updateDailyStreak();
 
 	const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(userExists._id);
 
@@ -149,7 +131,7 @@ const loginUser = asyncHandler(async (req: any, res: Response) => {
 					accessToken,
 					refreshToken,
 				},
-				'User Logged in succesfully',
+				'User Logged in successfully',
 			),
 		);
 });
@@ -209,14 +191,8 @@ const refreshAccessToken = asyncHandler(async (req: any, res: Response) => {
 		return res
 			.status(200)
 			.cookie('accessToken', accessToken, options)
-			.cookie('refreshToken', refreshAccessToken, options)
-			.json(
-				new SuccessResponse(
-					200,
-					{ accessToken, refreshToken: refreshToken },
-					'Access Token refreshed!',
-				),
-			);
+			.cookie('refreshToken', refreshToken, options) // ✅ Fixed: was refreshAccessToken
+			.json(new SuccessResponse(200, { accessToken, refreshToken }, 'Access Token refreshed!'));
 	} catch (error: any) {
 		throw new ErrorResponse(401, error?.message || 'Invalid refresh token');
 	}
@@ -226,25 +202,26 @@ const changeCurrentPassword = asyncHandler(async (req: any, res: Response) => {
 	const { oldPassword, newPassword } = req.body;
 
 	const user: IUser | any = await User.findById(req.user?._id);
-	/* console.log(user);*/
+
 	const isOldPasswordCorrect = await user.isPasswordCorrect(oldPassword);
-	/* console.log("old password correct or not: ",isOldPasswordCorrect);*/
 
 	if (!isOldPasswordCorrect) {
 		throw new ErrorResponse(400, 'Invalid old Password');
 	}
 
 	user.password = newPassword;
-
 	await user.save({ validateBeforeSave: false });
 
-	return res.status(200).json(new SuccessResponse(200, {}, 'Password changed successfullly!'));
+	return res.status(200).json(new SuccessResponse(200, {}, 'Password changed successfully!'));
 });
 
 const getCurrentUser = asyncHandler(async (req: any, res: Response) => {
-	return res
-		.status(200)
-		.json(new SuccessResponse(200, req.user, 'Current user fetched successfully'));
+	// ✅ Populate friends for the game profile
+	const user = await User.findById(req.user._id)
+		.select('-password -refreshToken')
+		.populate('friends', 'userName fullName avatar level xp');
+
+	return res.status(200).json(new SuccessResponse(200, user, 'Current user fetched successfully'));
 });
 
 const updateUserDetails = asyncHandler(async (req: any, res: Response) => {
@@ -278,7 +255,6 @@ const updateUserAvatar = asyncHandler(async (req: any, res: Response) => {
 		throw new ErrorResponse(400, 'Error while uploading avatar');
 	}
 
-	/* Deleting old avatar image from cloudinary */
 	const oldAvatarPublicId = req.user?.avatar.public_Id;
 
 	// await deleteFromCloudinary(oldAvatarPublicId, 'image');
@@ -291,6 +267,158 @@ const updateUserAvatar = asyncHandler(async (req: any, res: Response) => {
 	return res.status(200).json(new SuccessResponse(200, user, 'Avatar updated successfully!'));
 });
 
+// ✅ NEW EDUQUEST GAME CONTROLLERS
+
+const getUserGameProfile = asyncHandler(async (req: any, res: Response) => {
+	const user = await User.findById(req.user._id)
+		.select('-password -refreshToken')
+		.populate('friends', 'userName fullName avatar level xp coins dailyStreak');
+
+	if (!user) {
+		throw new ErrorResponse(404, 'User not found');
+	}
+
+	// Calculate rank or additional game stats
+	const userRank = (await User.countDocuments({ xp: { $gt: user.xp } })) + 1;
+
+	const gameProfile = {
+		...user.toObject(),
+		rank: userRank,
+		nextLevelXP: user.level * 1000,
+		progressToNextLevel: (user.xp / (user.level * 1000)) * 100,
+	};
+
+	return res
+		.status(200)
+		.json(new SuccessResponse(200, gameProfile, 'Game profile fetched successfully'));
+});
+
+const addXP = asyncHandler(async (req: any, res: Response) => {
+	const { xpAmount } = req.body;
+
+	if (!xpAmount || xpAmount <= 0) {
+		throw new ErrorResponse(400, 'Valid XP amount is required');
+	}
+
+	const user: IUser | any = await User.findById(req.user._id);
+
+	const result = await user.addXP(xpAmount);
+
+	return res.status(200).json(new SuccessResponse(200, result, 'XP added successfully'));
+});
+
+const addCoins = asyncHandler(async (req: any, res: Response) => {
+	const { coinAmount } = req.body;
+
+	if (!coinAmount || coinAmount <= 0) {
+		throw new ErrorResponse(400, 'Valid coin amount is required');
+	}
+
+	const user: IUser | any = await User.findById(req.user._id);
+
+	const newBalance = await user.addCoins(coinAmount);
+
+	return res
+		.status(200)
+		.json(new SuccessResponse(200, { coins: newBalance }, 'Coins added successfully'));
+});
+
+const updateQuizStats = asyncHandler(async (req: any, res: Response) => {
+	const { correctAnswers, totalQuestions, xpEarned, coinsEarned } = req.body;
+
+	const user: IUser | any = await User.findById(req.user._id);
+
+	// Update quiz stats
+	user.totalQuizzes += 1;
+	user.correctAnswers += correctAnswers || 0;
+
+	// Add XP and coins if earned
+	if (xpEarned) await user.addXP(xpEarned);
+	if (coinsEarned) await user.addCoins(coinsEarned);
+
+	await user.save();
+
+	return res.status(200).json(new SuccessResponse(200, user, 'Quiz stats updated successfully'));
+});
+
+const addFriend = asyncHandler(async (req: any, res: Response) => {
+	const { friendUserName } = req.body;
+
+	if (!friendUserName) {
+		throw new ErrorResponse(400, 'Friend username is required');
+	}
+
+	if (req.user.userName === friendUserName) {
+		throw new ErrorResponse(400, 'Cannot add yourself as friend');
+	}
+
+	const user: IUser | any = await User.findById(req.user._id);
+	const friend = await User.findOne({ userName: friendUserName });
+
+	if (!friend) {
+		throw new ErrorResponse(404, 'User not found');
+	}
+
+	if (user.friends.includes(friend._id)) {
+		throw new ErrorResponse(400, 'Already friends');
+	}
+
+	// Add to friends list
+	user.friends.push(friend._id);
+	await user.save();
+
+	return res.status(200).json(new SuccessResponse(200, {}, 'Friend added successfully'));
+});
+
+const removeFriend = asyncHandler(async (req: any, res: Response) => {
+	const { friendId } = req.body;
+
+	const user: IUser | any = await User.findById(req.user._id);
+
+	user.friends = user.friends.filter((id: string) => id.toString() !== friendId);
+	await user.save();
+
+	return res.status(200).json(new SuccessResponse(200, {}, 'Friend removed successfully'));
+});
+
+const getLeaderboard = asyncHandler(async (req: any, res: Response) => {
+	const { type = 'global', limit = 50 } = req.query;
+
+	let leaderboard;
+
+	switch (type) {
+		case 'friends':
+			const user = await User.findById(req.user._id).populate('friends');
+			if (!user) {
+				throw new ErrorResponse(404, 'User not found');
+			}
+			const friendIds = user.friends.map((friend: any) => friend._id);
+			friendIds.push(req.user._id);
+
+			leaderboard = await User.find({ _id: { $in: friendIds } })
+				.select(
+					'userName fullName avatar level xp coins dailyStreak totalQuizzes correctAnswers battlesWon',
+				)
+				.sort({ xp: -1, level: -1 })
+				.limit(parseInt(limit));
+			break;
+
+		case 'global':
+		default:
+			leaderboard = await User.find({})
+				.select(
+					'userName fullName avatar level xp coins dailyStreak totalQuizzes correctAnswers battlesWon',
+				)
+				.sort({ xp: -1, level: -1 })
+				.limit(parseInt(limit));
+			break;
+	}
+
+	return res
+		.status(200)
+		.json(new SuccessResponse(200, leaderboard, 'Leaderboard fetched successfully'));
+});
+
 export {
 	registerUser,
 	loginUser,
@@ -300,4 +428,12 @@ export {
 	getCurrentUser,
 	updateUserDetails,
 	updateUserAvatar,
+	// New EduQuest exports
+	getUserGameProfile,
+	addXP,
+	addCoins,
+	updateQuizStats,
+	addFriend,
+	removeFriend,
+	getLeaderboard,
 };

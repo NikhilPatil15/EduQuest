@@ -49,6 +49,53 @@ const UserSchema = new Schema<IUser>(
 		refreshToken: {
 			type: String,
 		},
+		// EDUQUEST GAME FIELDS
+		level: {
+			type: Number,
+			default: 1,
+		},
+		xp: {
+			type: Number,
+			default: 0,
+		},
+		coins: {
+			type: Number,
+			default: 100,
+		},
+		dailyStreak: {
+			type: Number,
+			default: 0,
+		},
+		lastActive: {
+			type: Date,
+			default: Date.now,
+		},
+
+		// Game Stats
+		totalQuizzes: { type: Number, default: 0 },
+		correctAnswers: { type: Number, default: 0 },
+		totalBattles: { type: Number, default: 0 },
+		battlesWon: { type: Number, default: 0 },
+
+		// Social & Progress
+		friends: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
+		friendRequests: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
+		unlockedSubjects: [
+			{
+				type: String,
+				default: ['math'],
+			},
+		],
 	},
 	{
 		timestamps: true,
@@ -95,6 +142,58 @@ UserSchema.methods.generateRefreshToken = async function (): Promise<string> {
 			expiresIn: refreshTokenExpiry,
 		},
 	);
+};
+UserSchema.methods.addXP = async function (xpAmount: number) {
+	this.xp += xpAmount;
+
+	const xpNeededForNextLevel = this.level * 1000;
+	if (this.xp >= xpNeededForNextLevel) {
+		this.level += 1;
+		this.xp -= xpNeededForNextLevel;
+		this.coins += 50;
+	}
+
+	await this.save();
+	return { newLevel: this.level, newXP: this.xp };
+};
+
+UserSchema.methods.addCoins = async function (coinAmount: number) {
+	this.coins += coinAmount;
+	await this.save();
+	return this.coins;
+};
+
+UserSchema.methods.updateDailyStreak = async function () {
+	const today = new Date();
+	const lastActive = new Date(this.lastActive);
+
+	if (lastActive.toDateString() !== today.toDateString()) {
+		const yesterday = new Date(today);
+		yesterday.setDate(yesterday.getDate() - 1);
+
+		if (lastActive.toDateString() === yesterday.toDateString()) {
+			this.dailyStreak += 1;
+			this.coins += 10 * this.dailyStreak;
+		} else {
+			this.dailyStreak = 1;
+			this.coins += 10;
+		}
+
+		this.lastActive = today;
+		await this.save();
+	}
+
+	return this.dailyStreak;
+};
+
+UserSchema.methods.canUnlockSubject = function (subject: string) {
+	const requiredLevels: { [key: string]: number } = {
+		math: 1,
+		science: 5,
+		coding: 10,
+	};
+
+	return this.level >= (requiredLevels[subject] || 1);
 };
 
 export const User = model<IUser>('Admin', UserSchema);

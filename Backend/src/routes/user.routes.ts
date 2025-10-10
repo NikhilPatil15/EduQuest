@@ -1,40 +1,56 @@
+// routes/user.routes.ts
 import { Router } from 'express';
 import {
-	changeCurrentPassword,
-	getCurrentUser,
+	registerUser,
 	loginUser,
 	logoutUser,
 	refreshAccessToken,
-	registerUser,
+	changeCurrentPassword,
+	getCurrentUser,
 	updateUserDetails,
 	updateUserAvatar,
+	// New EduQuest routes
+	getUserGameProfile,
+	addXP,
+	addCoins,
+	updateQuizStats,
+	addFriend,
+	removeFriend,
+	getLeaderboard,
 } from '../controllers/user.controller';
-import { upload } from '../middlewares/multer.middleware';
 import { verifyJWT } from '../middlewares/auth.middleware';
+import { upload } from '../middlewares/multer.middleware';
 
 const router = Router();
 
-/* Register route */
+// Public routes
 router.route('/register').post(
 	upload.fields([
 		{ name: 'avatar', maxCount: 1 },
-		{
-			name: 'coverImage',
-			maxCount: 1,
-		},
+		{ name: 'coverImage', maxCount: 1 },
 	]),
 	registerUser,
 );
 
-/* Login route */
 router.route('/login').post(loginUser);
+router.route('/refresh-token').post(refreshAccessToken);
 
-/* Secured Routes */
-router.route('/logout').post(verifyJWT, logoutUser);
-router.route('/refresh-AccessToken').post(refreshAccessToken);
-router.route('/updateAvatar').patch(verifyJWT, upload.single('avatar'), updateUserAvatar);
-router.route('/changePassword').post(verifyJWT, changeCurrentPassword);
-router.route('/updateAccountDetails').patch(verifyJWT, updateUserDetails);
-router.route('/currentUser').get(verifyJWT, getCurrentUser);
+// Protected routes
+router.use(verifyJWT);
+
+router.route('/logout').post(logoutUser);
+router.route('/change-password').post(changeCurrentPassword);
+router.route('/current-user').get(getCurrentUser);
+router.route('/update-profile').patch(updateUserDetails);
+router.route('/update-avatar').patch(upload.single('avatar'), updateUserAvatar);
+
+// ✅ NEW EDUQUEST GAME ROUTES
+router.route('/game-profile').get(getUserGameProfile);
+router.route('/add-xp').post(addXP);
+router.route('/add-coins').post(addCoins);
+router.route('/update-quiz-stats').post(updateQuizStats);
+router.route('/add-friend').post(addFriend);
+router.route('/remove-friend').delete(removeFriend);
+router.route('/leaderboard').get(getLeaderboard);
 
 export default router;
