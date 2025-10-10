@@ -11,6 +11,8 @@ import { DailyQuestService } from '../utils/services/dailyQuest.service';
 import { PerformanceInsightService } from '../utils/services/performanceInsight.service';
 import { Response } from 'express';
 import { IQuizSession } from '../types/quizSession.types';
+import { MapRegion } from '../models/mapRegion.model';
+import { WorldMapService } from '../utils/services/worldMap.service';
 
 const startQuiz = asyncHandler(async (req: any, res: Response) => {
 	const { subject, difficulty, questionCount = 10, useAdaptive = false } = req.body;
@@ -381,6 +383,18 @@ const completeQuizSession = async (quizSession: IQuizSession, finalStreak: numbe
 
 	if (score >= 80) {
 		await DailyQuestService.updateQuestProgress(quizSession.userId.toString(), 'subject_mastery');
+	}
+
+	const region = await MapRegion.findOne({ subject: quizSession.subject });
+	if (region) {
+		await WorldMapService.updateRegionProgress(
+			quizSession.userId.toString(),
+			region._id.toString(),
+			{
+				score: score,
+				timeSpent: quizSession.timeSpent,
+			},
+		);
 	}
 
 	// Check for Pokemon reward (if score is high enough)
