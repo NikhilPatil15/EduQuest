@@ -1,4 +1,4 @@
-// types/quizSession.types.ts
+// types/quizSession.types.ts - UPDATED
 import { Document, ObjectId } from 'mongoose';
 
 export interface IQuizSession extends Document {
@@ -20,6 +20,16 @@ export interface IQuizSession extends Document {
 	pokemonReward?: string;
 	createdAt: Date;
 	updatedAt: Date;
+
+	// ✅ NEW FIELDS FOR ADAPTIVE SYSTEM
+	isAdaptive: boolean;
+	currentStreak: number;
+	userAnswers: {
+		questionId: ObjectId;
+		answer: string;
+		isCorrect: boolean;
+		timeSpent: number;
+	}[];
 
 	// ✅ ADDED: Instance methods
 	calculateScore(): number;

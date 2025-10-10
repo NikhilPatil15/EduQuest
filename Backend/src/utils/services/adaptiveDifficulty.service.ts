@@ -1,5 +1,5 @@
 // services/adaptiveDifficulty.service.ts - UPDATED
-import { UserPerformance } from '../../models/userPerformane.model';
+import { UserPerformance } from '../../models/userPerformance.model';
 import { AdaptiveConfig } from '../../models/adaptiveConfig.model';
 import { Quiz } from '../../models/quiz.model';
 import { IUserPerformance } from '../../types/adaptive.types';

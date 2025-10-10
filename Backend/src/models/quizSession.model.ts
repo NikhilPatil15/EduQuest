@@ -1,4 +1,4 @@
-// models/quizSession.model.ts
+// models/quizSession.model.ts - UPDATED
 import { Schema, model } from 'mongoose';
 import { IQuizSession } from '../types/quizSession.types';
 
@@ -67,6 +67,37 @@ const QuizSessionSchema = new Schema<IQuizSession>(
 			type: Schema.Types.ObjectId,
 			ref: 'Pokemon',
 		},
+
+		// ✅ NEW FIELDS FOR ADAPTIVE SYSTEM
+		isAdaptive: {
+			type: Boolean,
+			default: false,
+		},
+		currentStreak: {
+			type: Number,
+			default: 0,
+		},
+		userAnswers: [
+			{
+				questionId: {
+					type: Schema.Types.ObjectId,
+					ref: 'Quiz',
+					required: true,
+				},
+				answer: {
+					type: String,
+					required: true,
+				},
+				isCorrect: {
+					type: Boolean,
+					required: true,
+				},
+				timeSpent: {
+					type: Number,
+					required: true,
+				},
+			},
+		],
 	},
 	{
 		timestamps: true,

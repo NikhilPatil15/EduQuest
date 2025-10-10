@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler';
 import { ErrorResponse } from '../utils/errorResponse';
 import { SuccessResponse } from '../utils/successResponse';
 import { AdaptiveDifficultyService } from '../utils/services/adaptiveDifficulty.service';
-import { UserPerformance } from '../models/userPerformane.model';
+import { UserPerformance } from '../models/userPerformance.model';
 import { Response } from 'express';
 import { QuizSession } from '../models/quizSession.model';
 

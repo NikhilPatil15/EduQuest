@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongoose';
+// types/userPokemon.types.ts - UPDATED
+import { Document, ObjectId, Model } from 'mongoose';
 
-// types/userPokemon.types.ts
-export interface IUserPokemon {
+export interface IUserPokemon extends Document {
 	_id: string;
 	userId: ObjectId;
 	pokemonId: ObjectId;
@@ -14,4 +14,11 @@ export interface IUserPokemon {
 	caughtAt: Date;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+// Static methods for UserPokemon model
+export interface IUserPokemonModel extends Model<IUserPokemon> {
+	catchPokemon(userId: string, pokemonId: string): Promise<IUserPokemon>;
+	getUserCollection(userId: string): Promise<IUserPokemon[]>;
+	getUserPokemonCount(userId: string): Promise<number>;
 }

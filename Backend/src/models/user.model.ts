@@ -1,3 +1,4 @@
+// models/user.model.ts - UPDATED WITH MISSING METHODS
 // @ts-nocheck
 
 import { Schema, model } from 'mongoose';
@@ -96,6 +97,44 @@ const UserSchema = new Schema<IUser>(
 				default: ['math'],
 			},
 		],
+
+		// ✅ ADDED: New fields for enhanced features
+		longestStreak: {
+			type: Number,
+			default: 0,
+		},
+		levelHistory: [
+			{
+				level: {
+					type: Number,
+					required: true,
+				},
+				achievedAt: {
+					type: Date,
+					default: Date.now,
+				},
+				xpAtLevel: {
+					type: Number,
+					required: true,
+				},
+			},
+		],
+		questPreferences: {
+			favoriteSubjects: [
+				{
+					type: String,
+					enum: ['math', 'science', 'coding'],
+				},
+			],
+			dailyGoal: {
+				type: Number,
+				default: 5, // 5 quizzes per day
+			},
+			notificationEnabled: {
+				type: Boolean,
+				default: true,
+			},
+		},
 	},
 	{
 		timestamps: true,
@@ -108,7 +147,7 @@ UserSchema.pre('save', async function (next) {
 	next();
 });
 
-UserSchema.methods.isPasswordCorrect = async function (password: any) {
+UserSchema.methods.isPasswordCorrect = async function (password: string): Promise<boolean> {
 	return await bcrypt.compare(password, this.password);
 };
 
@@ -143,50 +182,80 @@ UserSchema.methods.generateRefreshToken = async function (): Promise<string> {
 		},
 	);
 };
+
+// ✅ ADDED: Add XP and handle level ups
 UserSchema.methods.addXP = async function (xpAmount: number) {
+	const oldLevel = this.level;
 	this.xp += xpAmount;
 
 	const xpNeededForNextLevel = this.level * 1000;
-	if (this.xp >= xpNeededForNextLevel) {
+
+	// Handle multiple level ups if XP is very high
+	while (this.xp >= xpNeededForNextLevel) {
 		this.level += 1;
 		this.xp -= xpNeededForNextLevel;
-		this.coins += 50;
+		this.coins += 50; // Bonus coins on level up
+
+		// Track level up in history
+		await this.addLevelHistory();
 	}
 
 	await this.save();
-	return { newLevel: this.level, newXP: this.xp };
+
+	return {
+		newLevel: this.level,
+		newXP: this.xp,
+		leveledUp: oldLevel < this.level,
+	};
 };
 
+// ✅ ADDED: Add coins to user
 UserSchema.methods.addCoins = async function (coinAmount: number) {
 	this.coins += coinAmount;
 	await this.save();
 	return this.coins;
 };
 
+// ✅ ADDED: Update daily streak with proper logic
 UserSchema.methods.updateDailyStreak = async function () {
 	const today = new Date();
-	const lastActive = new Date(this.lastActive);
+	today.setHours(0, 0, 0, 0); // Normalize to start of day
 
-	if (lastActive.toDateString() !== today.toDateString()) {
+	const lastActive = new Date(this.lastActive);
+	lastActive.setHours(0, 0, 0, 0); // Normalize to start of day
+
+	// If last activity was not today
+	if (lastActive.getTime() !== today.getTime()) {
 		const yesterday = new Date(today);
 		yesterday.setDate(yesterday.getDate() - 1);
 
-		if (lastActive.toDateString() === yesterday.toDateString()) {
+		// If last activity was yesterday, increment streak
+		if (lastActive.getTime() === yesterday.getTime()) {
 			this.dailyStreak += 1;
-			this.coins += 10 * this.dailyStreak;
+
+			// Update longest streak if current is higher
+			if (this.dailyStreak > this.longestStreak) {
+				this.longestStreak = this.dailyStreak;
+			}
+
+			// Streak bonus coins
+			const streakBonus = 10 * this.dailyStreak;
+			this.coins += streakBonus;
 		} else {
+			// Streak broken, reset to 1
 			this.dailyStreak = 1;
-			this.coins += 10;
+			this.coins += 10; // Base daily login bonus
 		}
 
-		this.lastActive = today;
+		this.lastActive = new Date(); // Update to current time
 		await this.save();
 	}
 
 	return this.dailyStreak;
 };
 
-UserSchema.methods.canUnlockSubject = function (subject: string) {
+// ✅ ADDED: Check if user can unlock a subject
+UserSchema.methods.canUnlockSubject = function (subject: string): boolean {
 	const requiredLevels: { [key: string]: number } = {
 		math: 1,
 		science: 5,
@@ -196,4 +265,24 @@ UserSchema.methods.canUnlockSubject = function (subject: string) {
 	return this.level >= (requiredLevels[subject] || 1);
 };
 
-export const User = model<IUser>('Admin', UserSchema);
+// ✅ ADDED: Track level history
+UserSchema.methods.addLevelHistory = async function () {
+	if (!this.levelHistory) {
+		this.levelHistory = [];
+	}
+
+	this.levelHistory.push({
+		level: this.level,
+		achievedAt: new Date(),
+		xpAtLevel: this.xp,
+	});
+
+	// Keep only last 10 level ups to prevent array from growing too large
+	if (this.levelHistory.length > 10) {
+		this.levelHistory = this.levelHistory.slice(-10);
+	}
+
+	await this.save();
+};
+
+export const User = model<IUser>('User', UserSchema);

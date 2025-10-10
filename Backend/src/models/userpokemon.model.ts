@@ -1,8 +1,8 @@
-// models/userPokemon.model.ts
+// models/userPokemon.model.ts - UPDATED TO MATCH YOUR TYPES
 import { Schema, model } from 'mongoose';
-import { IUserPokemon } from '../types/userpokemon.types';
+import { IUserPokemon, IUserPokemonModel } from '../types/userpokemon.types';
 
-const UserPokemonSchema = new Schema<IUserPokemon>(
+const UserPokemonSchema = new Schema<IUserPokemon, IUserPokemonModel>(
 	{
 		userId: {
 			type: Schema.Types.ObjectId,
@@ -47,31 +47,95 @@ const UserPokemonSchema = new Schema<IUserPokemon>(
 	},
 );
 
-// Compound index for faster queries
-UserPokemonSchema.index({ userId: 1, pokemonId: 1 });
-UserPokemonSchema.index({ userId: 1, isFavorite: 1 });
+// Index for user's pokemon collection
+UserPokemonSchema.index({ userId: 1, pokemonId: 1 }, { unique: true });
 
-// Method to check if Pokemon can evolve
-UserPokemonSchema.methods.canEvolve = function (pokemonData: any): boolean {
-	return this.level >= pokemonData.evolutionLevel && pokemonData.evolvesTo;
+// ✅ ADDED: Static method to catch a Pokemon
+UserPokemonSchema.statics.catchPokemon = async function (
+	userId: string,
+	pokemonId: string,
+): Promise<IUserPokemon> {
+	// Check if user already has this Pokemon
+	const existingPokemon = await this.findOne({ userId, pokemonId });
+
+	if (existingPokemon) {
+		// If user already has this Pokemon, increase XP and level up if needed
+		existingPokemon.xp += 50;
+
+		// Level up logic: every 100 XP = 1 level
+		const newLevel = Math.floor(existingPokemon.xp / 100) + 1;
+		if (newLevel > existingPokemon.level) {
+			existingPokemon.level = newLevel;
+			existingPokemon.currentHP = 100; // Heal when leveling up
+		}
+
+		await existingPokemon.save();
+		return existingPokemon;
+	}
+
+	// Create new Pokemon for user
+	const userPokemon = await this.create({
+		userId,
+		pokemonId,
+		level: 1,
+		currentHP: 100,
+		xp: 100, // Base XP for new catch
+		battlesWon: 0,
+		isFavorite: false,
+		caughtAt: new Date(),
+	});
+
+	return userPokemon;
 };
 
-// Method to add XP and check for level up
-UserPokemonSchema.methods.addXP = async function (xpAmount: number) {
+// ✅ ADDED: Static method to get user's Pokemon collection
+UserPokemonSchema.statics.getUserCollection = async function (
+	userId: string,
+): Promise<IUserPokemon[]> {
+	return this.find({ userId }).populate('pokemonId').sort({ caughtAt: -1 });
+};
+
+// ✅ ADDED: Static method to get user's Pokemon count
+UserPokemonSchema.statics.getUserPokemonCount = async function (userId: string): Promise<number> {
+	return this.countDocuments({ userId });
+};
+
+// ✅ ADDED: Instance method to add XP
+UserPokemonSchema.methods.addXP = async function (xpAmount: number): Promise<void> {
 	this.xp += xpAmount;
+	const newLevel = Math.floor(this.xp / 100) + 1;
 
-	// Simple level up: 100 XP per level
-	const xpNeededForNextLevel = this.level * 100;
-	if (this.xp >= xpNeededForNextLevel) {
-		this.level += 1;
-		this.xp -= xpNeededForNextLevel;
-
-		// Increase stats on level up
-		this.currentHP += 10;
+	if (newLevel > this.level) {
+		this.level = newLevel;
+		this.currentHP = 100; // Full heal on level up
 	}
 
 	await this.save();
-	return { newLevel: this.level, newXP: this.xp };
 };
 
-export const UserPokemon = model<IUserPokemon>('UserPokemon', UserPokemonSchema);
+// ✅ ADDED: Instance method to update battle stats
+UserPokemonSchema.methods.updateBattleStats = async function (won: boolean): Promise<void> {
+	if (won) {
+		this.battlesWon += 1;
+		await this.addXP(25); // XP for winning
+	} else {
+		await this.addXP(10); // XP for participating
+	}
+
+	await this.save();
+};
+
+// ✅ ADDED: Instance method to heal Pokemon
+UserPokemonSchema.methods.heal = async function (): Promise<void> {
+	this.currentHP = 100;
+	await this.save();
+};
+
+// ✅ ADDED: Instance method to take damage
+UserPokemonSchema.methods.takeDamage = async function (damage: number): Promise<boolean> {
+	this.currentHP = Math.max(0, this.currentHP - damage);
+	await this.save();
+	return this.currentHP > 0; // Return true if still alive
+};
+
+export const UserPokemon = model<IUserPokemon, IUserPokemonModel>('UserPokemon', UserPokemonSchema);

@@ -1,7 +1,7 @@
+// types/user.types.ts - UPDATED
 import { Document } from 'mongoose';
 
 export interface IUser extends Document {
-	_id: string;
 	userName: string;
 	email: string;
 	fullName: string;
@@ -9,14 +9,10 @@ export interface IUser extends Document {
 		public_Id: string;
 		url: string;
 	};
-
 	password: string;
-	refreshToken?: string;
-	createdAt: Date;
-	updatedAt: Date;
-	isPasswordCorrect(password: string): Promise<boolean>;
-	generateAccessToken(): Promise<String>;
-	generateRefreshToken(): Promise<String>;
+	refreshToken: string;
+
+	// EDUQUEST GAME FIELDS
 	level: number;
 	xp: number;
 	coins: number;
@@ -30,7 +26,30 @@ export interface IUser extends Document {
 	battlesWon: number;
 
 	// Social & Progress
-	friends: string[]; // User IDs
-	friendRequests: string[]; // User IDs
-	unlockedSubjects: string[]; // 'math', 'science', 'coding'
+	friends: string[];
+	friendRequests: string[];
+	unlockedSubjects: string[];
+
+	// ✅ ADDED: New fields for enhanced features
+	longestStreak?: number;
+	levelHistory?: {
+		level: number;
+		achievedAt: Date;
+		xpAtLevel: number;
+	}[];
+	questPreferences?: {
+		favoriteSubjects: string[];
+		dailyGoal: number;
+		notificationEnabled: boolean;
+	};
+
+	// ✅ ADDED: Instance methods
+	isPasswordCorrect(password: string): Promise<boolean>;
+	generateAccessToken(): Promise<string>;
+	generateRefreshToken(): Promise<string>;
+	addXP(xpAmount: number): Promise<{ newLevel: number; newXP: number; leveledUp: boolean }>;
+	addCoins(coinAmount: number): Promise<number>;
+	updateDailyStreak(): Promise<number>;
+	canUnlockSubject(subject: string): boolean;
+	addLevelHistory(): Promise<void>;
 }

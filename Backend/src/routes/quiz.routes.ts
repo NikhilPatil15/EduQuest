@@ -8,6 +8,7 @@ import {
 	getQuizHistory,
 	getSubjects,
 	unlockSubject,
+	startAdaptiveQuiz,
 } from '../controllers/quiz.controller';
 import { verifyJWT } from '../middlewares/auth.middleware';
 
@@ -23,5 +24,6 @@ router.route('/start').post(startQuiz);
 router.route('/:sessionId/next').get(getNextQuestion);
 router.route('/:sessionId/answer').post(submitAnswer);
 router.route('/:sessionId/results').get(getQuizResults);
+router.route('/start-adaptive').post(startAdaptiveQuiz);
 
 export default router;
