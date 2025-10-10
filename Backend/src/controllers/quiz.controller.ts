@@ -13,6 +13,8 @@ import { Response } from 'express';
 import { IQuizSession } from '../types/quizSession.types';
 import { MapRegion } from '../models/mapRegion.model';
 import { WorldMapService } from '../utils/services/worldMap.service';
+import { BadgeService } from '../utils/services/badge.service';
+import { SocialShareService } from '../utils/services/socialShare.service';
 
 const startQuiz = asyncHandler(async (req: any, res: Response) => {
 	const { subject, difficulty, questionCount = 10, useAdaptive = false } = req.body;
@@ -416,6 +418,17 @@ const completeQuizSession = async (quizSession: IQuizSession, finalStreak: numbe
 		}
 	}
 
+	const awardedBadges = await BadgeService.checkAndAwardBadges(quizSession.userId.toString());
+
+	// Auto-share if score is high
+	if (score >= 90) {
+		await SocialShareService.shareVictory(quizSession.userId.toString(), {
+			score,
+			subject: quizSession.subject,
+			correctAnswers: quizSession.correctAnswers,
+			totalQuestions: quizSession.totalQuestions,
+		});
+	}
 	// GENERATE PERFORMANCE INSIGHTS (async)
 	PerformanceInsightService.generateInsights(quizSession.userId.toString()).catch(console.error);
 

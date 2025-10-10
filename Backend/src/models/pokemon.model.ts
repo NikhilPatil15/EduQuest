@@ -69,6 +69,11 @@ const PokemonSchema = new Schema<IPokemon>(
 			type: Number,
 			default: 100,
 		},
+		pokedexNumber: {
+			type: Number,
+			required: true,
+			unique: true,
+		},
 	},
 	{
 		timestamps: true,

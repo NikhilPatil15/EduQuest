@@ -183,21 +183,23 @@ UserSchema.methods.generateRefreshToken = async function (): Promise<string> {
 	);
 };
 
-// ✅ ADDED: Add XP and handle level ups
+// Update user.model.ts - Add badge checking on level up
 UserSchema.methods.addXP = async function (xpAmount: number) {
 	const oldLevel = this.level;
 	this.xp += xpAmount;
 
 	const xpNeededForNextLevel = this.level * 1000;
 
-	// Handle multiple level ups if XP is very high
 	while (this.xp >= xpNeededForNextLevel) {
 		this.level += 1;
 		this.xp -= xpNeededForNextLevel;
-		this.coins += 50; // Bonus coins on level up
+		this.coins += 50;
 
-		// Track level up in history
 		await this.addLevelHistory();
+
+		// Check for badges on level up
+		const { BadgeService } = await import('../utils/services/badge.service');
+		BadgeService.checkAndAwardBadges(this._id.toString()).catch(console.error);
 	}
 
 	await this.save();

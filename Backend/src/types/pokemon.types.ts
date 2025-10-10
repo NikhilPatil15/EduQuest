@@ -17,6 +17,7 @@ export interface IPokemon {
 	unlockCondition: string;
 	subject: string;
 	baseXP: number;
+	pokedexNumber: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
