@@ -47,11 +47,21 @@ import userRouter from './routes/user.routes';
 import BattleRouter from './routes/battle.routes';
 import PokemonRouter from './routes/pokemon.routes';
 import QuizRouter from './routes/quiz.routes';
+import LeaderboardRouter from './routes/leaderboard.routes';
+import FeedbackRouter from './routes/feedback.routes';
+import WorldMapRouter from './routes/worldMap.routes';
+import AdaptiveLearningRouter from './routes/adaptive.routes';
+import PokedexRouter from './routes/pokedex.routes';
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/pokemons', PokemonRouter);
 app.use('/api/v1/battles', BattleRouter);
 app.use('/api/v1/quizzes', QuizRouter);
+app.use('/api/v1/leaderboard', LeaderboardRouter);
+app.use('/api/v1/feedback', FeedbackRouter);
+app.use('/api/v1/world-map', WorldMapRouter);
+app.use('/api/v1/adaptive-learning', AdaptiveLearningRouter);
+app.use('/api/v1/pokedex', PokedexRouter);
 
 app.get('/api/v1/health', (req, res) => {
 	res.json({

@@ -15,6 +15,7 @@ import { MapRegion } from '../models/mapRegion.model';
 import { WorldMapService } from '../utils/services/worldMap.service';
 import { BadgeService } from '../utils/services/badge.service';
 import { SocialShareService } from '../utils/services/socialShare.service';
+import { PokedexService } from '../utils/services/pokedex.service';
 
 const startQuiz = asyncHandler(async (req: any, res: Response) => {
 	const { subject, difficulty, questionCount = 10, useAdaptive = false } = req.body;
@@ -387,6 +388,7 @@ const completeQuizSession = async (quizSession: IQuizSession, finalStreak: numbe
 		await DailyQuestService.updateQuestProgress(quizSession.userId.toString(), 'subject_mastery');
 	}
 
+	// UPDATE WORLD MAP PROGRESS
 	const region = await MapRegion.findOne({ subject: quizSession.subject });
 	if (region) {
 		await WorldMapService.updateRegionProgress(
@@ -415,12 +417,35 @@ const completeQuizSession = async (quizSession: IQuizSession, finalStreak: numbe
 
 			// Update pokemon capture quest
 			await DailyQuestService.updateQuestProgress(quizSession.userId.toString(), 'pokemon_capture');
+
+			// ✅ FIXED: Record in Pokédex - USE pokemonReward VARIABLE, NOT result.pokemonReward
+			await PokedexService.recordCatch(
+				quizSession.userId.toString(),
+				pokemonReward._id.toString(), // Use the local variable
+			);
+
+			// ✅ FIXED: Update research progress based on quiz performance
+			await PokedexService.updateResearchProgress(
+				quizSession.userId.toString(),
+				pokemonReward._id.toString(), // Use the local variable
+				Math.min(100, score), // Use quiz score as research progress
+			);
+		}
+	} else {
+		// ✅ FIXED: Record encounter for subject-related Pokémon (only if no Pokémon was caught)
+		const subjectPokemon = await Pokemon.findOne({ subject: quizSession.subject });
+		if (subjectPokemon) {
+			await PokedexService.recordEncounter(
+				quizSession.userId.toString(),
+				subjectPokemon._id.toString(),
+			);
 		}
 	}
 
+	// ✅ FIXED: Check for badge awards
 	const awardedBadges = await BadgeService.checkAndAwardBadges(quizSession.userId.toString());
 
-	// Auto-share if score is high
+	// ✅ FIXED: Auto-share if score is high
 	if (score >= 90) {
 		await SocialShareService.shareVictory(quizSession.userId.toString(), {
 			score,
@@ -429,17 +454,19 @@ const completeQuizSession = async (quizSession: IQuizSession, finalStreak: numbe
 			totalQuestions: quizSession.totalQuestions,
 		});
 	}
-	// GENERATE PERFORMANCE INSIGHTS (async)
+
+	// ✅ FIXED: GENERATE PERFORMANCE INSIGHTS (async)
 	PerformanceInsightService.generateInsights(quizSession.userId.toString()).catch(console.error);
 
 	return {
 		xpEarned: quizSession.xpEarned,
 		coinsEarned: quizSession.coinsEarned,
-		pokemonReward: pokemonReward,
+		pokemonReward: pokemonReward, // This is the variable we defined
 		score,
 		passed: quizSession.didPass(),
 		leveledUp: rewardResult.leveledUp,
 		newLevel: rewardResult.newLevel,
+		awardedBadges, // Include awarded badges in response
 	};
 };
 // Real-time feedback for quiz completion

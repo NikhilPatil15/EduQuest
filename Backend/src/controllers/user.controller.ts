@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import { IUser } from '../types/user.types';
 import { Response } from 'express';
 import { refreshTokenSecret } from '../config/settings';
+import { PokedexService } from '../utils/services/pokedex.service';
 
 const generateAccessAndRefreshTokens = async (userId: string) => {
 	try {
@@ -75,8 +76,9 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 		// EduQuest fields will use their default values
 	});
 
-	const userCreated = await User.findById(user._id).select('-password -refreshToken');
+	const userCreated: any = await User.findById(user._id).select('-password -refreshToken');
 
+	await PokedexService.initializeUserPokedex(userCreated?._id.toString()!);
 	if (!userCreated) {
 		throw new ErrorResponse(500, 'Something went wrong while registering the user!');
 	}

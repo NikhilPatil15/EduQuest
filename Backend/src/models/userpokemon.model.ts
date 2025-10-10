@@ -137,5 +137,32 @@ UserPokemonSchema.methods.takeDamage = async function (damage: number): Promise<
 	await this.save();
 	return this.currentHP > 0; // Return true if still alive
 };
+// Add to models/userPokemon.model.ts - ENHANCE WITH EVOLUTION SUPPORT
+UserPokemonSchema.methods.levelUp = async function (): Promise<boolean> {
+	const oldLevel = this.level;
+	const newLevel = Math.floor(this.experience / 100) + 1;
+
+	if (newLevel > this.level) {
+		this.level = newLevel;
+		this.currentHP = 100; // Full heal on level up
+		await this.save();
+
+		// Check for auto-evolution
+		const { EvolutionService } = await import('../utils/services/evolution.service');
+		EvolutionService.autoEvolveByLevel(this.userId.toString(), this._id.toString()).catch(
+			console.error,
+		);
+
+		return true;
+	}
+
+	return false;
+};
+
+// Update the addExperience method to trigger level ups
+UserPokemonSchema.methods.addExperience = async function (exp: number): Promise<boolean> {
+	this.experience += exp;
+	return await this.levelUp();
+};
 
 export const UserPokemon = model<IUserPokemon, IUserPokemonModel>('UserPokemon', UserPokemonSchema);
