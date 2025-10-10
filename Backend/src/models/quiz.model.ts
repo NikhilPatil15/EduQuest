@@ -15,7 +15,7 @@ const QuizSchema = new Schema<IQuiz, IQuizModel>(
 		},
 		difficulty: {
 			type: String,
-			enum: ['easy', 'medium', 'hard'],
+			enum: ['beginner', 'intermediate', 'advanced', 'expert', 'easy', 'medium', 'hard'],
 			default: 'easy',
 		},
 		question: {
