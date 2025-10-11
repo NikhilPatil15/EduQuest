@@ -1,452 +1,111 @@
 [
   {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "1. In Python, which of the following is the correct way to comment a single line?\n\nA) // This is a comment\nB) /* This is a comment */\nC) # This is a comment\nD) ",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 1,
+    "chapter_name": "Introduction to Programming Concepts",
+    "concepts": "Welcome to the world of coding! Think of programming as learning a new language to give instructions to a computer. Just like in any language, there are basic building blocks we need to learn first. The most fundamental concept is a **variable**. Imagine a variable as a labeled box where you can store a piece of information, like a number or a piece of text. To keep things organized, we need to tell the computer what *kind* of information we're storing, which is where **data types** come in. For example, an `int` is for whole numbers, while a `char` is for a single letter or symbol. 📦\n\nAs you write your code, it's incredibly important to leave notes for yourself and for others who might read it later. These notes are called **comments**. The computer completely ignores them, so you can write whatever you want to explain what a piece of code does or why you wrote it that way. Every programming language has its own special syntax for marking comments. Learning to use variables, understand data types, and write clear comments are the first essential steps on your journey to becoming a programmer!",
+    "important": [
+      "Variable: A storage location with a name that holds a value.",
+      "Data Type: A classification that specifies which type of value a variable can hold (e.g., integer, character).",
+      "Comments: Notes in the code for humans to read that are ignored by the computer.",
+      "The `main()` function in C/C++ is the starting point or entry point of every program."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "2. In C, which data type is used to store a single character?\n\nA) char\nB) character\nC) string\nD) int",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 2,
+    "chapter_name": "Python Fundamentals",
+    "concepts": "Let's dive into Python, one of the most popular and beginner-friendly programming languages! Python is known for its simple and readable syntax. To write comments, you just use the `#` symbol for a single line or triple quotes `'''...'''` for multiple lines. Python gives you powerful built-in tools called **data structures** to organize your data. A **List** `[ ]` is an ordered collection of items that you can change. A **Tuple** `( )` is also an ordered collection, but it's immutable, meaning you can't change it after you create it. A **Dictionary** `{ }` is a collection of key-value pairs, just like a real dictionary where you look up a word (the key) to find its meaning (the value). 🐍\n\nControlling the flow of your program is crucial. Python uses **`if-else`** statements to make decisions and run different code based on whether a condition is true or false. To repeat actions, you'll use loops. The Python **`for` loop** is fantastic for iterating over a sequence of items, often used with `range()` to repeat a task a specific number of times. You can also define your own reusable blocks of code called **functions** using the `def` keyword. Python also has some handy operators, like `**` for calculating powers (exponentiation) and `//` for floor division (division that rounds down to the nearest whole number).",
+    "important": [
+      "Single-line comments start with `#`. Multi-line comments are enclosed in `'''` or `\"\"\"`.",
+      "The `def` keyword is used to define a function.",
+      "The `input()` function reads a line of text from the user.",
+      "Core Data Types: List (mutable), Tuple (immutable), Dictionary (key-value pairs), Set.",
+      "The `len()` function returns the number of items in a sequence.",
+      "The `if-else` statement is used for decision making.",
+      "The syntax for a for loop is `for item in sequence:`.",
+      "Operators: `**` for exponentiation, `//` for floor division.",
+      "Lists are mutable (changeable), while Tuples and Strings are immutable (unchangeable)."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "3. What is the output of `cout << 5 / 2;` in C++?\n\nA) 2.5\nB) 2\nC) 3\nD) Error",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 3,
+    "chapter_name": "Working with Python Data Structures",
+    "concepts": "Let's take a closer look at Python's powerful data structures. Think of them as different types of containers, each with its own special properties. **Lists** are like a shopping list—they're ordered, and you can add, remove, or change items anytime you want. They are your go-to choice for a collection of items that needs to be flexible. **Tuples**, on the other hand, are like a restaurant's fixed menu—once it's created, it cannot be changed. This 'immutability' makes them great for storing data that you know should not be modified, like coordinates or fixed settings. 📝\n\n**Dictionaries** are your tool for storing connected information. Instead of using a numerical index, you look up a value using a unique `key`. This is perfect for things like a phone book, where the key is a person's name and the value is their phone number. Finally, a **Set** is a container that only stores unique items, and the order doesn't matter. It's like a bag of marbles where you can't have two of the exact same color. Sets are super-efficient for checking if an item is present in a collection or for removing duplicate items.",
+    "important": [
+      "Lists `[]`: Mutable (changeable) and ordered. Use methods like `.append(item)` to add and `.pop()` to remove.",
+      "Tuples `()`: Immutable (unchangeable) and ordered. Faster and safer for fixed data.",
+      "Dictionaries `{}`: Store `key:value` pairs. Access values using keys like `my_dict['key']`. They are unordered (in older Python versions) and mutable.",
+      "Sets `{}`: Store unique, unordered items. Excellent for membership testing (`'item' in my_set`) and removing duplicates.",
+      "Slicing: You can extract a portion of a list or tuple using slicing, e.g., `my_list[1:4]`."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "4. How do you declare an integer variable 'x' in C?\n\nA) var x;\nB) integer x;\nC) int x;\nD) x = int;",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 4,
+    "chapter_name": "Object-Oriented Programming (OOP) in Python",
+    "concepts": "Now, let's explore a powerful way of thinking about and structuring your code called **Object-Oriented Programming (OOP)**. The main idea is to model real-world things by creating 'objects'. An object is a self-contained unit that bundles together both data (called **attributes**) and functions that work on that data (called **methods**). The blueprint used to create these objects is called a **class**. For example, you could create a `Dog` class to serve as a blueprint for all dogs. 🐕\n\nWhen you define a class, you create a special method called `__init__()`. This is the constructor, and it runs automatically whenever you create a new object from that class. Its job is to set up the object's initial attributes, like a dog's `name` and `breed`. The `self` keyword is a crucial part of this; it's a reference to the specific object instance being created, allowing each dog object to have its own unique name and breed. Methods defined within the class are functions that the object can perform, like a `bark()` method. OOP helps you write code that is more organized, reusable, and easier to manage, especially for large and complex projects.",
+    "important": [
+      "A `class` is a blueprint for creating objects. It's defined with the `class` keyword.",
+      "An `object` is an instance of a class.",
+      "The `__init__()` method is the constructor, used to initialize an object's attributes.",
+      "The `self` parameter refers to the current instance of the class and is used to access its attributes and methods.",
+      "**Attributes** are variables that belong to an object (e.g., `dog.name`).",
+      "**Methods** are functions that belong to an object (e.g., `dog.bark()`)."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "5. In Python, what will `len([1, 2, 3])` return?\n\nA) 2\nB) 3\nC) 4\nD) 6",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 5,
+    "chapter_name": "C Programming Basics",
+    "concepts": "Now let's explore C, a powerful and foundational language that has influenced many others, including C++. C is a bit more structured and requires you to be more specific with the computer. Before you can use a variable, you must **declare** it by stating its data type and name, like `int x;`. This tells the computer to set aside a specific amount of memory for that variable. C has its own standard library of functions for common tasks, like input and output. To print something to the screen, you use the `printf()` function, and to read input from the user, you use `scanf()`. ⌨️\n\nWhen performing calculations in C, it's important to know how it handles different data types. For instance, when you divide two integers, C performs **integer division**, which means it will discard any fractional part and only give you the whole number result. For example, `5 / 2` will result in `2`, not `2.5`. Another key concept is that C doesn't have a built-in Boolean type (true/false) in the same way Python does. Instead, it uses integers to represent truth values: `0` means false, and any non-zero value (typically `1`) means true. This is why a comparison like `10 > 5` will evaluate to `1`.",
+    "important": [
+      "Variables must be declared with their data type before use, e.g., `int x;` or `char c;`.",
+      "The `scanf(\"%d\", &num);` function is used to read an integer from the user.",
+      "The `printf()` function is used to print output.",
+      "Integer division truncates the decimal part (e.g., `5 / 2` is `2`).",
+      "In boolean expressions, `0` represents false and any non-zero number (usually `1`) represents true.",
+      "Functions are defined with the syntax `return_type function_name(parameters) {}`.",
+      "The `break` statement is used to exit the current loop or switch statement."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "6. Which header file is required for using `cout` in C++?\n\nA) <stdio.h>\nB) <iostream>\nC) <string>\nD) <math.h>",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 6,
+    "chapter_name": "Advanced C Concepts: Pointers and Memory",
+    "concepts": "This chapter introduces one of the most powerful and unique features of C: **pointers**. A normal variable is like a box that holds a value (e.g., the number 10). A pointer, however, is a special variable that doesn't hold a value itself, but instead holds the *memory address* of another variable. Think of it like this: a variable is a house, and a pointer is a piece of paper with that house's address written on it. This allows you to interact with data in a much more direct and efficient way. 🏠\n\nTo work with pointers, you need to know two special operators. The **address-of operator (`&`)** is used to get the memory address of a variable (to write the address on your piece of paper). The **dereference operator (`*`)** is used to access the value stored at the memory address that a pointer is holding (to go to the address and see what's inside the house). Pointers are fundamental to many advanced concepts in C, including creating complex data structures. A **structure (`struct`)** is a way to group together variables of different data types into a single user-defined type, allowing you to create organized and complex data records.",
+    "important": [
+      "A pointer is a variable that stores the memory address of another variable.",
+      "The `&` operator (address-of) gets the memory address of a variable.",
+      "The `*` operator (dereference) accesses the value at the address held by a pointer.",
+      "A `struct` is a collection of variables of different data types under a single name.",
+      "The `sizeof` operator returns the size of a variable or data type in bytes.",
+      "Strings in C are terminated by a special null character, `\\0`.",
+      "The `++i` (pre-increment) increments the value then uses it, while `i++` (post-increment) uses the value then increments it."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "7. What is the correct syntax for a `for` loop in Python?\n\nA) for (i=0; i<5; i++)\nB) for i in range(5):\nC) for each i in 5:\nD) for i to 5:",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 7,
+    "chapter_name": "Introduction to C++ and OOP",
+    "concepts": "Welcome to C++, a powerful language that builds upon C and introduces a new way of thinking called **Object-Oriented Programming (OOP)**. The core idea of OOP is to model the real world by creating 'objects'. An object is a self-contained unit that has both data (attributes) and functions that operate on that data (methods). The blueprint for creating these objects is called a **class**. Think of a `Car` class as the design blueprint, and individual cars (your car, your friend's car) as the objects created from that blueprint. 🚗\n\nTo use C++ features like the standard output stream `cout` (used for printing), you need to include the appropriate header file, which is `<iostream>`. When an object is created from a class, a special member function called a **constructor** is automatically called. Its job is to initialize the object, setting up its initial state and making sure it's ready to be used. OOP also allows you to control access to the members of a class. By using access specifiers like **`private`**, you can make certain data or functions accessible only from within the class itself, which helps in protecting data from accidental modification.",
+    "important": [
+      "OOP stands for Object-Oriented Programming.",
+      "A `class` is a blueprint for creating objects.",
+      "An `object` is an instance of a class.",
+      "The `<iostream>` header file is required for using `cout` and `cin`.",
+      "A `constructor` is a special member function used to initialize an object when it's created.",
+      "Access specifiers control visibility: `public`, `protected`, and `private`.",
+      "The `private` specifier makes members accessible only within the class.",
+      "Memory can be dynamically allocated using the `new` keyword, e.g., `int* p = new int;`."
+    ]
   },
   {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "8. In C, how do you read an integer input from the user?\n\nA) `cin >> num;`\nB) `scanf(\"%d\", &num);`\nC) `input(num);`\nD) `read(num);`",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "9. What is a pointer in C/C++?\n\nA) A variable that stores the value of another variable.\nB) A variable that stores the memory address of another variable.\nC) A special type of function.\nD) A keyword for creating classes.",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "10. In Python, which data structure is represented by `{}`?\n\nA) List\nB) Tuple\nC) Set\nD) Dictionary or Set",
-    "answer": "D",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "11. What is the purpose of the `&` operator in C in the context of `scanf`?\n\nA) To get the value of the variable.\nB) To get the address of the variable.\nC) To perform a bitwise AND operation.\nD) It has no purpose.",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "12. In C++, what does OOP stand for?\n\nA) Object-Oriented Programming\nB) Out-Of-Place\nC) Original-Oriented Programming\nD) Object-Optional Programming",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "13. Which of the following is a mutable data type in Python?\n\nA) Tuple\nB) String\nC) List\nD) Integer",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "14. How do you define a function in C?\n\nA) `function myFunction() {}`\nB) `def myFunction():`\nC) `return_type function_name(parameters) {}`\nD) `void function myFunction() {}`",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "15. What is the `this` pointer in C++?\n\nA) A pointer to the current object instance.\nB) A pointer to the previous object instance.\nC) A global pointer.\nD) A null pointer.",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "16. What is the output of `print(3 * 'hi')` in Python?\n\nA) hi hi hi\nB) hihihi\nC) 9\nD) Error",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "17. In C, what is the size of `int` data type (in bytes) on a 32-bit system?\n\nA) 1\nB) 2\nC) 4\nD) 8",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "18. What is polymorphism in C++?\n\nA) The ability of a function to have multiple forms.\nB) A type of inheritance.\nC) A way to hide data.\nD) A loop structure.",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "19. Which operator is used for exponentiation in Python?\n\nA) ^\nB) **\nC) exp()\nD) power()",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "20. What is the purpose of the `break` statement in C?\n\nA) To exit the program.\nB) To exit the current loop or switch statement.\nC) To skip the current iteration of a loop.\nD) To return a value from a function.",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "21. In C++, how do you dynamically allocate memory for an integer?\n\nA) `int* p = malloc(sizeof(int));`\nB) `int* p = new int;`\nC) `int* p = alloc(int);`\nD) `int p = new int;`",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "22. In Python, how do you check if a key exists in a dictionary `d`?\n\nA) `d.has_key('key')`\nB) `'key' in d`\nC) `d.exists('key')`\nD) `d['key'] != None`",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "23. In C, what is the null character?\n\nA) '\\n'\nB) '\\0'\nC) '\\t'\nD) '\\r'",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "24. What is a constructor in C++?\n\nA) A special member function to destroy an object.\nB) A special member function to initialize an object.\nC) A normal member function.\nD) A global function.",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "25. Which keyword is used to define a function in Python?\n\nA) function\nB) define\nC) def\nD) fun",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "26. What will be the output of `printf(\"%d\", 10 > 5);` in C?\n\nA) 10\nB) 5\nC) 1\nD) 0",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "27. What is inheritance in C++?\n\nA) The process where one class acquires the properties of another class.\nB) The process of creating multiple objects of the same class.\nC) The process of binding data and functions together.\nD) The process of hiding internal details.",
-    "answer": "A",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "28. In Python, what is the result of `10 // 3`?\n\nA) 3.33\nB) 3\nC) 1\nD) 4",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "29. What is a structure in C?\n\nA) A collection of variables of the same data type.\nB) A collection of variables of different data types.\nC) A function that returns multiple values.\nD) A pointer to a function.",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "30. What is the access specifier that makes members accessible only within the class?\n\nA) public\nB) protected\nC) private\nD) internal",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "31. What method in Python can be used to read a line of text from the user?\n\nA) `read()`\nB) `readline()`\nC) `input()`\nD) `getline()`",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "32. In C, what is the correct way to declare an array of 5 integers?\n\nA) `int arr[5];`\nB) `array int[5];`\nC) `int[5] arr;`\nD) `arr<int>[5];`",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "33. What is function overloading in C++?\n\nA) Having multiple functions with the same name and same parameters.\nB) Having multiple functions with the same name but different parameters.\nC) Overriding a function in a derived class.\nD) Creating a virtual function.",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "34. In Python, how do you start a multi-line comment?\n\nA) `##`\nB) `/*`\nC) `'''` or `\"\"\"`\nD) `//`",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "35. What does the `sizeof` operator in C return?\n\nA) The number of elements in an array.\nB) The size of a variable or data type in bytes.\nC) The last element of an array.\nD) The memory address of a variable.",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "36. What is a virtual function in C++?\n\nA) A function that is defined in a base class and overridden in a derived class.\nB) A function that cannot be overridden.\nC) A function that does not have a body.\nD) A function that is part of a template.",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "37. What is the output of `'hello'.capitalize()` in Python?\n\nA) 'HELLO'\nB) 'Hello'\nC) 'hELLO'\nD) 'hello'",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "38. In C, which operator is used to access the value at a memory address stored in a pointer?\n\nA) `&`\nB) `*`\nC) `->`\nD) `.`",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "39. What is a template in C++ used for?\n\nA) To create generic classes and functions.\nB) To define the structure of an object.\nC) To manage memory.\nD) To handle exceptions.",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "40. In Python, which statement is used for decision making?\n\nA) `if-else`\nB) `for`\nC) `while`\nD) `switch`",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "41. What is the `main` function in C?\n\nA) A user-defined function.\nB) The entry point of the program.\nC) A standard library function.\nD) A function to calculate the mean.",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "42. In C++, what is the scope resolution operator?\n\nA) `.`\nB) `->`\nC) `::`\nD) `&`",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "43. What does `range(1, 5)` generate in Python?\n\nA) [1, 2, 3, 4, 5]\nB) [1, 2, 3, 4]\nC) [2, 3, 4, 5]\nD) [1, 5]",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "44. In C, how do you concatenate two strings?\n\nA) Using the `+` operator.\nB) Using the `concat()` function.\nC) Using the `strcat()` function.\nD) Using the `append()` function.",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "45. What is encapsulation in C++?\n\nA) The bundling of data and methods that operate on the data into a single unit.\nB) Creating a new class from an existing class.\nC) Defining multiple functions with the same name.\nD) A mechanism to handle runtime errors.",
-    "answer": "A",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "46. What will `True and False` evaluate to in Python?\n\nA) True\nB) False\nC) Error\nD) 1",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "47. In C, what is the difference between `++i` and `i++`?\n\nA) No difference.\nB) `++i` increments then uses the value, `i++` uses then increments the value.\nC) `i++` increments then uses the value, `++i` uses then increments the value.\nD) `++i` is more efficient.",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "48. How do you create a reference variable in C++?\n\nA) `int &ref = var;`\nB) `int *ref = &var;`\nC) `ref int = var;`\nD) `int ref = &var;`",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "49. Which of these is not a core data type in Python?\n\nA) List\nB) Dictionary\nC) Class\nD) Tuple",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "coding",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "50. What is the use of the `try-catch` block in C++?\n\nA) To handle exceptions.\nB) To define a loop.\nC) To declare a class.\nD) To allocate memory.",
-    "answer": "A",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 8,
+    "chapter_name": "Advanced C++ OOP Concepts",
+    "concepts": "Let's explore the three pillars of Object-Oriented Programming that make C++ so powerful. First is **Inheritance**, which is the process where a new class (the 'child' or 'derived' class) can inherit properties and methods from an existing class (the 'parent' or 'base' class). This promotes code reuse and creates a logical hierarchy. Second is **Encapsulation**, which is the bundling of data and the methods that operate on that data into a single unit (the class). It also involves hiding the internal details of an object from the outside world, a concept known as data hiding. 🛡️\n\nThird, and perhaps the most powerful, is **Polymorphism**, which means 'many forms'. It allows a function or an object to take on different behaviors in different contexts. This is often achieved through **function overloading**, where you can have multiple functions with the same name but different parameters, and through **virtual functions**, which allow a derived class to provide its own specific implementation of a base class function. We'll also touch on **templates**, a C++ feature that allows you to write generic functions and classes that can work with any data type, making your code even more flexible and reusable.",
+    "important": [
+      "Inheritance: The process where one class acquires the properties of another class.",
+      "Encapsulation: The bundling of data and methods into a single unit (class) and hiding internal details.",
+      "Polymorphism: The ability of a function or object to take on multiple forms.",
+      "Function Overloading: Defining multiple functions with the same name but different parameters.",
+      "A `virtual function` is a base class function that is meant to be overridden in a derived class to achieve polymorphism.",
+      "A `template` is used to create generic classes and functions that can work with any data type.",
+      "A `try-catch` block is used to handle exceptions or runtime errors gracefully."
+    ]
   }
 ]
