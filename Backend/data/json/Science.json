@@ -1,452 +1,136 @@
 [
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "1. The human eye forms the image of an object at its:\n\nA) cornea\nB) iris\nC) pupil\nD) retina",
-    "answer": "D",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 1,
+    "chapter_name": "Chemical reactions and equations",
+    "concepts": "Welcome to the world of chemistry! Think of this chapter as learning the language and grammar of how substances change. A **chemical reaction** is like a recipe where you take some starting ingredients (called **reactants**) and transform them into completely new substances (called **products**). For example, when iron rusts, it's a chemical reaction between iron, oxygen, and water to create a new substance, rust. To communicate these recipes clearly, we use **chemical equations**. This is the chemist's way of writing down exactly what's happening, showing the reactants on the left side and the products on the right, connected by an arrow. 🧪\n\nOne of the most important rules in chemistry is the **Law of Conservation of Mass**, which says that matter cannot be created or destroyed in a reaction. This means you must have the same number of atoms of each element on both sides of the equation. The process of making sure the equation follows this rule is called **balancing**. It's like making sure your recipe is fair and you haven't magically lost or gained any ingredients. We'll also explore the different types of reactions, which are like different styles of cooking. Some reactions combine things, some break them down, and some involve substances swapping partners, like in a dance!",
+    "important": [
+      "Balancing chemical equations to satisfy the Law of Conservation of Mass.",
+      "Types of Reactions: Combination (A + B ⟶ AB), Decomposition (AB ⟶ A + B), Displacement (A + BC ⟶ AC + B), Double Displacement (AB + CD ⟶ AD + CB).",
+      "Redox Reaction: A reaction involving simultaneous oxidation (loss of electrons or gain of oxygen) and reduction (gain of electrons or loss of oxygen)."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "2. The chemical formula for plaster of Paris is:\n\nA) CaSO₄.2H₂O\nB) CaSO₄.½H₂O\nC) CaSO₄.H₂O\nD) CaSO₄",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 2,
+    "chapter_name": "Acids, Bases and Salt",
+    "concepts": "This chapter is all about three really important families of chemicals: **acids, bases, and salts**. You encounter them every day! Acids are what give lemons their sour taste (citric acid), while bases are often slippery, like soap. To tell them apart, we use **indicators**, which are special chemicals that change color depending on whether they're in an acid or a base. The most famous measure of acidity or basicity is the **pH scale**. It's a scale from 0 to 14 where 7 is neutral (like pure water). Anything below 7 is acidic (the lower the number, the stronger the acid), and anything above 7 is basic (the higher the number, the stronger the base). 🌈\n\nWhat happens when you mix an acid and a base? They have a special type of reaction called **neutralization**. It's like a chemical battle where the acid and base cancel each other out, producing two new neutral substances: a **salt** and water. For example, when hydrochloric acid (HCl) reacts with sodium hydroxide (NaOH), they neutralize each other to form sodium chloride (NaCl), which is common table salt, and water (H₂O). We'll also investigate some 'celebrity' salts that you might have in your home, like baking soda, washing soda, and Plaster of Paris, and learn about their cool properties and uses.",
+    "important": [
+      "pH Scale: Measures acidity or alkalinity. pH < 7 is acidic, pH = 7 is neutral, pH > 7 is basic.",
+      "Neutralization Reaction: Acid + Base ⟶ Salt + Water.",
+      "Important Compounds: Washing Soda (Na₂CO₃·10H₂O), Baking Soda (NaHCO₃), Bleaching Powder (CaOCl₂), Plaster of Paris (CaSO₄·½H₂O)."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "3. The kidneys in human beings are a part of the system for:\n\nA) nutrition\nB) respiration\nC) excretion\nD) transportation",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 3,
+    "chapter_name": "Metals and Non-metals",
+    "concepts": "Let's divide the elemental world into two major teams: **metals** and **non-metals**. Think of metals as the superheroes of the periodic table—they are typically strong, shiny, and excellent conductors of heat and electricity. Non-metals are the versatile characters with a wide range of properties—some are gases, some are solids, and they are generally poor conductors. This chapter explores the distinct physical and chemical personalities of these two groups. We'll see how they behave differently when they react with things like air, water, and acids. 💥\n\nOne of the most important tools we'll learn is the **reactivity series**. This is like a league table or a ranking of metals from most reactive to least reactive. Metals at the top, like potassium, are extremely reactive and will react explosively with water, while metals at the bottom, like gold, are very unreactive, which is why they stay shiny for thousands of years. This series helps us predict which metals can displace others in a reaction. We'll also become treasure hunters and learn about **metallurgy**—the process of extracting pure metals from their natural ores found in the Earth's crust. Finally, we'll investigate **corrosion** (like the rusting of iron) and learn about the clever ways we can protect metals from it, such as painting or coating them with another metal.",
+    "important": [
+      "Reactivity Series: A list of metals arranged in order of decreasing reactivity.",
+      "Metallurgical Processes: Roasting (heating sulfide ores in excess air) and Calcination (heating carbonate ores in limited air).",
+      "Corrosion Prevention: Methods include painting, galvanizing, oiling, and alloying."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "4. The device used for producing electric current is called a:\n\nA) generator\nB) galvanometer\nC) ammeter\nD) motor",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 4,
+    "chapter_name": "Carbon and Its Compounds",
+    "concepts": "Meet the superstar of the elements: **Carbon**! Carbon is so special that it has a whole branch of chemistry dedicated to it, called organic chemistry. What makes carbon so amazing? It has two superpowers. First is **tetravalency**, which means it can form four chemical bonds with other atoms, making it a great building block. Second is **catenation**, which is the incredible ability of carbon atoms to link together to form long, stable chains and rings. These two properties allow carbon to form millions of different compounds, from the simple methane gas to the complex DNA that makes you who you are! 🧬\n\nIn this chapter, we'll explore how carbon atoms share electrons with other atoms through **covalent bonding**, forming strong and stable molecules. We will learn about **functional groups**, which are little clusters of atoms that can attach to carbon chains and give the molecule a whole new identity and set of properties. For example, adding an -OH group turns a compound into an alcohol. We'll also become language experts by learning the IUPAC system for naming these carbon compounds. Finally, we'll dive into the chemistry of everyday life by understanding how important compounds like ethanol and ethanoic acid behave, and the sudsy science behind how soaps and detergents get our clothes clean.",
+    "important": [
+      "Catenation: The self-linking property of carbon atoms to form long chains and rings.",
+      "Functional Groups: Groups of atoms that determine the chemical properties of organic compounds (e.g., -OH alcohol, -COOH carboxylic acid).",
+      "Saponification: The process of making soap by the hydrolysis of fats or oils with an alkali."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "5. Which of the following is a plant hormone?\n\nA) Insulin\nB) Thyroxin\nC) Oestrogen\nD) Cytokinin",
-    "answer": "D",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 5,
+    "chapter_name": "Life Processes",
+    "concepts": "This chapter explores the fundamental question: What does it mean to be alive? The answer lies in the **Life Processes**, which are the essential jobs that all living organisms must perform to maintain life, grow, and survive. Think of it as the 'must-do' checklist for any living thing. There are four main processes we will focus on. The first is **Nutrition**, which is all about how organisms get their food. Plants are 'autotrophs'—they're like chefs that make their own food using sunlight in a process called photosynthesis. Animals are 'heterotrophs'—we have to eat other organisms to get our energy. 🥗\n\nOnce we have food, we need to get energy from it, and that's the job of **Respiration**. It's the process of breaking down food to release energy that our cells can use. Next, all the useful stuff like food, oxygen, and water needs to be delivered to every part of the body, and waste products need to be collected. This is **Transportation**. In humans, this is done by our circulatory system (heart, blood, and vessels), and in plants, it's done by tissues called xylem and phloem. Finally, all the waste products generated by these processes must be removed from the body, which is the process of **Excretion**. We'll look at the human urinary system and how plants get rid of their waste, too.",
+    "important": [
+      "Photosynthesis Equation: 6CO₂ + 6H₂O ⟶ C₆H₁₂O₆ + 6O₂",
+      "Key Functions: Xylem transports water, Phloem transports food, Arteries/Veins transport blood, Nephrons are the filtration units of the kidney.",
+      "Aerobic vs. Anaerobic Respiration: Respiration in the presence of oxygen (aerobic) yields more energy than in the absence of oxygen (anaerobic)."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "6. The splitting of white light into its component colors is called:\n\nA) reflection\nB) refraction\nC) dispersion\nD) scattering",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 6,
+    "chapter_name": "Control and Coordination",
+    "concepts": "How does your body know what to do? How do you react to the world around you? This chapter is all about the body's incredible communication and management systems. There are two main parts to this team: the **Nervous System** and the **Endocrine System**. The nervous system is the body's super-fast electrical wiring. It's made up of specialized cells called **neurons** that transmit nerve impulses in a flash. It allows you to do things like pull your hand away from a hot object instantly. This super-quick, automatic response is called a **reflex action**, and it's your body's built-in safety mechanism. The brain is the central computer that processes information and makes decisions. 🧠\n\nThe endocrine system is the body's other communication network, but it works a bit differently. Instead of fast electrical signals, it uses chemical messengers called **hormones**. These hormones are produced by glands and released into the bloodstream, traveling all over the body to deliver instructions to different organs. For example, the hormone adrenaline prepares your body for a 'fight or flight' response. We'll also see that plants have their own control systems! They don't have brains, but they do have plant hormones that control their growth and allow them to respond to things like light (**phototropism**) and gravity (**geotropism**).",
+    "important": [
+      "Neuron: The structural and functional unit of the nervous system.",
+      "Reflex Arc: The pathway that nerve impulses take in a reflex action.",
+      "Hormones: Chemical messengers that regulate physiological processes (e.g., insulin regulates blood sugar)."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "7. The breakdown of pyruvate to give carbon dioxide, water and energy takes place in:\n\nA) cytoplasm\nB) mitochondria\nC) chloroplast\nD) nucleus",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 7,
+    "chapter_name": "How Do Organisms Reproduce?",
+    "concepts": "This chapter deals with one of the most fundamental life processes: **reproduction**, the ability of living organisms to create new individuals of the same species. There are two main strategies for doing this. The first is **Asexual Reproduction**, which involves only one parent. The offspring produced are genetically identical to the parent—they are perfect clones! This method is fast and efficient, and we see it in many simpler organisms through processes like **fission** (splitting in two) and **budding**. 🌱\n\nThe second strategy is **Sexual Reproduction**, which involves two parents who combine their genetic information to produce offspring. This creates genetic variation, meaning the offspring are a unique mix of both parents. This variety is incredibly important for the long-term survival and adaptation of a species. We will take a detailed look at how sexual reproduction works in both flowering plants (involving pollen, ovules, and fertilization) and in humans. We will study the male and female reproductive systems, the process of **fertilization** (the fusion of sperm and egg to form a zygote), and the development of the new individual. The chapter also touches upon the important topic of reproductive health.",
+    "important": [
+      "Asexual vs. Sexual Reproduction: Asexual involves one parent and produces genetically identical offspring. Sexual involves two parents and produces genetic variation.",
+      "Fertilization: The fusion of male and female gametes to form a zygote.",
+      "Parts of a Flower: Stamen (male part) and Pistil/Carpel (female part)."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "8. An electric bulb is rated 220V and 100W. When it is operated on 110V, the power consumed will be:\n\nA) 100W\nB) 75W\nC) 50W\nD) 25W",
-    "answer": "D",
-    "level": "hard",
-    "rating": 3
+    "chapter_number": 8,
+    "chapter_name": "Heredity and Evolution",
+    "concepts": "Have you ever wondered why you have your mother's eyes or your father's smile? This is the science of **Heredity**, which is the passing of traits from parents to their children through genes. This chapter introduces the pioneering work of Gregor Mendel, who, by studying pea plants, figured out the basic rules of inheritance long before we even knew about DNA! We'll explore his famous laws and learn how they help us predict the inheritance of traits. We'll also look at the mechanism of **sex determination** in humans and understand how genes determine whether an individual is male or female. 👪\n\nThen, we zoom out to look at the bigger picture: **Evolution**. This is the grand story of how life on Earth has changed over millions of years, from simple organisms to the incredible diversity we see today. It's not about an individual changing during its lifetime, but about how the inherited traits of entire populations change over many generations. The main driving force behind this change is **Natural Selection**, the idea that individuals with traits that are better suited to their environment are more likely to survive, reproduce, and pass those successful traits on to their offspring. We will also examine the evidence for evolution, such as clues from fossils, and by comparing the structures of different animals (**homologous and analogous organs**).",
+    "important": [
+      "Heredity: The transmission of characters from one generation to the next.",
+      "Mendel's Laws: Law of Segregation and Law of Independent Assortment.",
+      "Homologous vs. Analogous Organs: Homologous organs have a similar origin but different functions, while analogous organs have different origins but similar functions."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "9. The gap between two neurons is called a:\n\nA) dendrite\nB) synapse\nC) axon\nD) impulse",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 9,
+    "chapter_name": "Light Reflection and Refraction",
+    "concepts": "This chapter is all about the amazing behavior of light! We'll think of light as a traveler that moves in perfectly straight lines. The first phenomenon we'll study is **Reflection**. This is what happens when light hits a surface, like a mirror, and bounces off. Think of it like a ball bouncing off a wall. We'll learn the simple laws that govern exactly how light bounces, and we'll apply these rules to understand how images are formed by both flat mirrors and curved mirrors (the kind you see in car side-mirrors or makeup mirrors). 🪞\n\nThe second major phenomenon is **Refraction**. This is the fascinating bending of light that happens when it passes from one substance into another, for example, from air into water. This bending is the reason why a straw in a glass of water looks broken at the surface. The masters of refraction are **lenses**, like those in eyeglasses or magnifying glasses. They are carefully shaped pieces of glass or plastic that bend light in a precise way to form images. We will learn the key formulas for both mirrors and lenses, which are the mathematical tools that allow us to calculate exactly where an image will be formed and how large it will be.",
+    "important": [
+      "Mirror Formula: 1/v + 1/u = 1/f",
+      "Lens Formula: 1/v - 1/u = 1/f",
+      "Snell's Law of Refraction: n₁sin(i) = n₂sin(r)",
+      "Power of a Lens: P = 1/f (f in meters)"
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "10. Which of the following statements is NOT correct about the trends when going from left to right across the periods of the Periodic Table?\n\nA) The elements become less metallic in nature.\nB) The number of valence electrons increases.\nC) The atoms lose their electrons more easily.\nD) The oxides become more acidic.",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 10,
+    "chapter_name": "The Human Eye and Colourful World",
+    "concepts": "In this chapter, we explore the incredible natural camera you carry around with you every day: the **human eye**. We'll learn about its different parts—the cornea, the lens, the iris, and the retina—and how they work together like a sophisticated optical instrument to focus light and create the images you see. But sometimes, this camera can have focusing problems. We'll discuss common **vision defects** like **myopia** (nearsightedness), where distant objects look blurry, and **hypermetropia** (farsightedness), where nearby objects are out of focus. We'll also learn how these issues can be corrected using the right kind of lenses in eyeglasses. 👀\n\nAfter understanding the eye, we'll turn our attention to the beautiful optical phenomena that happen in the world around us. We'll discover how a simple glass **prism** can split white sunlight into a spectacular rainbow of colors, a process called **dispersion**. This proves that white light is actually a mixture of all the colors. We'll also investigate the science behind the sky's appearance. We'll learn why the sky looks blue during the day (due to the **scattering of light** by the atmosphere) and why the sun appears reddish during sunrise and sunset. We'll even understand the secret behind the twinkling of stars!",
+    "important": [
+      "Vision Defects: Myopia (nearsightedness, corrected by concave lens) and Hypermetropia (farsightedness, corrected by convex lens).",
+      "Dispersion: The splitting of white light into its constituent colors.",
+      "Scattering of Light: Shorter wavelengths (blue) scatter more than longer wavelengths (red), explaining the color of the sky."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "11. The main constituent of biogas is:\n\nA) Methane\nB) Carbon dioxide\nC) Hydrogen\nD) Hydrogen sulphide",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 11,
+    "chapter_name": "Electricity",
+    "concepts": "Let's uncover the secrets of **Electricity**! At its heart, electricity is all about the movement of tiny charged particles called electrons. The continuous flow of these electrons through a material, like a copper wire, is called an **electric current**. But what makes these electrons move? They need a 'push' or 'pressure' to get going. This electrical pressure is called **potential difference** or **voltage**, and it's provided by something like a battery. As the current flows, it can encounter some opposition or friction, which slows it down. This opposition to the flow of current is called **resistance**. 💡\n\nThe relationship between these three key ideas—voltage, current, and resistance—is described by the most important rule in electricity: **Ohm's Law**. It's a simple formula that is the foundation for all our calculations. We'll explore how resistors can be connected in circuits in two different ways: in **series** (one after another in a single path) or in **parallel** (providing multiple paths for the current to flow). We'll also learn about the practical effects of electricity, such as how the flow of current can generate heat (the **heating effect of current**), which is how things like electric heaters and toasters work, and we'll learn how to calculate **electric power**.",
+    "important": [
+      "Ohm's Law: V = IR",
+      "Resistors in Series: Rₛ = R₁ + R₂ + ...",
+      "Resistors in Parallel: 1/Rₚ = 1/R₁ + 1/R₂ + ...",
+      "Joule's Law of Heating: H = I²Rt",
+      "Electric Power: P = VI"
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "12. In evolutionary terms, we have more in common with:\n\nA) a Chinese school-boy.\nB) a chimpanzee.\nC) a spider.\nD) a bacterium.",
-    "answer": "A",
-    "level": "easy",
-    "rating": 3
+    "chapter_number": 12,
+    "chapter_name": "Magnetic Effects of Electric Current",
+    "concepts": "Get ready to discover a hidden connection between two of the most powerful forces in nature: electricity and magnetism. This chapter reveals that they are not separate things but are deeply intertwined. The main idea is that whenever an electric current flows through a wire, it creates a **magnetic field** in the space around it. We'll explore the shape and direction of this magnetic field for different types of conductors, like a straight wire, a circular loop, and a coil called a **solenoid**, which is the basis for electromagnets. 🧭\n\nSince an electric current can create a magnetic field, what happens if you put a wire with a current into another magnetic field? It experiences a force! This powerful interaction is the principle behind the **electric motor**, a device that converts electrical energy into mechanical motion. But the connection goes both ways. If a current can create a magnet, can a magnet create a current? The answer is yes! This amazing phenomenon is called **electromagnetic induction**. By moving a magnet near a coil of wire, we can induce an electric current to flow in the wire. This is the fundamental principle behind the **electric generator**, a device that converts mechanical motion into electrical energy, which is how most of our world's electricity is produced.",
+    "important": [
+      "Fleming's Left-Hand Rule: Determines the direction of force on a current-carrying conductor in a magnetic field (used in motors).",
+      "Fleming's Right-Hand Rule: Determines the direction of induced current (used in generators).",
+      "Electromagnetic Induction: The production of an electromotive force across an electrical conductor in a changing magnetic field."
+    ]
   },
   {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "13. At the time of a short-circuit, the current in the circuit:\n\nA) reduces substantially\nB) does not change\nC) increases heavily\nD) varies continuously",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "14. A solution turns red litmus blue. Its pH is likely to be:\n\nA) 1\nB) 4\nC) 5\nD) 10",
-    "answer": "D",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "15. Which of the following constitutes a food chain?\n\nA) Grass, wheat and mango\nB) Grass, goat and human\nC) Goat, cow and elephant\nD) Grass, fish and goat",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 10,
-    "type": "descriptive",
-    "questionText": "16. The functional group present in Butanone is:\n\nA) -OH (Alcohol)\nB) -COOH (Carboxylic Acid)\nC) >C=O (Ketone)\nD) -CHO (Aldehyde)",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "17. Which of the following has the maximum number of unpaired electrons?\n\nA) Mg²⁺\nB) Ti³⁺\nC) V³⁺\nD) Fe²⁺",
-    "answer": "D",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "18. The 'powerhouse' of the cell is:\n\nA) Nucleus\nB) Ribosome\nC) Mitochondrion\nD) Golgi apparatus",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "19. The dimensional formula for gravitational constant G is:\n\nA) [ML³T⁻²]\nB) [M⁻¹L³T⁻²]\nC) [M⁻¹L²T⁻³]\nD) [ML²T⁻²]",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "20. The shape of the BeCl₂ molecule is:\n\nA) Trigonal planar\nB) Tetrahedral\nC) Linear\nD) V-shaped",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "21. A body starts from rest and travels with uniform acceleration. Which of the following graphs represents its motion?\n\nA) Graph A\nB) Graph B\nC) Graph C\nD) Graph D",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "22. The blood-clotting protein produced by the liver is:\n\nA) Fibrinogen\nB) Albumin\nC) Globulin\nD) Heparin",
-    "answer": "A",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "23. According to the first law of thermodynamics, ΔU = q + w. For an isochoric process, which of the following is true?\n\nA) w = 0\nB) q = 0\nC) ΔU = 0\nD) ΔU = w",
-    "answer": "A",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "24. The mode of nutrition in fungi is:\n\nA) Autotrophic\nB) Holozoic\nC) Saprophytic\nD) Parasitic",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "25. The angle of projection for which the horizontal range and maximum height of a projectile are equal is:\n\nA) 45°\nB) tan⁻¹(4)\nC) tan⁻¹(1/4)\nD) 60°",
-    "answer": "B",
-    "level": "hard",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "26. The number of chambers in the heart of a cockroach is:\n\nA) 2\nB) 4\nC) 13\nD) 10",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "27. The conjugate base of H₂PO₄⁻ is:\n\nA) H₃PO₄\nB) HPO₄²⁻\nC) PO₄³⁻\nD) H₂PO₃⁻",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "28. The escape velocity from the surface of the Earth is approximately:\n\nA) 7.9 km/s\nB) 11.2 km/s\nC) 9.8 km/s\nD) 1.6 km/s",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "29. Which of the following is known as the 'suicide bags' of the cell?\n\nA) Ribosomes\nB) Lysosomes\nC) Vacuoles\nD) Endoplasmic Reticulum",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "30. The IUPAC name of the compound CH₃-CH(OH)-CH₃ is:\n\nA) Propan-1-ol\nB) Propan-2-ol\nC) Ethanol\nD) Propanal",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "31. The universal law of gravitation was formulated by:\n\nA) Galileo\nB) Newton\nC) Copernicus\nD) Kepler",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 11,
-    "type": "descriptive",
-    "questionText": "32. The enzyme pepsin digests:\n\nA) Carbohydrates\nB) Fats\nC) Proteins\nD) Vitamins",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "33. The SI unit of electric flux is:\n\nA) Weber\nB) Volt-meter\nC) Newton / Coulomb\nD) Tesla",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "34. The process of converting an amine into a diazonium salt is known as:\n\nA) Sandmeyer reaction\nB) Gattermann reaction\nC) Diazotisation\nD) Carbylamine reaction",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "35. The process by which a mature egg is released from the ovary is called:\n\nA) Fertilization\nB) Ovulation\nC) Implantation\nD) Menstruation",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "36. A device that converts electrical energy into mechanical energy is:\n\nA) AC Generator\nB) DC Motor\nC) Transformer\nD) Solenoid",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "37. Which of the following is a termination codon in protein synthesis?\n\nA) AUG\nB) GUG\nC) UAA\nD) GGG",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "38. The phenomenon of radioactivity was discovered by:\n\nA) Marie Curie\nB) Pierre Curie\nC) Henri Becquerel\nD) J.J. Thomson",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "39. The number of atoms per unit cell in a body-centered cubic (BCC) structure is:\n\nA) 1\nB) 2\nC) 4\nD) 8",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "40. AIDS is caused by which of the following viruses?\n\nA) Influenza virus\nB) Dengue virus\nC) HIV\nD) Varicella-zoster virus",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "41. Lenz's law is a consequence of the law of conservation of:\n\nA) Charge\nB) Mass\nC) Momentum\nD) Energy",
-    "answer": "D",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "42. The process of coating zinc on iron is known as:\n\nA) Electroplating\nB) Galvanization\nC) Corrosion\nD) Annealing",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "43. The technique of producing genetically identical individuals is called:\n\nA) Hybridization\nB) Cloning\nC) Tissue culture\nD) Mutation",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "44. The sky appears blue due to:\n\nA) Reflection of light\nB) Refraction of light\nC) Total internal reflection\nD) Scattering of light",
-    "answer": "D",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "45. The order of a reaction which is independent of the reactant's concentration is:\n\nA) First order\nB) Second order\nC) Zero order\nD) Third order",
-    "answer": "C",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "46. Down's syndrome is a genetic disorder which is caused by the presence of an extra chromosome number:\n\nA) 21\nB) 18\nC) 13\nD) 23",
-    "answer": "A",
-    "level": "medium",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "47. In a p-type semiconductor, the majority charge carriers are:\n\nA) electrons\nB) holes\nC) protons\nD) neutrons",
-    "answer": "B",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "48. The vitamin whose deficiency causes scurvy is:\n\nA) Vitamin A\nB) Vitamin B\nC) Vitamin C\nD) Vitamin D",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "49. The energy of a photon is given by E = hν. Here, h is:\n\nA) Rydberg's constant\nB) Boltzmann's constant\nC) Planck's constant\nD) Gas constant",
-    "answer": "C",
-    "level": "easy",
-    "rating": 3
-  },
-  {
-    "category": "Science",
-    "grade": 12,
-    "type": "descriptive",
-    "questionText": "50. The interaction between two species where one is benefited and the other is neither benefited nor harmed is called:\n\nA) Mutualism\nB) Commensalism\nC) Parasitism\nD) Predation",
-    "answer": "B",
-    "level": "medium",
-    "rating": 3
+    "chapter_number": 13,
+    "chapter_name": "Our Environment",
+    "concepts": "This chapter encourages us to become responsible citizens of our planet by understanding how **Our Environment** works. We'll start by looking at an **ecosystem**, which is like a neighborhood made up of living components (**biotic**, like plants and animals) and non-living components (**abiotic**, like air, water, and soil) that all interact with each other. A key part of any ecosystem is the flow of energy. We'll trace this flow through **food chains** and **food webs**, seeing how energy from the sun is captured by plants and then passed along from one organism to another when they are eaten. 🌍\n\nWe'll learn about the **10% Law**, which states that only about 10% of the energy from one level of the food chain is transferred to the next. The rest is used up or lost as heat. This explains why there are many more plants than there are top predators. The chapter also addresses the serious environmental problems caused by human activities. We'll discuss the depletion of the **ozone layer**, our planet's natural sunscreen, due to harmful chemicals like CFCs. We will also tackle the massive issue of **waste management**, learning the difference between **biodegradable** waste (which can be broken down naturally) and **non-biodegradable** waste (like plastic, which persists in the environment for hundreds of years), and why it's so important to manage our trash responsibly.",
+    "important": [
+      "Ecosystem: A community of living organisms (biotic) interacting with their physical environment (abiotic).",
+      "10% Law: Only 10% of energy is transferred from one trophic level to the next.",
+      "Ozone (O₃) Layer Depletion: Caused mainly by chlorofluorocarbons (CFCs).",
+      "Biodegradable vs. Non-biodegradable Waste: Waste that can be broken down by microorganisms vs. waste that cannot."
+    ]
   }
 ]
