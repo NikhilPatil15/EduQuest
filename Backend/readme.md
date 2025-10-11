@@ -1,6 +1,4 @@
-I'll update the README.md file to include the PvP Battle Socket documentation. Here's the updated version:
 
-````markdown
 # 🎮 EduQuest Pokémon Learning Platform - API Documentation
 
 ## 📋 Table of Contents
@@ -26,7 +24,7 @@ Register a new user.
 
 **Request Body:**
 
-```json
+
 {
 	"userName": "ashketchum",
 	"email": "ash@pokemon.com",
