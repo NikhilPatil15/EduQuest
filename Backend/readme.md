@@ -1,3 +1,4 @@
+
 # 🎮 EduQuest Pokémon Learning Platform - API Documentation
 
 ## 📋 Table of Contents
@@ -11,6 +12,7 @@
 - [Feedback & Notification Routes](#feedback--notification-routes)
 - [Pokedex & Evolution Routes](#pokedex--evolution-routes)
 - [Adaptive Learning Routes](#adaptive-learning-routes)
+- [PvP Battle System](#pvp-battle-system) 🆕
 
 ---
 
@@ -22,7 +24,7 @@ Register a new user.
 
 **Request Body:**
 
-```json
+
 {
 	"userName": "ashketchum",
 	"email": "ash@pokemon.com",
@@ -30,6 +32,7 @@ Register a new user.
 	"fullName": "Ash Ketchum"
 }
 ```
+````
 
 **Response:**
 
@@ -137,21 +140,21 @@ Start a new quiz session.
 
 ```json
 {
-  "success": true,
-  "data": {
-    "sessionId": "507f1f77bcf86cd799439011",
-    "currentQuestion": {
-      "_id": "...
-      "question": "What is 15 + 27?",
-      "questionType": "multiple_choice",
-      "options": ["32", "42", "52", "62"],
-      "timeLimit": 30
-    },
-    "progress": {
-      "current": 1,
-      "total": 10
-    }
-  }
+	"success": true,
+	"data": {
+		"sessionId": "507f1f77bcf86cd799439011",
+		"currentQuestion": {
+			"_id": "...",
+			"question": "What is 15 + 27?",
+			"questionType": "multiple_choice",
+			"options": ["32", "42", "52", "62"],
+			"timeLimit": 30
+		},
+		"progress": {
+			"current": 1,
+			"total": 10
+		}
+	}
 }
 ```
 
@@ -615,7 +618,7 @@ Get detailed Pokémon information.
 
 Toggle favorite status.
 
-#### **PATCH** `/api/v1/pokedex/:pokemonId/notes\*\*
+#### **PATCH** `/api/v1/pokedex/:pokemonId/notes`
 
 Add research notes.
 
@@ -646,11 +649,11 @@ Evolve a Pokémon.
 }
 ```
 
-#### **GET** `/api/v1/pokedex/evolutions/history\*\*
+#### **GET** `/api/v1/pokedex/evolutions/history`
 
 Get evolution history.
 
-#### **POST** `/api/v1/pokedex/evolutions/auto-evolve\*\*
+#### **POST** `/api/v1/pokedex/evolutions/auto-evolve`
 
 Process auto-evolutions.
 
@@ -678,6 +681,162 @@ Update user performance for adaptive system.
 ### **GET** `/api/v1/adaptive/analytics`
 
 Get performance analytics.
+
+---
+
+## ⚔️ PvP Battle System 🆕
+
+### **Socket.IO Connection**
+
+Connect to the battle namespace:
+
+```javascript
+const socket = io('/battle');
+```
+
+### **Socket Events**
+
+#### **Join Battle Room**
+
+**Event:** `join-battle`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123"
+}
+```
+
+**Description:** Join a specific battle room to participate in PvP battles.
+
+#### **Player Ready**
+
+**Event:** `player-ready`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123",
+	"playerId": "user_id_123"
+}
+```
+
+**Description:** Notify when a player is ready to start the battle.
+
+#### **New Question**
+
+**Event:** `new-question`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123",
+	"question": {
+		"_id": "question_id",
+		"question": "What is 15 + 27?",
+		"options": ["32", "42", "52", "62"],
+		"timeLimit": 30
+	}
+}
+```
+
+**Description:** Send a new question to all players in the battle room.
+
+#### **Player Answer**
+
+**Event:** `player-answer`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123",
+	"playerId": "user_id_123",
+	"isCorrect": true,
+	"timeSpent": 12.5
+}
+```
+
+**Description:** Submit player's answer and track performance.
+
+#### **Round Results**
+
+**Event:** `round-results`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123",
+	"results": {
+		"player1": { "score": 100, "time": 12.5 },
+		"player2": { "score": 150, "time": 8.2 }
+	}
+}
+```
+
+**Description:** Broadcast round results to all players.
+
+#### **Battle Finished**
+
+**Event:** `battle-finished`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123",
+	"winner": "user_id_123",
+	"rewards": {
+		"xp": 500,
+		"coins": 100,
+		"pokemon": "pokemon_id_123"
+	}
+}
+```
+
+**Description:** Announce battle completion and distribute rewards.
+
+#### **Leave Battle**
+
+**Event:** `leave-battle`  
+**Data:**
+
+```json
+{
+	"roomId": "battle_room_123"
+}
+```
+
+**Description:** Leave the battle room.
+
+#### **Battle Update**
+
+**Event:** `battle-update` (Server → Client)  
+**Data:** Complete battle object with populated player and Pokémon data.
+
+### **Battle Flow**
+
+1. **Connection:** Players connect to `/battle` namespace
+2. **Join Room:** Players join specific battle room with `join-battle`
+3. **Ready Check:** Players signal readiness with `player-ready`
+4. **Question Rounds:** Server sends questions via `new-question`
+5. **Answer Submission:** Players submit answers with `player-answer`
+6. **Round Results:** Server broadcasts results with `round-results`
+7. **Battle Completion:** Server announces winner with `battle-finished`
+
+### **Battle Model Structure**
+
+```javascript
+{
+  roomId: String,
+  player1: { type: ObjectId, ref: 'User' },
+  player2: { type: ObjectId, ref: 'User' },
+  player1Pokemon: { type: ObjectId, ref: 'Pokemon' },
+  player2Pokemon: { type: ObjectId, ref: 'Pokemon' },
+  currentQuestion: { type: ObjectId, ref: 'Question' },
+  status: String, // 'waiting', 'active', 'finished'
+  winner: { type: ObjectId, ref: 'User' },
+  rewards: Object
+}
+```
 
 ---
 

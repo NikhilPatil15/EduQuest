@@ -1,0 +1,198 @@
+[
+  {
+    "chapter_number": 1,
+    "chapter_name": "Real Numbers",
+    "concepts": "Hey there! Let's start with the basics of numbers. Think of **Real Numbers** as the giant umbrella that covers every single number you can imagine on a number line. This big family has two main branches. The first branch is the **Rational Numbers**. These are the friendly, predictable numbers you work with most often. Any number that you can write as a simple fraction, like $1/2$ or even the whole number $5$ (which is just $5/1$), is rational. This group also includes decimals that either stop (like $0.75$) or repeat in a pattern forever (like $0.333...$). They're 'rational' because they behave in a logical, ratio-based way. 💯\n\nThe second branch is the **Irrational Numbers**. These are the wild, mysterious numbers of the family. Their decimal form goes on forever without ever repeating a pattern. Famous examples are $\\pi$ (pi), which is crucial for circles, and $\\sqrt{2}$. You can't write them as a simple fraction, no matter how hard you try! This chapter also introduces a super important rule called the **Fundamental Theorem of Arithmetic**. It sounds complex, but it just means that any whole number that isn't prime can be broken down into a unique set of prime number ingredients. For example, the number 12 will always be made of two 2s and one 3 ($2 \\times 2 \\times 3$). It's like a unique DNA code for every number, which helps us find things like the Highest Common Factor (HCF) and Lowest Common Multiple (LCM).",
+    "important": [
+      "Euclid’s Division Lemma: For two positive integers a and b, there exist unique integers q and r satisfying $a = bq + r$, where $0 \\le r < b$.",
+      "Euclid's Algorithm: An efficient method to find the HCF of two numbers based on the division lemma. HCF(a, b) = HCF(b, r).",
+      "Fundamental Theorem of Arithmetic: Every composite number can be expressed as a product of primes, and this factorization is unique.",
+      "HCF and LCM by Prime Factorization: HCF is the product of the smallest power of each common prime factor. LCM is the product of the greatest power of each prime factor involved.",
+      "Relationship between HCF and LCM: For any two positive integers a and b, $HCF(a, b) \\times LCM(a, b) = a \\times b$.",
+      "Terminating Decimals: A rational number $p/q$ has a terminating decimal expansion if the prime factorization of $q$ is of the form $2^n 5^m$, where n and m are non-negative integers.",
+      "Non-Terminating Repeating Decimals: A rational number $p/q$ has a non-terminating repeating decimal expansion if the prime factorization of $q$ contains any prime factor other than 2 or 5.",
+      "Proof of Irrationality: Proving numbers like $\\sqrt{2}$, $\\sqrt{3}$, etc., are irrational is done using 'Proof by Contradiction'."
+    ]
+  },
+  {
+    "chapter_number": 2,
+    "chapter_name": "Polynomials",
+    "concepts": "Alright, let's talk about **Polynomials**! Don't let the name intimidate you. They are simply algebraic expressions made by adding and subtracting terms like $3x^2$ or $5x$. The key rule is that the exponents (the little numbers on top of the variable) must be whole numbers (0, 1, 2, 3, ...). The highest exponent in the polynomial is called its 'degree,' and it tells you a lot about the polynomial, like the shape of its graph. Think of a simple linear polynomial like $y = 2x+1$; its degree is 1, and its graph is a straight line. A quadratic polynomial, like $y = x^2 - 4$, has a degree of 2, and its graph is a cool U-shaped curve called a parabola. 🎢\n\nOne of the most important ideas in this chapter is finding the '**zeroes**' of a polynomial. A 'zero' is simply a value of x that makes the whole polynomial equal to zero. Why is this useful? Geometrically, the zeroes are the exact points where the polynomial's graph crosses the x-axis! So, finding the zeroes is like finding the x-intercepts. The amazing part is the relationship between these zeroes and the coefficients (the numbers in front of the variables). For a quadratic polynomial, you can find the sum and the product of its zeroes just by looking at the coefficients, without even solving for the zeroes themselves! This is a powerful shortcut that connects the algebra of the polynomial to the geometry of its graph.",
+    "important": [
+      "Zeroes of a Polynomial: A real number $k$ is a zero of a polynomial $p(x)$ if $p(k) = 0$. The number of zeroes of a polynomial is at most its degree.",
+      "Relationship for Quadratic Polynomials ($ax^2 + bx + c$): If $\\alpha$ and $\\beta$ are the zeroes, then Sum of zeroes ($\\alpha + \\beta$) = $-b/a$ and Product of zeroes ($\\alpha\\beta$) = $c/a$.",
+      "Relationship for Cubic Polynomials ($ax^3 + bx^2 + cx + d$): If $\\alpha$, $\\beta$, and $\\gamma$ are the zeroes, then $\\alpha + \\beta + \\gamma = -b/a$, $\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = c/a$, and $\\alpha\\beta\\gamma = -d/a$.",
+      "Forming a Quadratic Polynomial: A quadratic polynomial with zeroes $\\alpha$ and $\\beta$ is given by $k[x^2 - (\\alpha + \\beta)x + \\alpha\\beta]$, where $k$ is any non-zero constant.",
+      "Division Algorithm for Polynomials: For any two polynomials $p(x)$ and $g(x)$ where $g(x) \\neq 0$, we can find polynomials $q(x)$ and $r(x)$ such that $p(x) = g(x) \\times q(x) + r(x)$, where $r(x) = 0$ or degree($r(x)$) < degree($g(x)$)."
+    ]
+  },
+  {
+    "chapter_number": 3,
+    "chapter_name": "Pair of Linear Equations in Two Variables",
+    "concepts": "Imagine you have a mystery with two clues. Each clue is a linear equation with two variables, like $x + y = 10$. On a graph, each of these equations draws a perfectly straight line. Solving a **pair of linear equations** means finding the one specific point $(x, y)$ where those two lines cross. This intersection point is the 'solution' because it's the only point that works for both equations at the same time—it's the answer to your mystery! 🕵️‍♀️\n\nThis chapter teaches you how to be a math detective and find that intersection point. You can do it visually by drawing the graphs and seeing where they cross. But for more accuracy, we use algebraic methods. The **Substitution Method** is like using one clue to figure out a piece of the other. The **Elimination Method** is about cleverly combining the two clues (equations) to make one of the variables disappear, making it easy to solve for the other. Sometimes, the lines might be parallel and never cross (meaning there's no solution), or they might be the exact same line stacked on top of each other (meaning there are infinite solutions). We'll learn how to predict which of these three situations (one, none, or infinite solutions) will happen just by comparing the coefficients of the equations, without even drawing the graph!",
+    "important": [
+      "General Form: A pair of linear equations is given by $a_1x + b_1y + c_1 = 0$ and $a_2x + b_2y + c_2 = 0$.",
+      "Graphical Interpretation and Coefficient Ratios:",
+      "1. Unique Solution (Intersecting lines): $\\frac{a_1}{a_2} \\neq \\frac{b_1}{b_2}$. The system is called 'consistent'.",
+      "2. No Solution (Parallel lines): $\\frac{a_1}{a_2} = \\frac{b_1}{b_2} \\neq \\frac{c_1}{c_2}$. The system is called 'inconsistent'.",
+      "3. Infinitely Many Solutions (Coincident lines): $\\frac{a_1}{a_2} = \\frac{b_1}{b_2} = \\frac{c_1}{c_2}$. The system is called 'dependent' and 'consistent'.",
+      "Algebraic Methods: Substitution, Elimination, and Cross-Multiplication are the three main methods to solve the equations algebraically."
+    ]
+  },
+  {
+    "chapter_number": 4,
+    "chapter_name": "Quadratic Equations",
+    "concepts": "Welcome to **Quadratic Equations**! These are equations that have a squared term, like $x^2 + 5x + 6 = 0$. Remember how linear equations give you a straight line? Well, quadratics give you a beautiful U-shaped curve called a parabola. The 'solutions' to a quadratic equation are also called its 'roots'. These are the special values of x that make the equation true. On a graph, the roots are the points where the parabola crosses the x-axis. A parabola can cross the x-axis twice, touch it at just one point, or miss it completely. This means a quadratic equation can have two solutions, one solution, or no real solutions.\n\nSo, how do we find these roots? You'll learn a few awesome methods. **Factorization** is like solving a puzzle by breaking the equation down into simpler parts. **Completing the Square** is a neat trick to rewrite the equation in a way that's easier to solve. But the ultimate tool in your toolbox will be the **Quadratic Formula**. It's a powerful formula that can solve *any* quadratic equation you throw at it, even the tricky ones that can't be factored easily. We'll also learn about the 'discriminant,' a part of the quadratic formula that acts like a crystal ball. 🔮 Before you even start solving, the discriminant can tell you whether to expect two, one, or no real solutions, which is a huge time-saver!",
+    "important": [
+      "Standard Form: A quadratic equation must be in the form $ax^2 + bx + c = 0$, where $a \\neq 0$.",
+      "Quadratic Formula: The roots of the equation are given by $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.",
+      "Discriminant (D): The nature of the roots depends on $D = b^2 - 4ac$.",
+      "  - If $D > 0$, there are two distinct real roots.",
+      "  - If $D = 0$, there are two equal real roots (one repeated root).",
+      "  - If $D < 0$, there are no real roots (the roots are complex/imaginary).",
+      "Methods of Solving: Factorization, Completing the Square, and the Quadratic Formula.",
+      "Sum and Product of Roots: For a quadratic equation $ax^2 + bx + c = 0$ with roots $\\alpha$ and $\\beta$: Sum ($\\alpha + \\beta$) = $-b/a$, Product ($\\alpha\\beta$) = $c/a$."
+    ]
+  },
+  {
+    "chapter_number": 5,
+    "chapter_name": "Arithmetic Progressions",
+    "concepts": "Let's explore patterns in numbers with **Arithmetic Progressions**, or APs for short. An AP is just a list of numbers that follows a simple rule: you always add or subtract the same number to get from one term to the next. That fixed number is called the 'common difference' (d). For example, in the sequence 2, 5, 8, 11, ..., you're always adding 3, so the common difference is 3. If you have 20, 15, 10, ..., you're always subtracting 5, so the common difference is -5. Think of it like walking up or down a staircase where every step is the same height. 🚶‍♂️\n\nNow, what if you wanted to know the 100th number in that sequence without writing all 100 numbers out? That would be a pain! Luckily, this chapter gives you a formula to find any term you want (we call it the 'nth term'). You just need to know the first term, the common difference, and which term you're looking for. But that's not all! We also get another amazing formula to find the sum of a certain number of terms in the AP. So if you wanted to add up the first 50 terms, you don't have to do it one by one. You can use this powerful shortcut to get the answer in a flash. These formulas are super useful for any situation that involves a steady, constant change.",
+    "important": [
+      "General Form of an AP: $a, a+d, a+2d, a+3d, ...$, where $a$ is the first term and $d$ is the common difference.",
+      "Common Difference (d): Can be found by subtracting any term from its succeeding term, $d = a_{k+1} - a_k$.",
+      "The nth term of an AP: $a_n = a + (n - 1)d$. This gives the value of the term at position n.",
+      "The nth term from the end of an AP: $l - (n-1)d$, where $l$ is the last term.",
+      "Sum of the first n terms of an AP: $S_n = \\frac{n}{2}[2a + (n - 1)d]$.",
+      "Alternate Sum Formula: $S_n = \\frac{n}{2}(a + l)$, where $l$ is the last term (which is also $a_n$).",
+      "Relationship between nth term and Sum: The nth term can also be found by $a_n = S_n - S_{n-1}$."
+    ]
+  },
+  {
+    "chapter_number": 6,
+    "chapter_name": "Triangles",
+    "concepts": "In this chapter, we dive deep into the world of **Triangles**, focusing on a fascinating idea called **similarity**. You already know about congruent triangles—those are identical twins, with the same shape and same size. Similar triangles, however, are more like a parent and a child. They have the exact same shape (meaning all their corresponding angles are equal), but they can be different sizes. Think of it like zooming in or out on a photo; the image gets bigger or smaller, but all the proportions stay the same. We'll learn the specific rules (like AAA, SAS, and SSS) to prove for sure that two triangles are similar. 👨‍👧\n\nOne of the biggest ideas in this chapter is the **Basic Proportionality Theorem** (or Thales' Theorem). It's a cool theorem that says if you draw a line inside a triangle that is parallel to one of its sides, it will cut the other two sides into pieces that are perfectly proportional. This theorem is the foundation of similarity. We will also revisit an old friend, the **Pythagoras' Theorem**, which is all about the special relationship between the sides of a right-angled triangle. Finally, we'll discover a really neat connection between the areas of similar triangles: the ratio of their areas is equal to the square of the ratio of their corresponding sides. This means if one triangle has sides twice as long as a similar one, its area will be four times bigger!",
+    "important": [
+      "Similarity Criteria: Two triangles are similar if:",
+      "  - (AAA or AA) Their corresponding angles are equal.",
+      "  - (SSS) Their corresponding sides are in the same ratio.",
+      "  - (SAS) Two pairs of corresponding sides are in the same ratio, and the included angles are equal.",
+      "Basic Proportionality Theorem (BPT) / Thales' Theorem: If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, the other two sides are divided in the same ratio. If in $\\triangle ABC$, $DE || BC$, then $\\frac{AD}{DB} = \\frac{AE}{EC}$.",
+      "Converse of BPT: If a line divides two sides of a triangle in the same ratio, then the line is parallel to the third side.",
+      "Ratio of Areas of Similar Triangles: The ratio of the areas of two similar triangles is equal to the square of the ratio of their corresponding sides. If $\\triangle ABC \\sim \\triangle PQR$, then $\\frac{Area(\\triangle ABC)}{Area(\\triangle PQR)} = (\\frac{AB}{PQ})^2 = (\\frac{BC}{QR})^2 = (\\frac{CA}{RP})^2$.",
+      "Pythagoras' Theorem: In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides. $AC^2 = AB^2 + BC^2$.",
+      "Converse of Pythagoras' Theorem: If the square of one side of a triangle is equal to the sum of the squares of the other two sides, then the angle opposite the first side is a right angle."
+    ]
+  },
+  {
+    "chapter_number": 7,
+    "chapter_name": "Coordinate Geometry",
+    "concepts": "Welcome to **Coordinate Geometry**, where we connect algebra and geometry! Think of the coordinate plane (the one with the x-axis and y-axis) as a giant map, like in a video game. Every point on this map has a unique address called its coordinates $(x, y)$. This chapter gives you the tools to do geometry on this map using formulas instead of just pictures. It’s like being a digital surveyor! 🗺️\n\nWe'll learn three main formulas that are like your GPS tools. The first is the **Distance Formula**. If you have the coordinates of two points, you can use this formula to find the exact straight-line distance between them. It's secretly just the Pythagorean theorem in disguise! The second tool is the **Section Formula**. This one is super clever: if you have a line segment between two points, this formula can find the exact coordinates of any point that divides the segment into a certain ratio (like cutting it into one-third and two-thirds). Finally, we have a formula to find the **Area of a Triangle** just by using the coordinates of its three corners. No need to measure base or height; just plug the coordinates into the formula, and you've got the area!",
+    "important": [
+      "Distance Formula: The distance between two points $P(x_1, y_1)$ and $Q(x_2, y_2)$ is $PQ = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.",
+      "Section Formula: The coordinates of a point P(x, y) that divides the line segment joining $A(x_1, y_1)$ and $B(x_2, y_2)$ internally in the ratio $m_1:m_2$ are $(\\frac{m_1x_2 + m_2x_1}{m_1 + m_2}, \\frac{m_1y_2 + m_2y_1}{m_1 + m_2})$.",
+      "Mid-Point Formula: A special case of the section formula where the ratio is 1:1. The midpoint of the segment joining $(x_1, y_1)$ and $(x_2, y_2)$ is $(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2})$.",
+      "Area of a Triangle: The area of a triangle with vertices $(x_1, y_1)$, $(x_2, y_2)$, and $(x_3, y_3)$ is $\\frac{1}{2} |x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)|$.",
+      "Condition for Collinearity: Three points are collinear (lie on the same straight line) if the area of the triangle formed by them is zero."
+    ]
+  },
+  {
+    "chapter_number": 8,
+    "chapter_name": "Introduction to Trigonometry",
+    "concepts": "Get ready for **Trigonometry**! The word itself means 'triangle measurement,' and that’s exactly what it is. This whole chapter is focused on right-angled triangles and the special relationships between their angles and side lengths. For any acute angle in a right-angled triangle, we can form six different ratios of its side lengths. These ratios are given special names: **sine (sin), cosine (cos), tangent (tan), cosecant (csc), secant (sec), and cotangent (cot)**. A simple way to remember the main three is the mnemonic **SOH CAH TOA** (Sin = Opposite/Hypotenuse, Cos = Adjacent/Hypotenuse, Tan = Opposite/Adjacent). 🤔\n\nThe most important thing to realize is that these ratios depend *only* on the angle, not on how big or small the triangle is. A 30° angle in a tiny triangle will have the exact same sine, cosine, and tangent values as a 30° angle in a gigantic triangle. We will learn the specific values of these ratios for some key angles like 30°, 45°, and 60°. We'll also discover some fundamental equations called **Trigonometric Identities**, like the famous $\\sin^2(\\theta) + \\cos^2(\\theta) = 1$. These identities are always true, no matter what the angle is, and they are essential tools for solving more complex problems.",
+    "important": [
+      "Trigonometric Ratios (SOH CAH TOA): For an acute angle $\\theta$ in a right-angled triangle:",
+      "  - $\\sin(\\theta) = \\frac{\\text{Opposite}}{\\text{Hypotenuse}} = \\frac{P}{H}$",
+      "  - $\\cos(\\theta) = \\frac{\\text{Adjacent}}{\\text{Hypotenuse}} = \\frac{B}{H}$",
+      "  - $\\tan(\\theta) = \\frac{\\text{Opposite}}{\\text{Adjacent}} = \\frac{P}{B}$",
+      "Reciprocal Relations: $\\csc(\\theta) = \\frac{1}{\\sin(\\theta)}$, $\\sec(\\theta) = \\frac{1}{\\cos(\\theta)}$, $\\cot(\\theta) = \\frac{1}{\\tan(\\theta)}$",
+      "Quotient Relations: $\\tan(\\theta) = \\frac{\\sin(\\theta)}{\\cos(\\theta)}$, $\\cot(\\theta) = \\frac{\\cos(\\theta)}{\\sin(\\theta)}$",
+      "Pythagorean Identities:",
+      "  - $\\sin^2(\\theta) + \\cos^2(\\theta) = 1$",
+      "  - $1 + \\tan^2(\\theta) = \\sec^2(\\theta)$",
+      "  - $1 + \\cot^2(\\theta) = \\csc^2(\\theta)$",
+      "Trigonometric Ratios of Complementary Angles: $\\sin(90^\\circ - \\theta) = \\cos(\\theta)$, $\\cos(90^\\circ - \\theta) = \\sin(\\theta)$, $\\tan(90^\\circ - \\theta) = \\cot(\\theta)$",
+      "Table of Standard Angles: Memorize the values of sin, cos, and tan for 0°, 30°, 45°, 60°, and 90°."
+    ]
+  },
+  {
+    "chapter_number": 9,
+    "chapter_name": "Some Applications of Trigonometry",
+    "concepts": "Now it's time to take trigonometry out into the real world! This chapter is all about using the sine, cosine, and tangent ratios you've learned to solve practical problems, especially those involving **heights and distances**. Have you ever wondered how people measure the height of a huge mountain or a tall building without actually climbing it with a measuring tape? The answer is trigonometry! By measuring an angle and a distance on the ground, we can create an imaginary right-angled triangle and use our trig ratios to find the unknown height. 🏔️\n\nTo do this, we'll use two important new terms. The **Angle of Elevation** is the angle you look *up* from a horizontal line to see something. Imagine standing on the ground and looking up at the top of a flagpole; the angle your eyes make with the ground is the angle of elevation. The **Angle of Depression** is the opposite; it's the angle you look *down* from a horizontal line to see something. Imagine being at the top of a lighthouse and looking down at a boat in the water. The key to solving every problem in this chapter is to first read it carefully and then draw a simple diagram. Once you have a good diagram, you can spot the right-angled triangle, label what you know, and choose the correct trig ratio to find what you're looking for.",
+    "important": [
+      "Line of Sight: The line drawn from the eye of an observer to the point in the object viewed by the observer.",
+      "Angle of Elevation: The angle formed by the line of sight with the horizontal when the object is *above* the horizontal level. It's the angle of 'looking up'.",
+      "Angle of Depression: The angle formed by the line of sight with the horizontal when the object is *below* the horizontal level. It's the angle of 'looking down'.",
+      "Key Tip: The angle of elevation of a point A as seen from point B is equal to the angle of depression of point B as seen from point A.",
+      "Problem-Solving Strategy: The most crucial step is to draw a well-labeled diagram of the situation, which will help you identify the right-angled triangle and the appropriate trigonometric ratio (SOH CAH TOA) to use."
+    ]
+  },
+  {
+    "chapter_number": 10,
+    "chapter_name": "Circles",
+    "concepts": "Let's roll into the world of **Circles**! This chapter explores the cool properties of circles and how they interact with lines. We'll learn two special names for lines that meet a circle. A **secant** is a line that cuts through the circle at two points, but a **tangent** is a line that just barely skims the outside, touching the circle at exactly one single point. Think of a ball rolling on a flat floor; the floor is tangent to the ball at the point where it touches. 🎾\n\nThis whole chapter is built on two simple but very powerful theorems about tangents. The first theorem is a game-changer: the tangent line is always **perpendicular** to the radius of the circle at the point where they touch. This means they form a perfect 90° angle, which is incredibly useful because it lets us use tools like the Pythagorean theorem. The second big theorem says that if you are standing at a point outside a circle and you draw two tangent lines to that circle, the lengths of those two tangents (from where you are standing to where they touch the circle) will always be **equal**. These two rules are the keys to solving all sorts of geometric puzzles involving circles.",
+    "important": [
+      "Tangent: A line that intersects the circle at only one point, called the point of contact.",
+      "Secant: A line that intersects the circle at two distinct points.",
+      "Theorem 1: The tangent at any point of a circle is perpendicular to the radius through the point of contact. ($Radius \\perp Tangent$)",
+      "Theorem 2: The lengths of tangents drawn from an external point to a circle are equal.",
+      "Number of Tangents from a Point:",
+      "  - A point inside the circle: 0 tangents.",
+      "  - A point on the circle: 1 tangent.",
+      "  - A point outside the circle: 2 tangents.",
+      "Corollary: The line connecting the external point to the center of the circle bisects the angle between the two tangents from that point."
+    ]
+  },
+  {
+    "chapter_number": 11,
+    "chapter_name": "Areas Related to Circles",
+    "concepts": "In this chapter, we're going to slice up circles and figure out how to measure the pieces! You already know how to find the area and circumference of a whole circle, but what about just a part of it? We'll learn about two main types of pieces. A **sector** is the part of a circle that looks like a slice of pizza, bounded by two radii and the curvy edge (arc) between them. 🍕 A **segment** is the region between a straight line (a chord) and the arc it cuts off—think of it as the crust part of a pizza slice after you've eaten the cheesy part.\n\nThe cool thing is that the formulas to find the area of a sector or the length of an arc are super logical. They are just a fraction of the whole circle's area or circumference. That fraction is determined by the angle at the center of the circle. If a sector has a 90° angle, its area is simply $90/360$, or one-fourth, of the entire circle's area! The real fun begins when we start combining these shapes with others, like squares and triangles. You'll learn how to find the area of complex-looking shaded regions by being clever and adding or subtracting the areas of the simple shapes you already know.",
+    "important": [
+      "Circumference of a Circle: $C = 2\\pi r$",
+      "Area of a Circle: $A = \\pi r^2$",
+      "Length of an Arc of a Sector: The length of an arc with a central angle $\\theta$ (in degrees) is $(\\frac{\\theta}{360^\\circ}) \\times 2\\pi r$.",
+      "Area of a Sector: The area of a sector with a central angle $\\theta$ (in degrees) is $(\\frac{\\theta}{360^\\circ}) \\times \\pi r^2$.",
+      "Area of a Segment: Area of Segment = Area of the corresponding Sector - Area of the corresponding Triangle.",
+      "Area of Major/Minor Parts: Area of Major Sector = Area of Circle - Area of Minor Sector. Area of Major Segment = Area of Circle - Area of Minor Segment."
+    ]
+  },
+  {
+    "chapter_number": 12,
+    "chapter_name": "Surface Areas and Volumes",
+    "concepts": "Let's jump into the 3D world! This chapter is all about measuring 3D shapes. We'll focus on two main things. First is **Surface Area**, which is the total area of all the outside surfaces of a shape. Imagine you have to wrap a gift box; the amount of wrapping paper you need is its surface area. Second is **Volume**, which is the amount of space a 3D object takes up. If you have a water bottle, the amount of water it can hold is its volume. 💧 We'll learn the formulas to calculate these for common shapes like cubes, cylinders, cones, and spheres.\n\nThe real challenge and fun comes when we start combining these shapes. Imagine an ice cream cone—it's a cone with a hemisphere on top! To find its total surface area or volume, you'll learn how to break it down into its simpler parts and add them up. We'll also look at what happens when you melt down a solid and reshape it into something else, like melting a big block of wax into several small candles. The shapes and surface areas change completely, but one thing stays exactly the same: the total volume of the wax. This principle of conserved volume is key to solving many interesting problems.",
+    "important": [
+      "Key Formulas (Cube, Cuboid, Cylinder, Cone, Sphere, Hemisphere): You must know the formulas for Curved Surface Area (CSA), Total Surface Area (TSA), and Volume for each of these solids.",
+      "Slant Height of a Cone (l): $l = \\sqrt{r^2 + h^2}$, where r is the radius and h is the height.",
+      "Volume of a Frustum of a Cone: $V = \\frac{1}{3}\\pi h(r_1^2 + r_2^2 + r_1r_2)$, where h is the height and $r_1, r_2$ are the radii of the circular ends.",
+      "Surface Area of Combined Solids: Find the area of each visible surface and add them up. Be careful not to include surfaces that are joined together.",
+      "Volume of Combined Solids: The total volume is simply the sum of the volumes of the individual solids.",
+      "Conversion of Solids: When one solid is converted to another, their volumes are equal. Volume of original shape = Volume of new shape."
+    ]
+  },
+  {
+    "chapter_number": 13,
+    "chapter_name": "Statistics",
+    "concepts": "**Statistics** is the art and science of learning from data. It helps us make sense of the world by collecting, organizing, and analyzing information. In this chapter, we'll focus on how to summarize a whole set of data with just a single number. These summary numbers are called 'measures of central tendency' because they tell us where the 'center' of the data is. You've already met one of them: the **Mean**, which is simply the average value. It's great, but it can be thrown off by unusually high or low numbers (called outliers). 📊\n\nTo get a better picture, we also use two other measures. The **Median** is the true middle value—if you line up all your data points from smallest to largest, the median is the one right in the middle. It's not affected by outliers, which makes it very reliable. The third measure is the **Mode**, which is the easiest one to find: it's just the value that appears most often in the data set. For example, in a survey of favorite colors, the mode would be the color that was chosen the most. We will learn how to calculate all three of these—mean, median, and mode—for 'grouped data,' which is data that has been organized into tables and intervals.",
+    "important": [
+      "Mean for Grouped Data (Direct Method): $\\bar{x} = \\frac{\\Sigma f_i x_i}{\\Sigma f_i}$, where $x_i$ is the class mark.",
+      "Mean for Grouped Data (Assumed Mean Method): $\\bar{x} = a + \\frac{\\Sigma f_i d_i}{\\Sigma f_i}$, where $a$ is the assumed mean and $d_i = x_i - a$.",
+      "Mode for Grouped Data: $Mode = L + [\\frac{f_1 - f_0}{2f_1 - f_0 - f_2}] \\times h$. Here, L is the lower limit of the modal class, $f_1$ is its frequency, $f_0$ is the frequency of the preceding class, $f_2$ is the frequency of the succeeding class, and h is the class size.",
+      "Median for Grouped Data: $Median = L + [\\frac{n/2 - cf}{f}] \\times h$. Here, L is the lower limit of the median class, n is the total number of observations, cf is the cumulative frequency of the preceding class, f is the frequency of the median class, and h is the class size.",
+      "Empirical Relationship: An approximate relationship between the three measures: $3 \\times Median = Mode + 2 \\times Mean$."
+    ]
+  },
+  {
+    "chapter_number": 14,
+    "chapter_name": "Probability",
+    "concepts": "Life is full of uncertainty, and **Probability** is the tool we use to measure it! It's the mathematics of chance, helping us figure out how likely something is to happen. We measure probability on a scale from 0 to 1. If the probability of something is 0, it's impossible. If its probability is 1, it's absolutely certain to happen. Most events are somewhere in between. For example, when you flip a coin, the probability of getting heads is $1/2$ or $0.5$, because there is one favorable outcome (heads) out of two total possible outcomes (heads or tails). 🎲\n\nTo calculate probability, we first need to figure out all the possible outcomes of an 'experiment' (like rolling a die or picking a card). This complete set of outcomes is called the **sample space**. Then, we count how many of those outcomes match the event we are interested in (these are our 'favorable outcomes'). The probability is then simply the number of favorable outcomes divided by the total number of outcomes. We'll also learn about 'complementary events'. The complement of an event happening is the event *not* happening. For instance, the complement of rolling a 6 on a die is not rolling a 6 (i.e., rolling a 1, 2, 3, 4, or 5). The probabilities of an event and its complement always add up to 1, which can be a very handy shortcut!",
+    "important": [
+      "Probability of an Event E: $P(E) = \\frac{\\text{Number of outcomes favorable to E}}{\\text{Total number of possible outcomes}}.$",
+      "Range of Probability: For any event E, the probability $P(E)$ is always between 0 and 1, inclusive. $0 \\le P(E) \\le 1$.",
+      "Sure Event: An event that is certain to happen. Its probability is 1.",
+      "Impossible Event: An event that cannot happen. Its probability is 0.",
+      "Complementary Events: The event 'not E' is the complement of event E. Their probabilities are related by the formula $P(E) + P(\\text{not } E) = 1$.",
+      "Elementary Event: An event having only one outcome of the experiment.",
+      "Sum of Probabilities: The sum of the probabilities of all the elementary events of an experiment is 1."
+    ]
+  }
+]

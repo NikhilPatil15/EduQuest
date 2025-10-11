@@ -1,0 +1,802 @@
+[
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The $10^{\\text{th}}$ term of the A.P. $2, 7, 12, \\dots$ is:",
+    "options": [
+      "47",
+      "42",
+      "52",
+      "57"
+    ],
+    "answer": "A",
+    "answerText": "47",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The distance of the point $P(-6, 8)$ from the origin is:",
+    "options": [
+      "8",
+      "$2\\sqrt{7}$",
+      "10",
+      "6"
+    ],
+    "answer": "C",
+    "answerText": "10",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If $\\sin A = 3/5$, then the value of $\\cos A$ is:",
+    "options": [
+      "$4/5$",
+      "$3/4$",
+      "$5/3$",
+      "$5/4$"
+    ],
+    "answer": "A",
+    "answerText": "$4/5$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If the perimeter of a circle is equal to that of a square, then the ratio of their areas (Circle:Square) is:",
+    "options": [
+      "22:7",
+      "14:11",
+      "7:22",
+      "11:14"
+    ],
+    "answer": "B",
+    "answerText": "14:11",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "A card is drawn from a well-shuffled deck of $52$ cards. What is the probability of getting a face card?",
+    "options": [
+      "$1/13$",
+      "$3/13$",
+      "$4/13$",
+      "$1/4$"
+    ],
+    "answer": "B",
+    "answerText": "$3/13$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The HCF of two numbers is $23$ and their LCM is $1449$. If one of the numbers is $161$, find the other.",
+    "options": [
+      "207",
+      "210",
+      "187",
+      "221"
+    ],
+    "answer": "A",
+    "answerText": "207",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The roots of the quadratic equation $x^2 - 3x - 10 = 0$ are:",
+    "options": [
+      "$5, -2$",
+      "$-5, 2$",
+      "$5, 2$",
+      "$-5, -2$"
+    ],
+    "answer": "A",
+    "answerText": "$5, -2$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "A pole $6 \\text{ m}$ high casts a shadow $2\\sqrt{3} \\text{ m}$ long on the ground. The sun's elevation is:",
+    "options": [
+      "$30^{\\circ}$",
+      "$45^{\\circ}$",
+      "$60^{\\circ}$",
+      "$90^{\\circ}$"
+    ],
+    "answer": "C",
+    "answerText": "$60^{\\circ}$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In $\\triangle ABC$, if $DE \\parallel BC$, $AD/DB = 3/5$ and $AC = 5.6 \\text{ cm}$, then $AE$ is equal to:",
+    "options": [
+      "$2.1 \\text{ cm}$",
+      "$2.8 \\text{ cm}$",
+      "$3.5 \\text{ cm}$",
+      "$4.2 \\text{ cm}$"
+    ],
+    "answer": "A",
+    "answerText": "$2.1 \\text{ cm}$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The total surface area of a hemisphere of radius $7 \\text{ cm}$ is:",
+    "options": [
+      "$147\\pi \\text{ cm}^2$",
+      "$98\\pi \\text{ cm}^2$",
+      "$49\\pi \\text{ cm}^2$",
+      "$196\\pi \\text{ cm}^2$"
+    ],
+    "answer": "A",
+    "answerText": "$147\\pi \\text{ cm}^2$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "For what value of $k$, the pair of linear equations $3x + y = 3$ and $6x + ky = 8$ does not have a solution?",
+    "options": [
+      "1",
+      "2",
+      "-2",
+      "0"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The number of zeroes for a polynomial $p(x)$ whose graph is given in the figure is:",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "0"
+    ],
+    "answer": "C",
+    "answerText": "3",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The relationship between mean, median, and mode is:",
+    "options": [
+      "Mode $ = 3 \\text{ Median } - 2 \\text{ Mean}$",
+      "Mode $ = 2 \\text{ Median } - 3 \\text{ Mean}$",
+      "Median $ = 3 \\text{ Mode } - 2 \\text{ Mean}$",
+      "Mean $ = 3 \\text{ Median } - 2 \\text{ Mode}$"
+    ],
+    "answer": "A",
+    "answerText": "Mode $ = 3 \\text{ Median } - 2 \\text{ Mean}$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Two concentric circles are of radii $5 \\text{ cm}$ and $3 \\text{ cm}$. The length of the chord of the larger circle which touches the smaller circle is:",
+    "options": [
+      "$6 \\text{ cm}$",
+      "$7 \\text{ cm}$",
+      "$8 \\text{ cm}$",
+      "$10 \\text{ cm}$"
+    ],
+    "answer": "C",
+    "answerText": "$8 \\text{ cm}$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "A die is thrown once. What is the probability of getting a number lying between $2$ and $6$?",
+    "options": [
+      "$1/3$",
+      "$1/2$",
+      "$2/3$",
+      "$1/6$"
+    ],
+    "answer": "B",
+    "answerText": "$1/2$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The value of $(1 + \\tan^2\\theta)(1 - \\sin\\theta)(1 + \\sin\\theta)$ is:",
+    "options": [
+      "1",
+      "0",
+      "2",
+      "-1"
+    ],
+    "answer": "A",
+    "answerText": "1",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The number of subsets of a set containing $n$ elements is:",
+    "options": [
+      "$n$",
+      "$2n$",
+      "$n^2$",
+      "$2^n$"
+    ],
+    "answer": "D",
+    "answerText": "$2^n$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The value of $\\tan(19\\pi/3)$ is:",
+    "options": [
+      "$1/\\sqrt{3}$",
+      "$\\sqrt{3}$",
+      "$-\\sqrt{3}$",
+      "1"
+    ],
+    "answer": "B",
+    "answerText": "$\\sqrt{3}$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The multiplicative inverse of the complex number $4 - 3i$ is:",
+    "options": [
+      "$(4/25) + (3/25)i$",
+      "$(4/25) - (3/25)i$",
+      "$(-4/25) + (3/25)i$",
+      "$(-4/25) - (3/25)i$"
+    ],
+    "answer": "A",
+    "answerText": "$(4/25) + (3/25)i$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The number of ways to arrange the letters of the word 'MATHEMATICS' is:",
+    "options": [
+      "$11!$",
+      "$11! / 2!$",
+      "$11! / (2! \\cdot 2! \\cdot 2!)$",
+      "$11! / (2! \\cdot 2!)$"
+    ],
+    "answer": "D",
+    "answerText": "$11! / (2! \\cdot 2!)$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The eccentricity of the ellipse $9x^2 + 5y^2 = 45$ is:",
+    "options": [
+      "$1/3$",
+      "$2/3$",
+      "$4/9$",
+      "$5/9$"
+    ],
+    "answer": "B",
+    "answerText": "$2/3$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The derivative of $x^2 \\sin(x)$ with respect to $x$ is:",
+    "options": [
+      "$2x \\cos(x)$",
+      "$x^2 \\cos(x) + 2x \\sin(x)$",
+      "$2x \\sin(x) - x^2 \\cos(x)$",
+      "$2x$"
+    ],
+    "answer": "B",
+    "answerText": "$x^2 \\cos(x) + 2x \\sin(x)$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If $A$ and $B$ are two events such that $P(A)=0.5$, $P(B)=0.6$ and $P(A \\cap B)=0.2$, then $P(A \\cup B)$ is:",
+    "options": [
+      "0.9",
+      "0.8",
+      "0.7",
+      "1.1"
+    ],
+    "answer": "A",
+    "answerText": "0.9",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The equation of the line passing through the point $(2,3)$ with a slope of $1$ is:",
+    "options": [
+      "$y = x + 1$",
+      "$y = x - 1$",
+      "$y = 2x - 1$",
+      "$y = 3x - 3$"
+    ],
+    "answer": "A",
+    "answerText": "$y = x + 1$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The middle term in the expansion of $(x + 1/x)^{10}$ is:",
+    "options": [
+      "$252$",
+      "$210$",
+      "$230$",
+      "$240$"
+    ],
+    "answer": "A",
+    "answerText": "$252$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The sum of the first $5$ terms of the geometric series $2, 4, 8, \\dots$ is:",
+    "options": [
+      "30",
+      "31",
+      "62",
+      "64"
+    ],
+    "answer": "C",
+    "answerText": "62",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "For two sets $A$ and $B$, $A \\cap (A \\cup B)'$ is equal to:",
+    "options": [
+      "$A$",
+      "$B$",
+      "$A \\cup B$",
+      "$\\emptyset$ (empty set)"
+    ],
+    "answer": "D",
+    "answerText": "$\\emptyset$ (empty set)",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The value of $\\lim_{x\\to 0} \\left( \\frac{\\sin(4x)}{\\sin(2x)} \\right)$ is:",
+    "options": [
+      "1",
+      "2",
+      "$1/2$",
+      "4"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The length of the latus rectum of the parabola $y^2 = 16x$ is:",
+    "options": [
+      "4",
+      "8",
+      "16",
+      "32"
+    ],
+    "answer": "C",
+    "answerText": "16",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The value of $i^2 + i^4 + i^6 + i^8$ is:",
+    "options": [
+      "0",
+      "1",
+      "-1",
+      "$i$"
+    ],
+    "answer": "A",
+    "answerText": "0",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The variance of the first $10$ natural numbers is:",
+    "options": [
+      "$5.5$",
+      "$8.25$",
+      "$9$",
+      "$10.5$"
+    ],
+    "answer": "B",
+    "answerText": "$8.25$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The distance of the point $(3, -2, 1)$ from the $XZ$-plane is:",
+    "options": [
+      "3",
+      "2",
+      "1",
+      "$\\sqrt{14}$"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Let $f: \\mathbb{R} \\to \\mathbb{R}$ be defined by $f(x) = 3x$. The function $f$ is:",
+    "options": [
+      "one-one and onto",
+      "one-one but not onto",
+      "onto but not one-one",
+      "neither one-one nor onto"
+    ],
+    "answer": "A",
+    "answerText": "one-one and onto",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The principal value of $\\sin^{-1}(-1/2)$ is:",
+    "options": [
+      "$\\pi/3$",
+      "$-/\\pi/3$",
+      "$\\pi/6$",
+      "$-\\pi/6$"
+    ],
+    "answer": "D",
+    "answerText": "$-\\pi/6$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If $A$ is a square matrix such that $A^2 = A$, then $(I + A)^3 - 7A$ is equal to:",
+    "options": [
+      "$A$",
+      "$I - A$",
+      "$I$",
+      "$3A$"
+    ],
+    "answer": "C",
+    "answerText": "$I$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The derivative of $\\sin(x^2)$ with respect to $x$ is:",
+    "options": [
+      "$\\cos(x^2)$",
+      "$2x \\sin(x^2)$",
+      "$2x \\cos(x^2)$",
+      "$-\\cos(2x)$"
+    ],
+    "answer": "C",
+    "answerText": "$2x \\cos(x^2)$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The integral of $\\int \\frac{1}{x^2 + 16} dx$ is:",
+    "options": [
+      "$(1/4)\\tan^{-1}(x/4) + C$",
+      "$\\tan^{-1}(x/4) + C$",
+      "$(1/16)\\tan^{-1}(x/16) + C$",
+      "$(1/8)\\tan^{-1}(x/4) + C$"
+    ],
+    "answer": "A",
+    "answerText": "$(1/4)\\tan^{-1}(x/4) + C$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The order of the differential equation $2x^2\\frac{d^2y}{dx^2} - 3\\frac{dy}{dx} + y = 0$ is:",
+    "options": [
+      "1",
+      "2",
+      "0",
+      "not defined"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If vector $\\mathbf{a} = 2\\mathbf{i} + 3\\mathbf{j} - 5\\mathbf{k}$ and vector $\\mathbf{b} = \\mathbf{i} - 2\\mathbf{j} + 3\\mathbf{k}$, then $\\mathbf{a} \\cdot \\mathbf{b}$ is:",
+    "options": [
+      "-17",
+      "-19",
+      "-21",
+      "19"
+    ],
+    "answer": "B",
+    "answerText": "-19",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The distance of the plane $2x - 3y + 6z + 14 = 0$ from the origin is:",
+    "options": [
+      "14",
+      "2",
+      "7",
+      "1"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If $P(A) = 3/5$ and $P(B) = 1/5$, find $P(A \\cap B)$ if $A$ and $B$ are independent events.",
+    "options": [
+      "$3/25$",
+      "$4/25$",
+      "$1/5$",
+      "$2/5$"
+    ],
+    "answer": "A",
+    "answerText": "$3/25$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The corner points of the feasible region for a Linear Programming Problem (LPP) are $(0,0)$, $(5,0)$, $(3,4)$ and $(0,2)$. The maximum value of $Z = 3x + 2y$ is:",
+    "options": [
+      "10",
+      "15",
+      "17",
+      "18"
+    ],
+    "answer": "C",
+    "answerText": "17",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "If $A$ is an invertible matrix of order $2$, then $\\text{det}(A^{-1})$ is equal to:",
+    "options": [
+      "$\\text{det}(A)$",
+      "$1/\\text{det}(A)$",
+      "1",
+      "0"
+    ],
+    "answer": "B",
+    "answerText": "$1/\\text{det}(A)$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The integral of $\\int e^x(\\tan x + \\sec^2 x) dx$ is:",
+    "options": [
+      "$e^x \\tan x + C$",
+      "$e^x \\sec^2 x + C$",
+      "$e^x(\\tan x + \\sec x) + C$",
+      "$e^x \\cos x + C$"
+    ],
+    "answer": "A",
+    "answerText": "$e^x \\tan x + C$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The projection of the vector $\\mathbf{a} = 2\\mathbf{i} + 3\\mathbf{j} + 2\\mathbf{k}$ on the vector $\\mathbf{b} = \\mathbf{i} + 2\\mathbf{j} + \\mathbf{k}$ is:",
+    "options": [
+      "$10/\\sqrt{6}$",
+      "$10/6$",
+      "$\\sqrt{6}$",
+      "$6/\\sqrt{10}$"
+    ],
+    "answer": "A",
+    "answerText": "$10/\\sqrt{6}$",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "A binary operation $*$ on the set $\\{1, 2, 3, 4, 5\\}$ is defined by $a * b = \\min(a, b)$. The identity element is:",
+    "options": [
+      "1",
+      "0",
+      "5",
+      "Does not exist"
+    ],
+    "answer": "C",
+    "answerText": "5",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The slope of the tangent to the curve $y = x^3 - x$ at $x = 2$ is:",
+    "options": [
+      "10",
+      "11",
+      "12",
+      "6"
+    ],
+    "answer": "B",
+    "answerText": "11",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The area of the region bounded by the curve $y^2 = 4x$, the $y$-axis and the line $y = 3$ is:",
+    "options": [
+      "2",
+      "$9/4$",
+      "$9/3$",
+      "$9/2$"
+    ],
+    "answer": "B",
+    "answerText": "$9/4$",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "The direction cosines of the $z$-axis are:",
+    "options": [
+      "$(1, 0, 0)$",
+      "$(0, 1, 0)$",
+      "$(0, 0, 1)$",
+      "$(1, 1, 1)$"
+    ],
+    "answer": "C",
+    "answerText": "$(0, 0, 1)$",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "maths",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "A random variable $X$ has the probability distribution $P(X)$: $0.1, k, 0.2, 0.3$ for $X=0, 1, 2, 3$ respectively. The value of $k$ is:",
+    "options": [
+      "0.1",
+      "0.2",
+      "0.3",
+      "0.4"
+    ],
+    "answer": "D",
+    "answerText": "0.4",
+    "level": "medium",
+    "rating": 3
+  }
+]

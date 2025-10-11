@@ -1,0 +1,802 @@
+[
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, which of the following is the correct way to comment a single line?",
+    "options": [
+      "// This is a comment",
+      "/* This is a comment */",
+      "# This is a comment",
+      "D)"
+    ],
+    "answer": "C",
+    "answerText": "# This is a comment",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, which data type is used to store a single character?",
+    "options": [
+      "char",
+      "character",
+      "string",
+      "int"
+    ],
+    "answer": "A",
+    "answerText": "char",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the output of `cout << 5 / 2;` in C++?",
+    "options": [
+      "2.5",
+      "2",
+      "3",
+      "Error"
+    ],
+    "answer": "B",
+    "answerText": "2",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "How do you declare an integer variable 'x' in C?",
+    "options": [
+      "var x;",
+      "integer x;",
+      "int x;",
+      "x = int;"
+    ],
+    "answer": "C",
+    "answerText": "int x;",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, what will `len([1, 2, 3])` return?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "answer": "B",
+    "answerText": "3",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Which header file is required for using `cout` in C++?",
+    "options": [
+      "<stdio.h>",
+      "<iostream>",
+      "<string>",
+      "<math.h>"
+    ],
+    "answer": "B",
+    "answerText": "<iostream>",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the correct syntax for a `for` loop in Python?",
+    "options": [
+      "for (i=0; i<5; i++)",
+      "for i in range(5):",
+      "for each i in 5:",
+      "for i to 5:"
+    ],
+    "answer": "B",
+    "answerText": "for i in range(5):",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, how do you read an integer input from the user?",
+    "options": [
+      "`cin >> num;`",
+      "`scanf(\"%d\", &num);`",
+      "`input(num);`",
+      "`read(num);`"
+    ],
+    "answer": "B",
+    "answerText": "`scanf(\"%d\", &num);`",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is a pointer in C/C++?",
+    "options": [
+      "A variable that stores the value of another variable.",
+      "A variable that stores the memory address of another variable.",
+      "A special type of function.",
+      "A keyword for creating classes."
+    ],
+    "answer": "B",
+    "answerText": "A variable that stores the memory address of another variable.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, which data structure is represented by `{}`?",
+    "options": [
+      "List",
+      "Tuple",
+      "Set",
+      "Dictionary or Set"
+    ],
+    "answer": "D",
+    "answerText": "Dictionary or Set",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the purpose of the `&` operator in C in the context of `scanf`?",
+    "options": [
+      "To get the value of the variable.",
+      "To get the address of the variable.",
+      "To perform a bitwise AND operation.",
+      "It has no purpose."
+    ],
+    "answer": "B",
+    "answerText": "To get the address of the variable.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C++, what does OOP stand for?",
+    "options": [
+      "Object-Oriented Programming",
+      "Out-Of-Place",
+      "Original-Oriented Programming",
+      "Object-Optional Programming"
+    ],
+    "answer": "A",
+    "answerText": "Object-Oriented Programming",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Which of the following is a mutable data type in Python?",
+    "options": [
+      "Tuple",
+      "String",
+      "List",
+      "Integer"
+    ],
+    "answer": "C",
+    "answerText": "List",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "How do you define a function in C?",
+    "options": [
+      "`function myFunction() {}`",
+      "`def myFunction():`",
+      "`return_type function_name(parameters) {}`",
+      "`void function myFunction() {}`"
+    ],
+    "answer": "C",
+    "answerText": "`return_type function_name(parameters) {}`",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the `this` pointer in C++?",
+    "options": [
+      "A pointer to the current object instance.",
+      "A pointer to the previous object instance.",
+      "A global pointer.",
+      "A null pointer."
+    ],
+    "answer": "A",
+    "answerText": "A pointer to the current object instance.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the output of `print(3 * 'hi')` in Python?",
+    "options": [
+      "hi hi hi",
+      "hihihi",
+      "9",
+      "Error"
+    ],
+    "answer": "B",
+    "answerText": "hihihi",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, what is the size of `int` data type (in bytes) on a 32-bit system?",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": "C",
+    "answerText": "4",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is polymorphism in C++?",
+    "options": [
+      "The ability of a function to have multiple forms.",
+      "A type of inheritance.",
+      "A way to hide data.",
+      "A loop structure."
+    ],
+    "answer": "A",
+    "answerText": "The ability of a function to have multiple forms.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Which operator is used for exponentiation in Python?",
+    "options": [
+      "^",
+      "**",
+      "exp()",
+      "power()"
+    ],
+    "answer": "B",
+    "answerText": "**",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the purpose of the `break` statement in C?",
+    "options": [
+      "To exit the program.",
+      "To exit the current loop or switch statement.",
+      "To skip the current iteration of a loop.",
+      "To return a value from a function."
+    ],
+    "answer": "B",
+    "answerText": "To exit the current loop or switch statement.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C++, how do you dynamically allocate memory for an integer?",
+    "options": [
+      "`int* p = malloc(sizeof(int));`",
+      "`int* p = new int;`",
+      "`int* p = alloc(int);`",
+      "`int p = new int;`"
+    ],
+    "answer": "B",
+    "answerText": "`int* p = new int;`",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, how do you check if a key exists in a dictionary `d`?",
+    "options": [
+      "`d.has_key('key')`",
+      "`'key' in d`",
+      "`d.exists('key')`",
+      "`d['key'] != None`"
+    ],
+    "answer": "B",
+    "answerText": "`'key' in d`",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, what is the null character?",
+    "options": [
+      "'\\n'",
+      "'\\0'",
+      "'\\t'",
+      "'\\r'"
+    ],
+    "answer": "B",
+    "answerText": "'\\0'",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is a constructor in C++?",
+    "options": [
+      "A special member function to destroy an object.",
+      "A special member function to initialize an object.",
+      "A normal member function.",
+      "A global function."
+    ],
+    "answer": "B",
+    "answerText": "A special member function to initialize an object.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Which keyword is used to define a function in Python?",
+    "options": [
+      "function",
+      "define",
+      "def",
+      "fun"
+    ],
+    "answer": "C",
+    "answerText": "def",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What will be the output of `printf(\"%d\", 10 > 5);` in C?",
+    "options": [
+      "10",
+      "5",
+      "1",
+      "0"
+    ],
+    "answer": "C",
+    "answerText": "1",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is inheritance in C++?",
+    "options": [
+      "The process where one class acquires the properties of another class.",
+      "The process of creating multiple objects of the same class.",
+      "The process of binding data and functions together.",
+      "The process of hiding internal details."
+    ],
+    "answer": "A",
+    "answerText": "The process where one class acquires the properties of another class.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, what is the result of `10 // 3`?",
+    "options": [
+      "3.33",
+      "3",
+      "1",
+      "4"
+    ],
+    "answer": "B",
+    "answerText": "3",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is a structure in C?",
+    "options": [
+      "A collection of variables of the same data type.",
+      "A collection of variables of different data types.",
+      "A function that returns multiple values.",
+      "A pointer to a function."
+    ],
+    "answer": "B",
+    "answerText": "A collection of variables of different data types.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the access specifier that makes members accessible only within the class?",
+    "options": [
+      "public",
+      "protected",
+      "private",
+      "internal"
+    ],
+    "answer": "C",
+    "answerText": "private",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What method in Python can be used to read a line of text from the user?",
+    "options": [
+      "`read()`",
+      "`readline()`",
+      "`input()`",
+      "`getline()`"
+    ],
+    "answer": "C",
+    "answerText": "`input()`",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, what is the correct way to declare an array of 5 integers?",
+    "options": [
+      "`int arr[5];`",
+      "`array int[5];`",
+      "`int[5] arr;`",
+      "`arr<int>[5];`"
+    ],
+    "answer": "A",
+    "answerText": "`int arr[5];`",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is function overloading in C++?",
+    "options": [
+      "Having multiple functions with the same name and same parameters.",
+      "Having multiple functions with the same name but different parameters.",
+      "Overriding a function in a derived class.",
+      "Creating a virtual function."
+    ],
+    "answer": "B",
+    "answerText": "Having multiple functions with the same name but different parameters.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, how do you start a multi-line comment?",
+    "options": [
+      "##",
+      "/*",
+      "''' or \"\"\"",
+      "//"
+    ],
+    "answer": "C",
+    "answerText": "''' or \"\"\"",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What does the `sizeof` operator in C return?",
+    "options": [
+      "The number of elements in an array.",
+      "The size of a variable or data type in bytes.",
+      "The last element of an array.",
+      "The memory address of a variable."
+    ],
+    "answer": "B",
+    "answerText": "The size of a variable or data type in bytes.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is a virtual function in C++?",
+    "options": [
+      "A function that is defined in a base class and overridden in a derived class.",
+      "A function that cannot be overridden.",
+      "A function that does not have a body.",
+      "A function that is part of a template."
+    ],
+    "answer": "A",
+    "answerText": "A function that is defined in a base class and overridden in a derived class.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the output of `'hello'.capitalize()` in Python?",
+    "options": [
+      "'HELLO'",
+      "'Hello'",
+      "'hELLO'",
+      "'hello'"
+    ],
+    "answer": "B",
+    "answerText": "'Hello'",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, which operator is used to access the value at a memory address stored in a pointer?",
+    "options": [
+      "`&`",
+      "`*`",
+      "`->`",
+      "`.`"
+    ],
+    "answer": "B",
+    "answerText": "`*`",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is a template in C++ used for?",
+    "options": [
+      "To create generic classes and functions.",
+      "To define the structure of an object.",
+      "To manage memory.",
+      "To handle exceptions."
+    ],
+    "answer": "A",
+    "answerText": "To create generic classes and functions.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In Python, which statement is used for decision making?",
+    "options": [
+      "`if-else`",
+      "`for`",
+      "`while`",
+      "`switch`"
+    ],
+    "answer": "A",
+    "answerText": "`if-else`",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the `main` function in C?",
+    "options": [
+      "A user-defined function.",
+      "The entry point of the program.",
+      "A standard library function.",
+      "A function to calculate the mean."
+    ],
+    "answer": "B",
+    "answerText": "The entry point of the program.",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C++, what is the scope resolution operator?",
+    "options": [
+      "`.`",
+      "`->`",
+      "`::`",
+      "`&`"
+    ],
+    "answer": "C",
+    "answerText": "`::`",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What does `range(1, 5)` generate in Python?",
+    "options": [
+      "[1, 2, 3, 4, 5]",
+      "[1, 2, 3, 4]",
+      "[2, 3, 4, 5]",
+      "[1, 5]"
+    ],
+    "answer": "B",
+    "answerText": "[1, 2, 3, 4]",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, how do you concatenate two strings?",
+    "options": [
+      "Using the `+` operator.",
+      "Using the `concat()` function.",
+      "Using the `strcat()` function.",
+      "Using the `append()` function."
+    ],
+    "answer": "C",
+    "answerText": "Using the `strcat()` function.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is encapsulation in C++?",
+    "options": [
+      "The bundling of data and methods that operate on the data into a single unit.",
+      "Creating a new class from an existing class.",
+      "Defining multiple functions with the same name.",
+      "A mechanism to handle runtime errors."
+    ],
+    "answer": "A",
+    "answerText": "The bundling of data and methods that operate on the data into a single unit.",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What will `True and False` evaluate to in Python?",
+    "options": [
+      "True",
+      "False",
+      "Error",
+      "1"
+    ],
+    "answer": "B",
+    "answerText": "False",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "In C, what is the difference between `++i` and `i++`?",
+    "options": [
+      "No difference.",
+      "`++i` increments then uses the value, `i++` uses then increments the value.",
+      "`i++` increments then uses the value, `++i` uses then increments the value.",
+      "`++i` is more efficient."
+    ],
+    "answer": "B",
+    "answerText": "`++i` increments then uses the value, `i++` uses then increments the value.",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "How do you create a reference variable in C++?",
+    "options": [
+      "`int &ref = var;`",
+      "`int *ref = &var;`",
+      "`ref int = var;`",
+      "`int ref = &var;`"
+    ],
+    "answer": "A",
+    "answerText": "`int &ref = var;`",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "Which of these is not a core data type in Python?",
+    "options": [
+      "List",
+      "Dictionary",
+      "Class",
+      "Tuple"
+    ],
+    "answer": "C",
+    "answerText": "Class",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "What is the use of the `try-catch` block in C++?",
+    "options": [
+      "To handle exceptions.",
+      "To define a loop.",
+      "To declare a class.",
+      "To allocate memory."
+    ],
+    "answer": "A",
+    "answerText": "To handle exceptions.",
+    "level": "medium",
+    "rating": 3
+  }
+]
