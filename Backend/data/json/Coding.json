@@ -1,0 +1,452 @@
+[
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "1. In Python, which of the following is the correct way to comment a single line?\n\nA) // This is a comment\nB) /* This is a comment */\nC) # This is a comment\nD) ",
+    "answer": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "2. In C, which data type is used to store a single character?\n\nA) char\nB) character\nC) string\nD) int",
+    "answer": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "3. What is the output of `cout << 5 / 2;` in C++?\n\nA) 2.5\nB) 2\nC) 3\nD) Error",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "4. How do you declare an integer variable 'x' in C?\n\nA) var x;\nB) integer x;\nC) int x;\nD) x = int;",
+    "answer": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "5. In Python, what will `len([1, 2, 3])` return?\n\nA) 2\nB) 3\nC) 4\nD) 6",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "6. Which header file is required for using `cout` in C++?\n\nA) <stdio.h>\nB) <iostream>\nC) <string>\nD) <math.h>",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "7. What is the correct syntax for a `for` loop in Python?\n\nA) for (i=0; i<5; i++)\nB) for i in range(5):\nC) for each i in 5:\nD) for i to 5:",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "8. In C, how do you read an integer input from the user?\n\nA) `cin >> num;`\nB) `scanf(\"%d\", &num);`\nC) `input(num);`\nD) `read(num);`",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "9. What is a pointer in C/C++?\n\nA) A variable that stores the value of another variable.\nB) A variable that stores the memory address of another variable.\nC) A special type of function.\nD) A keyword for creating classes.",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "10. In Python, which data structure is represented by `{}`?\n\nA) List\nB) Tuple\nC) Set\nD) Dictionary or Set",
+    "answer": "D",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "11. What is the purpose of the `&` operator in C in the context of `scanf`?\n\nA) To get the value of the variable.\nB) To get the address of the variable.\nC) To perform a bitwise AND operation.\nD) It has no purpose.",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "12. In C++, what does OOP stand for?\n\nA) Object-Oriented Programming\nB) Out-Of-Place\nC) Original-Oriented Programming\nD) Object-Optional Programming",
+    "answer": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "13. Which of the following is a mutable data type in Python?\n\nA) Tuple\nB) String\nC) List\nD) Integer",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "14. How do you define a function in C?\n\nA) `function myFunction() {}`\nB) `def myFunction():`\nC) `return_type function_name(parameters) {}`\nD) `void function myFunction() {}`",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "15. What is the `this` pointer in C++?\n\nA) A pointer to the current object instance.\nB) A pointer to the previous object instance.\nC) A global pointer.\nD) A null pointer.",
+    "answer": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "16. What is the output of `print(3 * 'hi')` in Python?\n\nA) hi hi hi\nB) hihihi\nC) 9\nD) Error",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "17. In C, what is the size of `int` data type (in bytes) on a 32-bit system?\n\nA) 1\nB) 2\nC) 4\nD) 8",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "18. What is polymorphism in C++?\n\nA) The ability of a function to have multiple forms.\nB) A type of inheritance.\nC) A way to hide data.\nD) A loop structure.",
+    "answer": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "19. Which operator is used for exponentiation in Python?\n\nA) ^\nB) **\nC) exp()\nD) power()",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "20. What is the purpose of the `break` statement in C?\n\nA) To exit the program.\nB) To exit the current loop or switch statement.\nC) To skip the current iteration of a loop.\nD) To return a value from a function.",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "21. In C++, how do you dynamically allocate memory for an integer?\n\nA) `int* p = malloc(sizeof(int));`\nB) `int* p = new int;`\nC) `int* p = alloc(int);`\nD) `int p = new int;`",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "22. In Python, how do you check if a key exists in a dictionary `d`?\n\nA) `d.has_key('key')`\nB) `'key' in d`\nC) `d.exists('key')`\nD) `d['key'] != None`",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "23. In C, what is the null character?\n\nA) '\\n'\nB) '\\0'\nC) '\\t'\nD) '\\r'",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "24. What is a constructor in C++?\n\nA) A special member function to destroy an object.\nB) A special member function to initialize an object.\nC) A normal member function.\nD) A global function.",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "25. Which keyword is used to define a function in Python?\n\nA) function\nB) define\nC) def\nD) fun",
+    "answer": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "26. What will be the output of `printf(\"%d\", 10 > 5);` in C?\n\nA) 10\nB) 5\nC) 1\nD) 0",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "27. What is inheritance in C++?\n\nA) The process where one class acquires the properties of another class.\nB) The process of creating multiple objects of the same class.\nC) The process of binding data and functions together.\nD) The process of hiding internal details.",
+    "answer": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "28. In Python, what is the result of `10 // 3`?\n\nA) 3.33\nB) 3\nC) 1\nD) 4",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "29. What is a structure in C?\n\nA) A collection of variables of the same data type.\nB) A collection of variables of different data types.\nC) A function that returns multiple values.\nD) A pointer to a function.",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "30. What is the access specifier that makes members accessible only within the class?\n\nA) public\nB) protected\nC) private\nD) internal",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "31. What method in Python can be used to read a line of text from the user?\n\nA) `read()`\nB) `readline()`\nC) `input()`\nD) `getline()`",
+    "answer": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "32. In C, what is the correct way to declare an array of 5 integers?\n\nA) `int arr[5];`\nB) `array int[5];`\nC) `int[5] arr;`\nD) `arr<int>[5];`",
+    "answer": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "33. What is function overloading in C++?\n\nA) Having multiple functions with the same name and same parameters.\nB) Having multiple functions with the same name but different parameters.\nC) Overriding a function in a derived class.\nD) Creating a virtual function.",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "34. In Python, how do you start a multi-line comment?\n\nA) `##`\nB) `/*`\nC) `'''` or `\"\"\"`\nD) `//`",
+    "answer": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "35. What does the `sizeof` operator in C return?\n\nA) The number of elements in an array.\nB) The size of a variable or data type in bytes.\nC) The last element of an array.\nD) The memory address of a variable.",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "36. What is a virtual function in C++?\n\nA) A function that is defined in a base class and overridden in a derived class.\nB) A function that cannot be overridden.\nC) A function that does not have a body.\nD) A function that is part of a template.",
+    "answer": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "37. What is the output of `'hello'.capitalize()` in Python?\n\nA) 'HELLO'\nB) 'Hello'\nC) 'hELLO'\nD) 'hello'",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "38. In C, which operator is used to access the value at a memory address stored in a pointer?\n\nA) `&`\nB) `*`\nC) `->`\nD) `.`",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "39. What is a template in C++ used for?\n\nA) To create generic classes and functions.\nB) To define the structure of an object.\nC) To manage memory.\nD) To handle exceptions.",
+    "answer": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "40. In Python, which statement is used for decision making?\n\nA) `if-else`\nB) `for`\nC) `while`\nD) `switch`",
+    "answer": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "41. What is the `main` function in C?\n\nA) A user-defined function.\nB) The entry point of the program.\nC) A standard library function.\nD) A function to calculate the mean.",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "42. In C++, what is the scope resolution operator?\n\nA) `.`\nB) `->`\nC) `::`\nD) `&`",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "43. What does `range(1, 5)` generate in Python?\n\nA) [1, 2, 3, 4, 5]\nB) [1, 2, 3, 4]\nC) [2, 3, 4, 5]\nD) [1, 5]",
+    "answer": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "44. In C, how do you concatenate two strings?\n\nA) Using the `+` operator.\nB) Using the `concat()` function.\nC) Using the `strcat()` function.\nD) Using the `append()` function.",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "45. What is encapsulation in C++?\n\nA) The bundling of data and methods that operate on the data into a single unit.\nB) Creating a new class from an existing class.\nC) Defining multiple functions with the same name.\nD) A mechanism to handle runtime errors.",
+    "answer": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "46. What will `True and False` evaluate to in Python?\n\nA) True\nB) False\nC) Error\nD) 1",
+    "answer": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 11,
+    "type": "descriptive",
+    "questionText": "47. In C, what is the difference between `++i` and `i++`?\n\nA) No difference.\nB) `++i` increments then uses the value, `i++` uses then increments the value.\nC) `i++` increments then uses the value, `++i` uses then increments the value.\nD) `++i` is more efficient.",
+    "answer": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "48. How do you create a reference variable in C++?\n\nA) `int &ref = var;`\nB) `int *ref = &var;`\nC) `ref int = var;`\nD) `int ref = &var;`",
+    "answer": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "descriptive",
+    "questionText": "49. Which of these is not a core data type in Python?\n\nA) List\nB) Dictionary\nC) Class\nD) Tuple",
+    "answer": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 12,
+    "type": "descriptive",
+    "questionText": "50. What is the use of the `try-catch` block in C++?\n\nA) To handle exceptions.\nB) To define a loop.\nC) To declare a class.\nD) To allocate memory.",
+    "answer": "A",
+    "level": "medium",
+    "rating": 3
+  }
+]
