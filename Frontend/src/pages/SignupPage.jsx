@@ -18,10 +18,7 @@ const PixelButton = ({ children, className = '', onClick }) => (
 );
 
 export default function SignupPage() {
-<<<<<<< Updated upstream
   const navigate = useNavigate()
-=======
->>>>>>> Stashed changes
   const rootRef = useRef(null);
   const threeContainerRef = useRef(null);
   const formTitleRef = useRef(null);
