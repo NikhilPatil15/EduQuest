@@ -14,11 +14,12 @@ const generateAccessAndRefreshTokens = async (userId: string) => {
 	try {
 		const user: IUser | any = await User.findById(userId);
 
-		const accessToken = user.generateAccessToken();
-		const refreshToken = user.generateRefreshToken();
+		const accessToken = await user.generateAccessToken();
+		const refreshToken = await user.generateRefreshToken();
 
 		user.refreshToken = refreshToken;
 		await user.save({ validateBeforeSave: false });
+		// console.log('tokens:', { accessToken, refreshToken });
 
 		return { accessToken, refreshToken };
 	} catch (error: any) {
@@ -53,7 +54,24 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 	}
 
 	if (!avatarLocalPath) {
-		throw new ErrorResponse(400, 'Avatar image is required');
+		const user: IUser = await User.create({
+			fullName,
+			email,
+			password,
+			userName: userName.toLowerCase(),
+			// EduQuest fields will use their default values
+		});
+
+		const userCreated: any = await User.findById(user._id).select('-password -refreshToken');
+
+		await PokedexService.initializeUserPokedex(userCreated?._id.toString()!);
+		if (!userCreated) {
+			throw new ErrorResponse(500, 'Something went wrong while registering the user!');
+		}
+
+		return res
+			.status(201)
+			.json(new SuccessResponse(200, userCreated, 'User registered successfully'));
 	}
 
 	const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
@@ -63,7 +81,6 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 		throw new ErrorResponse(400, 'Avatar image is required');
 	}
 
-	// ✅ Create user with EduQuest default values
 	const user: IUser = await User.create({
 		fullName,
 		avatar: {
@@ -89,15 +106,16 @@ const registerUser = asyncHandler(async (req: any, res: Response) => {
 });
 
 const loginUser = asyncHandler(async (req: any, res: Response) => {
-	const { userName, email, password } = req.body;
+	const { email, password } = req.body;
 
-	if (!userName && !email) {
+	if (!email) {
 		throw new ErrorResponse(400, 'username or email is required');
 	}
 
 	const userExists: IUser | any = await User.findOne({
-		$or: [{ userName }, { email }],
+		email: email,
 	});
+	console.log('user:', userExists);
 
 	if (!userExists) {
 		throw new ErrorResponse(404, 'Username does not exists');
