@@ -1,10 +1,11 @@
-import React from 'react';
-import WorldMapTab from './WorldMapTab.jsx';
-import LearnTab from './LearnTab.jsx';
-import PokedexTab from './PokedexTab';
-import LeaderboardTab from './LeaderboardTab.jsx';
-import QuestsTab from './QuestsTab.jsx';
-import ShopTab from './ShopTab.jsx';
+import React from "react";
+import WorldMapTab from "./WorldMapTab.jsx";
+import LearnTab from "./LearnTab.jsx";
+import PokedexTab from "./PokedexTab";
+import LeaderboardTab from "./LeaderboardTab.jsx";
+import QuestsTab from "./QuestsTab.jsx";
+import ShopTab from "./ShopTab.jsx";
+import DuelsTab from "./DuelsTab.jsx";
 
 const MainContent = ({ activeTab, trainerData }) => {
   const tabComponents = {
@@ -14,6 +15,7 @@ const MainContent = ({ activeTab, trainerData }) => {
     leaderboard: LeaderboardTab,
     quests: QuestsTab,
     shop: ShopTab,
+    duels: DuelsTab,
   };
 
   const TabComponent = tabComponents[activeTab];

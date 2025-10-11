@@ -1,5 +1,6 @@
 import React from 'react';
 import PixelButton from './PixelButton';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ navigate, trainerData }) => (
   <header className=" top-0  z-40 bg-gradient-to-r from-black/80 via-red-900/20 to-black/80 backdrop-blur-md border-b-4 border-[#ffcc00] shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
@@ -19,6 +20,7 @@ const Header = ({ navigate, trainerData }) => (
 );
 
 const TrainerProfile = ({ trainerData }) => {
+  const navigate = useNavigate()
   // Animated trainer sprites from Pokémon games
   const getTrainerGif = (level, badges) => {
     const trainers = {
@@ -50,7 +52,7 @@ const TrainerProfile = ({ trainerData }) => {
   };
 
   return (
-    <div className={`trainer-profile flex items-center space-x-4 bg-[#400000] border-4 ${getBorderColor(trainerData.level)} p-4 rounded-lg shadow-[6px_6px_0_#000] floating-element ${getStreakGlow(trainerData.streak)}`}>
+    <div onClick={()=>navigate('/user')} className={`trainer-profile flex items-center space-x-4 bg-[#400000] border-4 ${getBorderColor(trainerData.level)} p-4 rounded-lg shadow-[6px_6px_0_#000] floating-element ${getStreakGlow(trainerData.streak)}`}>
       <div className="relative">
         <div className="w-16 h-16 bg-gradient-to-br from-[#ffcc00] to-[#ffaa00] border-4 border-black rounded flex items-center justify-center shadow-[3px_3px_0_#000] animate-pulse">
           <img 
