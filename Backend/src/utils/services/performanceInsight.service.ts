@@ -1,9 +1,6 @@
-// services/performanceInsight.service.ts
 import { PerformanceInsight } from '../../models/performanceInsight.model';
 import { UserPerformance } from '../../models/userPerformance.model';
-import { UserStreak } from '../../models/userStreak.model';
 import { QuizSession } from '../../models/quizSession.model';
-import { Notification } from '../../models/notification.model';
 import { User } from '../../models/user.model';
 
 export class PerformanceInsightService {
