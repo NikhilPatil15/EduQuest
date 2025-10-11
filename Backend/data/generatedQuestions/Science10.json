@@ -1,0 +1,802 @@
+[
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "1. The human eye forms the image of an object at its: A) cornea B) iris C) pupil D) retina",
+    "options": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "D",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "2. The chemical formula for plaster of Paris is: A) CaSO₄.2H₂O B) CaSO₄.½H₂O C) CaSO₄.H₂O D) CaSO₄",
+    "options": [
+      "C",
+      "A",
+      "D",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "3. The kidneys in human beings are a part of the system for: A) nutrition B) respiration C) excretion D) transportation",
+    "options": [
+      "D",
+      "A",
+      "C",
+      "B"
+    ],
+    "answer": "C",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "4. The device used for producing electric current is called a: A) generator B) galvanometer C) ammeter D) motor",
+    "options": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "5. Which of the following is a plant hormone? A) Insulin B) Thyroxin C) Oestrogen D) Cytokinin",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "A",
+    "answerText": "D",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "6. The splitting of white light into its component colors is called: A) reflection B) refraction C) dispersion D) scattering",
+    "options": [
+      "B",
+      "D",
+      "A",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "7. The breakdown of pyruvate to give carbon dioxide, water and energy takes place in: A) cytoplasm B) mitochondria C) chloroplast D) nucleus",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "8. An electric bulb is rated 220V and 100W. When it is operated on 110V, the power consumed will be: A) 100W B) 75W C) 50W D) 25W",
+    "options": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "D",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "9. The gap between two neurons is called a: A) dendrite B) synapse C) axon D) impulse",
+    "options": [
+      "B",
+      "D",
+      "C",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "10. Which of the following statements is NOT correct about the trends when going from left to right across the periods of the Periodic Table? A) The elements become less metallic in nature. B) The number of valence electrons increases. C) The atoms lose their electrons more easily. D) The oxides become more acidic.",
+    "options": [
+      "A",
+      "B",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "11. The main constituent of biogas is: A) Methane B) Carbon dioxide C) Hydrogen D) Hydrogen sulphide",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "C",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "12. In evolutionary terms, we have more in common with: A) a Chinese school-boy. B) a chimpanzee. C) a spider. D) a bacterium.",
+    "options": [
+      "D",
+      "A",
+      "C",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "13. At the time of a short-circuit, the current in the circuit: A) reduces substantially B) does not change C) increases heavily D) varies continuously",
+    "options": [
+      "C",
+      "A",
+      "D",
+      "B"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "14. A solution turns red litmus blue. Its pH is likely to be: A) 1 B) 4 C) 5 D) 10",
+    "options": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "answer": "D",
+    "answerText": "D",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "15. Which of the following constitutes a food chain? A) Grass, wheat and mango B) Grass, goat and human C) Goat, cow and elephant D) Grass, fish and goat",
+    "options": [
+      "C",
+      "A",
+      "B",
+      "D"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "16. The functional group present in Butanone is: A) -OH (Alcohol) B) -COOH (Carboxylic Acid) C) >C=O (Ketone) D) -CHO (Aldehyde)",
+    "options": [
+      "B",
+      "C",
+      "D",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "17. Which of the following has the maximum number of unpaired electrons? A) Mg²⁺ B) Ti³⁺ C) V³⁺ D) Fe²⁺",
+    "options": [
+      "D",
+      "A",
+      "C",
+      "B"
+    ],
+    "answer": "A",
+    "answerText": "D",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "18. The 'powerhouse' of the cell is: A) Nucleus B) Ribosome C) Mitochondrion D) Golgi apparatus",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "19. The dimensional formula for gravitational constant G is: A) [ML³T⁻²] B) [M⁻¹L³T⁻²] C) [M⁻¹L²T⁻³] D) [ML²T⁻²]",
+    "options": [
+      "C",
+      "A",
+      "B",
+      "D"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "20. The shape of the BeCl₂ molecule is: A) Trigonal planar B) Tetrahedral C) Linear D) V-shaped",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "21. A body starts from rest and travels with uniform acceleration. Which of the following graphs represents its motion? A) Graph A B) Graph B C) Graph C D) Graph D",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "22. The blood-clotting protein produced by the liver is: A) Fibrinogen B) Albumin C) Globulin D) Heparin",
+    "options": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "answer": "D",
+    "answerText": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "23. According to the first law of thermodynamics, ΔU = q + w. For an isochoric process, which of the following is true? A) w = 0 B) q = 0 C) ΔU = 0 D) ΔU = w",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "24. The mode of nutrition in fungi is: A) Autotrophic B) Holozoic C) Saprophytic D) Parasitic",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "25. The angle of projection for which the horizontal range and maximum height of a projectile are equal is: A) 45° B) tan⁻¹(4) C) tan⁻¹(1/4) D) 60°",
+    "options": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "26. The number of chambers in the heart of a cockroach is: A) 2 B) 4 C) 13 D) 10",
+    "options": [
+      "A",
+      "B",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "27. The conjugate base of H₂PO₄⁻ is: A) H₃PO₄ B) HPO₄²⁻ C) PO₄³⁻ D) H₂PO₃⁻",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "28. The escape velocity from the surface of the Earth is approximately: A) 7.9 km/s B) 11.2 km/s C) 9.8 km/s D) 1.6 km/s",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "29. Which of the following is known as the 'suicide bags' of the cell? A) Ribosomes B) Lysosomes C) Vacuoles D) Endoplasmic Reticulum",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "30. The IUPAC name of the compound CH₃-CH(OH)-CH₃ is: A) Propan-1-ol B) Propan-2-ol C) Ethanol D) Propanal",
+    "options": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "31. The universal law of gravitation was formulated by: A) Galileo B) Newton C) Copernicus D) Kepler",
+    "options": [
+      "A",
+      "C",
+      "B",
+      "D"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "32. The enzyme pepsin digests: A) Carbohydrates B) Fats C) Proteins D) Vitamins",
+    "options": [
+      "A",
+      "C",
+      "D",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "33. The SI unit of electric flux is: A) Weber B) Volt-meter C) Newton / Coulomb D) Tesla",
+    "options": [
+      "B",
+      "C",
+      "D",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "34. The process of converting an amine into a diazonium salt is known as: A) Sandmeyer reaction B) Gattermann reaction C) Diazotisation D) Carbylamine reaction",
+    "options": [
+      "B",
+      "D",
+      "A",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "35. The process by which a mature egg is released from the ovary is called: A) Fertilization B) Ovulation C) Implantation D) Menstruation",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "36. A device that converts electrical energy into mechanical energy is: A) AC Generator B) DC Motor C) Transformer D) Solenoid",
+    "options": [
+      "D",
+      "B",
+      "C",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "37. Which of the following is a termination codon in protein synthesis? A) AUG B) GUG C) UAA D) GGG",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "38. The phenomenon of radioactivity was discovered by: A) Marie Curie B) Pierre Curie C) Henri Becquerel D) J.J. Thomson",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "39. The number of atoms per unit cell in a body-centered cubic (BCC) structure is: A) 1 B) 2 C) 4 D) 8",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "40. AIDS is caused by which of the following viruses? A) Influenza virus B) Dengue virus C) HIV D) Varicella-zoster virus",
+    "options": [
+      "A",
+      "C",
+      "B",
+      "D"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "41. Lenz's law is a consequence of the law of conservation of: A) Charge B) Mass C) Momentum D) Energy",
+    "options": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "D",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "42. The process of coating zinc on iron is known as: A) Electroplating B) Galvanization C) Corrosion D) Annealing",
+    "options": [
+      "A",
+      "C",
+      "D",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "43. The technique of producing genetically identical individuals is called: A) Hybridization B) Cloning C) Tissue culture D) Mutation",
+    "options": [
+      "D",
+      "A",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "44. The sky appears blue due to: A) Reflection of light B) Refraction of light C) Total internal reflection D) Scattering of light",
+    "options": [
+      "B",
+      "D",
+      "A",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "D",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "45. The order of a reaction which is independent of the reactant's concentration is: A) First order B) Second order C) Zero order D) Third order",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "46. Down's syndrome is a genetic disorder which is caused by the presence of an extra chromosome number: A) 21 B) 18 C) 13 D) 23",
+    "options": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "answer": "D",
+    "answerText": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "47. In a p-type semiconductor, the majority charge carriers are: A) electrons B) holes C) protons D) neutrons",
+    "options": [
+      "C",
+      "A",
+      "B",
+      "D"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "48. The vitamin whose deficiency causes scurvy is: A) Vitamin A B) Vitamin B C) Vitamin C D) Vitamin D",
+    "options": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "49. The energy of a photon is given by E = hν. Here, h is: A) Rydberg's constant B) Boltzmann's constant C) Planck's constant D) Gas constant",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "science",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "50. The interaction between two species where one is benefited and the other is neither benefited nor harmed is called: A) Mutualism B) Commensalism C) Parasitism D) Predation",
+    "options": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  }
+]

@@ -1,0 +1,802 @@
+[
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "1. In Python, which of the following is the correct way to comment a single line? A) // This is a comment B) /* This is a comment */ C) # This is a comment D)",
+    "options": [
+      "C",
+      "B",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "2. In C, which data type is used to store a single character? A) char B) character C) string D) int",
+    "options": [
+      "D",
+      "B",
+      "C",
+      "A"
+    ],
+    "answer": "D",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "3. What is the output of `cout << 5 / 2;` in C++? A) 2.5 B) 2 C) 3 D) Error",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "4. How do you declare an integer variable 'x' in C? A) var x; B) integer x; C) int x; D) x = int;",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "5. In Python, what will `len([1, 2, 3])` return? A) 2 B) 3 C) 4 D) 6",
+    "options": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "6. Which header file is required for using `cout` in C++? A) <stdio.h> B) <iostream> C) <string> D) <math.h>",
+    "options": [
+      "A",
+      "C",
+      "D",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "7. What is the correct syntax for a `for` loop in Python? A) for (i=0; i<5; i++) B) for i in range(5): C) for each i in 5: D) for i to 5:",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "8. In C, how do you read an integer input from the user? A) `cin >> num;` B) `scanf(\"%d\", &num);` C) `input(num);` D) `read(num);`",
+    "options": [
+      "A",
+      "B",
+      "D",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "9. What is a pointer in C/C++? A) A variable that stores the value of another variable. B) A variable that stores the memory address of another variable. C) A special type of function. D) A keyword for creating classes.",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "10. In Python, which data structure is represented by `{}`? A) List B) Tuple C) Set D) Dictionary or Set",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "D",
+    "answerText": "D",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "11. What is the purpose of the `&` operator in C in the context of `scanf`? A) To get the value of the variable. B) To get the address of the variable. C) To perform a bitwise AND operation. D) It has no purpose.",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "12. In C++, what does OOP stand for? A) Object-Oriented Programming B) Out-Of-Place C) Original-Oriented Programming D) Object-Optional Programming",
+    "options": [
+      "D",
+      "A",
+      "B",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "13. Which of the following is a mutable data type in Python? A) Tuple B) String C) List D) Integer",
+    "options": [
+      "C",
+      "B",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "14. How do you define a function in C? A) `function myFunction() {}` B) `def myFunction():` C) `return_type function_name(parameters) {}` D) `void function myFunction() {}`",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "15. What is the `this` pointer in C++? A) A pointer to the current object instance. B) A pointer to the previous object instance. C) A global pointer. D) A null pointer.",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "16. What is the output of `print(3 * 'hi')` in Python? A) hi hi hi B) hihihi C) 9 D) Error",
+    "options": [
+      "D",
+      "B",
+      "C",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "17. In C, what is the size of `int` data type (in bytes) on a 32-bit system? A) 1 B) 2 C) 4 D) 8",
+    "options": [
+      "C",
+      "A",
+      "B",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "18. What is polymorphism in C++? A) The ability of a function to have multiple forms. B) A type of inheritance. C) A way to hide data. D) A loop structure.",
+    "options": [
+      "D",
+      "B",
+      "C",
+      "A"
+    ],
+    "answer": "D",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "19. Which operator is used for exponentiation in Python? A) ^ B) ** C) exp() D) power()",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "20. What is the purpose of the `break` statement in C? A) To exit the program. B) To exit the current loop or switch statement. C) To skip the current iteration of a loop. D) To return a value from a function.",
+    "options": [
+      "D",
+      "B",
+      "C",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "21. In C++, how do you dynamically allocate memory for an integer? A) `int* p = malloc(sizeof(int));` B) `int* p = new int;` C) `int* p = alloc(int);` D) `int p = new int;`",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "22. In Python, how do you check if a key exists in a dictionary `d`? A) `d.has_key('key')` B) `'key' in d` C) `d.exists('key')` D) `d['key'] != None`",
+    "options": [
+      "A",
+      "C",
+      "D",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "23. In C, what is the null character? A) '\\n' B) '\\0' C) '\\t' D) '\\r'",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "24. What is a constructor in C++? A) A special member function to destroy an object. B) A special member function to initialize an object. C) A normal member function. D) A global function.",
+    "options": [
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "25. Which keyword is used to define a function in Python? A) function B) define C) def D) fun",
+    "options": [
+      "C",
+      "A",
+      "B",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "26. What will be the output of `printf(\"%d\", 10 > 5);` in C? A) 10 B) 5 C) 1 D) 0",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "27. What is inheritance in C++? A) The process where one class acquires the properties of another class. B) The process of creating multiple objects of the same class. C) The process of binding data and functions together. D) The process of hiding internal details.",
+    "options": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "answer": "C",
+    "answerText": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "28. In Python, what is the result of `10 // 3`? A) 3.33 B) 3 C) 1 D) 4",
+    "options": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "answer": "B",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "29. What is a structure in C? A) A collection of variables of the same data type. B) A collection of variables of different data types. C) A function that returns multiple values. D) A pointer to a function.",
+    "options": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "30. What is the access specifier that makes members accessible only within the class? A) public B) protected C) private D) internal",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "31. What method in Python can be used to read a line of text from the user? A) `read()` B) `readline()` C) `input()` D) `getline()`",
+    "options": [
+      "B",
+      "D",
+      "C",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "32. In C, what is the correct way to declare an array of 5 integers? A) `int arr[5];` B) `array int[5];` C) `int[5] arr;` D) `arr<int>[5];`",
+    "options": [
+      "D",
+      "A",
+      "B",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "33. What is function overloading in C++? A) Having multiple functions with the same name and same parameters. B) Having multiple functions with the same name but different parameters. C) Overriding a function in a derived class. D) Creating a virtual function.",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "34. In Python, how do you start a multi-line comment? A) `##` B) `/*` C) `'''` or `\"\"\"` D) `//`",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "35. What does the `sizeof` operator in C return? A) The number of elements in an array. B) The size of a variable or data type in bytes. C) The last element of an array. D) The memory address of a variable.",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "36. What is a virtual function in C++? A) A function that is defined in a base class and overridden in a derived class. B) A function that cannot be overridden. C) A function that does not have a body. D) A function that is part of a template.",
+    "options": [
+      "D",
+      "A",
+      "C",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "37. What is the output of `'hello'.capitalize()` in Python? A) 'HELLO' B) 'Hello' C) 'hELLO' D) 'hello'",
+    "options": [
+      "B",
+      "C",
+      "D",
+      "A"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "38. In C, which operator is used to access the value at a memory address stored in a pointer? A) `&` B) `*` C) `->` D) `.`",
+    "options": [
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "39. What is a template in C++ used for? A) To create generic classes and functions. B) To define the structure of an object. C) To manage memory. D) To handle exceptions.",
+    "options": [
+      "B",
+      "D",
+      "A",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "40. In Python, which statement is used for decision making? A) `if-else` B) `for` C) `while` D) `switch`",
+    "options": [
+      "D",
+      "A",
+      "B",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "41. What is the `main` function in C? A) A user-defined function. B) The entry point of the program. C) A standard library function. D) A function to calculate the mean.",
+    "options": [
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "42. In C++, what is the scope resolution operator? A) `.` B) `->` C) `::` D) `&`",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "D",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "43. What does `range(1, 5)` generate in Python? A) [1, 2, 3, 4, 5] B) [1, 2, 3, 4] C) [2, 3, 4, 5] D) [1, 5]",
+    "options": [
+      "C",
+      "D",
+      "B",
+      "A"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "44. In C, how do you concatenate two strings? A) Using the `+` operator. B) Using the `concat()` function. C) Using the `strcat()` function. D) Using the `append()` function.",
+    "options": [
+      "D",
+      "C",
+      "A",
+      "B"
+    ],
+    "answer": "B",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "45. What is encapsulation in C++? A) The bundling of data and methods that operate on the data into a single unit. B) Creating a new class from an existing class. C) Defining multiple functions with the same name. D) A mechanism to handle runtime errors.",
+    "options": [
+      "A",
+      "C",
+      "B",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "A",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "46. What will `True and False` evaluate to in Python? A) True B) False C) Error D) 1",
+    "options": [
+      "C",
+      "A",
+      "D",
+      "B"
+    ],
+    "answer": "D",
+    "answerText": "B",
+    "level": "easy",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "47. In C, what is the difference between `++i` and `i++`? A) No difference. B) `++i` increments then uses the value, `i++` uses then increments the value. C) `i++` increments then uses the value, `++i` uses then increments the value. D) `++i` is more efficient.",
+    "options": [
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "answer": "C",
+    "answerText": "B",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "48. How do you create a reference variable in C++? A) `int &ref = var;` B) `int *ref = &var;` C) `ref int = var;` D) `int ref = &var;`",
+    "options": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "answer": "B",
+    "answerText": "A",
+    "level": "hard",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "49. Which of these is not a core data type in Python? A) List B) Dictionary C) Class D) Tuple",
+    "options": [
+      "C",
+      "B",
+      "A",
+      "D"
+    ],
+    "answer": "A",
+    "answerText": "C",
+    "level": "medium",
+    "rating": 3
+  },
+  {
+    "category": "coding",
+    "grade": 10,
+    "type": "mcq",
+    "questionText": "50. What is the use of the `try-catch` block in C++? A) To handle exceptions. B) To define a loop. C) To declare a class. D) To allocate memory.",
+    "options": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "answer": "D",
+    "answerText": "A",
+    "level": "medium",
+    "rating": 3
+  }
+]
