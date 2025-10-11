@@ -1,8 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
+  const navigate = useNavigate()
   return (
     <footer className="mt-16 bg-black/80 border-t-4 border-black relative overflow-hidden">
       {/* Animated background elements */}
@@ -134,7 +135,7 @@ export default function Footer() {
             </div>
 
             {/* CTA Button */}
-            <button className="bg-red-600 hover:bg-red-500 text-white border-2 border-black px-4 py-2 text-sm font-bold shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all duration-150 pixelated-rendering">
+            <button onClick={()=>navigate('/login')} className="bg-red-600 hover:bg-red-500 text-white border-2 border-black px-4 py-2 text-sm font-bold shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all duration-150 pixelated-rendering">
               Join Adventure
             </button>
           </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three'; // Import all of Three.js
+import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ const PixelButton = ({ children, className = '', onClick }) => (
 );
 
 export default function SignupPage() {
+  const navigate = useNavigate()
   const rootRef = useRef(null);
   const threeContainerRef = useRef(null);
   const formTitleRef = useRef(null);
@@ -297,7 +299,7 @@ export default function SignupPage() {
           </div>
           <div className="flex flex-col md:flex-row gap-4 pt-4">
             <PixelButton type="submit" className="flex-1 w-full text-lg py-3" onClick={handleSignup}>SIGN UP</PixelButton>
-            <PixelButton type="button" className="flex-1 w-full bg-gray-700 hover:bg-gray-800 !shadow-[6px_6px_0px_#222] text-lg py-3" onClick={handleLogin}>LOGIN</PixelButton>
+            <PixelButton type="button" className="flex-1 w-full bg-gray-700 hover:bg-gray-800 !shadow-[6px_6px_0px_#222] text-lg py-3" onClick={()=>navigate("/login")}>LOGIN</PixelButton>
           </div>
           <p className="text-center text-red-300 text-xs mt-4">
             <a href="#" className="hover:text-red-100 transition-colors duration-200">Forgot Password?</a>

@@ -54,7 +54,6 @@ export default function LandingPage() {
           <TestimonialsSection />
         </div>
 
-        {/* Pricing with emphasis */}
         <div className="relative py-16">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-900/10 to-transparent"></div>
           <div className="container mx-auto px-4">
