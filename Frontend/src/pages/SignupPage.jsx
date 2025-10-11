@@ -29,7 +29,6 @@ export default function SignupPage() {
   const threeContainerRef = useRef(null);
   const formTitleRef = useRef(null);
   const formRef = useRef(null);
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     userName: "",
