@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-[88vh] flex items-center">
       <div className="container mx-auto px-4 flex flex-col items-center text-center pointer-events-auto">
-        <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-shadow-pixel bg-red-800/20 px-4 py-2 rounded">
+        <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-shadow-pixel opacity-30 z-3 bg-red-800/20 px-4 py-2 rounded">
           EduQuest
         </h1>
         <BattleGround />

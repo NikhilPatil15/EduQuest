@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import User from './pages/User'
 import QuizPage from "./pages/QuizPage";
 import WorldPage from "./pages/WorldPage";
-
+import Onboarding from "./pages/Onboarding";
 const App = () => {
   return (
     
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/world" element={<WorldPage />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </BrowserRouter>
     );
