@@ -19,6 +19,7 @@ const battleSocket = io(`${SOCKET_URL}/battle`, {
 });
 
 // --- Helper Components ---
+// --- Helper Components ---
 const P = (props) => <p className="pixel-font" {...props} />;
 const H2 = (props) => <h2 className="pixel-font" {...props} />;
 const H3 = (props) => <h3 className="pixel-font" {...props} />;

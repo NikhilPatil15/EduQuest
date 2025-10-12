@@ -5,7 +5,7 @@ import { Server } from 'socket.io';
 const waitingPlayers = new Map();
 const activeBattles = new Map();
 
-export const setupBattleSocket = (io: Server) => {
+export const setupBattleSocket = (io: Server): void => {
 	const battleNamespace = io.of('/battle');
 
 	battleNamespace.on('connection', (socket) => {
