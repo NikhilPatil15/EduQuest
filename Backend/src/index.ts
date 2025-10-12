@@ -52,6 +52,7 @@ import FeedbackRouter from './routes/feedback.routes';
 import WorldMapRouter from './routes/worldMap.routes';
 import AdaptiveLearningRouter from './routes/adaptive.routes';
 import PokedexRouter from './routes/pokedex.routes';
+import DataRouter from './routes/data.routes';
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/pokemons', PokemonRouter);
@@ -62,6 +63,7 @@ app.use('/api/v1/feedback', FeedbackRouter);
 app.use('/api/v1/world-map', WorldMapRouter);
 app.use('/api/v1/adaptive-learning', AdaptiveLearningRouter);
 app.use('/api/v1/pokedex', PokedexRouter);
+app.use('/api/v1/data', DataRouter);
 
 app.get('/api/v1/health', (req, res) => {
 	res.json({
