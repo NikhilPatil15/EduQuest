@@ -1,146 +1,146 @@
-import React, { useState, useEffect } from 'react';
-// Assuming PixelButton is imported from './PixelButton'
+import React, { useState, useEffect, useRef } from 'react';
+// Import the centralized Axios instance
+import axiosInstance from '../../utils/axiosInstance'; 
 
-// --- Placeholder for PixelButton component ---
+// --- API Endpoints ---
+const QUIZ_START_ENDPOINT = '/quizzes/start';
+const QUIZ_START_ADAPTIVE_ENDPOINT = '/quizzes/start-adaptive';
+const QUIZ_ANSWER_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/answer`;
+const QUIZ_NEXT_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/next`;
+const QUIZ_RESULTS_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/results`;
+
+// --- Placeholder for PixelButton component (Kept for completeness) ---
 const PixelButton = ({ children, variant = 'primary', className, onClick, disabled }) => {
-    const baseClasses = "font-bold border-4 border-black transition-all duration-150 active:translate-y-0 active:shadow-[2px_2px_0_#000]";
-    let variantClasses = '';
-    
-    switch (variant) {
-        case 'primary':
-            variantClasses = "bg-red-700 text-white shadow-[4px_4px_0_#000] hover:bg-red-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-            break;
-        case 'success':
-            variantClasses = "bg-green-700 text-white shadow-[4px_4px_0_#000] hover:bg-green-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-            break;
-        default:
-            variantClasses = "bg-gray-700 text-white shadow-[4px_4px_0_#000] hover:bg-gray-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-    }
+    const baseClasses = "font-bold border-4 border-black transition-all duration-150 active:translate-y-0 active:shadow-[2px_2px_0_#000]";
+    let variantClasses = '';
+    
+    switch (variant) {
+        case 'primary':
+            variantClasses = "bg-red-700 text-white shadow-[4px_4px_0_#000] hover:bg-red-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
+            break;
+        case 'success':
+            variantClasses = "bg-green-700 text-white shadow-[4px_4px_0_#000] hover:bg-green-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
+            break;
+        default:
+            variantClasses = "bg-gray-700 text-white shadow-[4px_4px_0_#000] hover:bg-gray-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
+    }
 
-    return (
-        <button
-            className={`${baseClasses} ${variantClasses} ${className}`}
-            onClick={onClick}
-            disabled={disabled}
-        >
-            {children}
-        </button>
-    );
+    return (
+        <button
+            className={`${baseClasses} ${variantClasses} ${className}`}
+            onClick={onClick}
+            disabled={disabled}
+        >
+            {children}
+        </button>
+    );
 };
 // ---------------------------------------------
 
-
-// === QUIZ RESULTS CARD COMPONENT (Used for FINAL results) ===
+// === QUIZ RESULTS CARD COMPONENT ===
+// NOTE: In a real app, this should fetch results from QUIZ_RESULTS_ENDPOINT,
+// but for simplicity, we use the accumulated local results array.
 const QuizResultsCard = ({ results, onClose }) => {
-    // Logic remains the same
-    const totalCorrect = results.filter(r => r.isCorrect).length;
-    const totalXP = results.reduce((sum, r) => sum + r.xpEarned, 0);
-    const totalCoins = results.reduce((sum, r) => sum + r.coinsEarned, 0);
-    const totalQuestions = results.length;
-    const accuracy = Math.round((totalCorrect / totalQuestions) * 100) || 0;
+    const totalCorrect = results.filter(r => r.isCorrect).length;
+    const totalXP = results.reduce((sum, r) => sum + r.xpEarned, 0);
+    const totalCoins = results.reduce((sum, r) => sum + r.coinsEarned, 0);
+    const totalQuestions = results.length;
+    const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
 
-    return (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[70] p-4">
-            <div className="bg-gradient-to-br from-[#100000] to-[#600000] border-4 border-black p-8 rounded-lg shadow-[10px_10px_0_#ffcc00] max-w-md w-full text-white text-center">
-                
-                <h3 className="text-4xl font-extrabold text-yellow-300 mb-4 pixelated-text">
-                    QUEST COMPLETE!
-                </h3>
-                <p className="text-lg mb-6">Your training session results:</p>
-                
-                <div className="bg-black/50 p-4 rounded mb-6 border-2 border-gray-700">
-                    <div className="flex justify-between text-xl font-bold mb-2">
-                        <span>Accuracy:</span>
-                        <span className="text-green-400">{accuracy}%</span>
-                    </div>
-                    <div className="flex justify-between text-xl font-bold mb-2">
-                        <span>Score:</span>
-                        <span className="text-white">{totalCorrect} / {totalQuestions}</span>
-                    </div>
-                </div>
+    return (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[70] p-4">
+            <div className="bg-gradient-to-br from-[#100000] to-[#600000] border-4 border-black p-8 rounded-lg shadow-[10px_10px_0_#ffcc00] max-w-md w-full text-white text-center">
+                
+                <h3 className="text-4xl font-extrabold text-yellow-300 mb-4 pixelated-text">
+                    QUEST COMPLETE!
+                </h3>
+                <p className="text-lg mb-6">Your training session results:</p>
+                
+                <div className="bg-black/50 p-4 rounded mb-6 border-2 border-gray-700">
+                    <div className="flex justify-between text-xl font-bold mb-2">
+                        <span>Accuracy:</span>
+                        <span className="text-green-400">{accuracy}%</span>
+                    </div>
+                    <div className="flex justify-between text-xl font-bold mb-2">
+                        <span>Score:</span>
+                        <span className="text-white">{totalCorrect} / {totalQuestions}</span>
+                    </div>
+                </div>
 
-                <div className="flex justify-around mb-8">
-                    <div className="text-center">
-                        <p className="text-3xl font-bold text-yellow-300">+{totalXP}</p>
-                        <span className="text-sm">XP Earned</span>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-3xl font-bold text-yellow-300">+{totalCoins}</p>
-                        <span className="text-sm">Coins Found</span>
-                    </div>
-                </div>
+                <div className="flex justify-around mb-8">
+                    <div className="text-center">
+                        <p className="text-3xl font-bold text-yellow-300">+{totalXP}</p>
+                        <span className="text-sm">XP Earned</span>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-3xl font-bold text-yellow-300">+{totalCoins}</p>
+                        <span className="text-sm">Coins Found</span>
+                    </div>
+                </div>
 
-                <PixelButton
-                    variant="success"
-                    className="w-full py-3 text-lg"
-                    onClick={onClose}
-                >
-                    RETURN TO QUESTS
-                </PixelButton>
-            </div>
-        </div>
-    );
+                <PixelButton
+                    variant="success"
+                    className="w-full py-3 text-lg"
+                    onClick={onClose}
+                >
+                    RETURN TO QUESTS
+                </PixelButton>
+            </div>
+        </div>
+    );
 };
 // ===================================
 
-
-// === INTEGRATED QUIZ PANEL COMPONENT (Replaces QuizQuestionViewer) ===
+// === INTEGRATED QUIZ PANEL COMPONENT ===
 const IntegratedQuizPanel = ({ session, onAnswerSubmit, onClose }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [lastResult, setLastResult] = useState(null); // Stores last result for inline display
     const [isSubmitting, setIsSubmitting] = useState(false);
     
-    // Clear selection/result for new question when session updates
+    // Ref to track time spent on the question
+    const startTimeRef = useRef(Date.now());
+
+    // Reset state for new question
     useEffect(() => {
         setSelectedAnswer(null);
         setLastResult(null);
         setIsSubmitting(false);
+        startTimeRef.current = Date.now(); // Reset timer
     }, [session.currentQuestion._id]);
 
-
-    // Handles the client-side interaction: checks answer, sets result, and calls parent
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!selectedAnswer || isSubmitting) return;
 
         setIsSubmitting(true);
-        const isCorrect = selectedAnswer === session.currentQuestion.correctAnswer;
+        const timeSpent = (Date.now() - startTimeRef.current) / 1000;
         
-        // --- API Submission Simulation ---
-        const simulatedResponse = {
-            isCorrect: isCorrect,
-            correctAnswer: session.currentQuestion.correctAnswer,
-            explanation: isCorrect ? session.currentQuestion.explanation : `The correct answer was ${session.currentQuestion.correctAnswer}. ${session.currentQuestion.explanation}`,
-            xpEarned: isCorrect ? 100 : 0,
-            coinsEarned: isCorrect ? 10 : 0,
-            currentStreak: isCorrect ? session.currentStreak + 1 : 0,
-            isCompleted: session.progress.current === session.progress.total,
-            nextQuestion: isCorrect && session.progress.current < session.progress.total ? {
-                _id: "q_next_002",
-                question: "What is the primary function of chlorophyll?",
-                questionType: "multiple_choice",
-                options: ["Respiration", "Photosynthesis", "Digestion", "Reproduction"],
-                correctAnswer: "Photosynthesis",
-                explanation: "Chlorophyll is essential for plants to convert light energy into chemical energy.",
-                timeLimit: 20
-            } : null
-        };
+        try {
+            // 2. Submit Answer API Call
+            const response = await axiosInstance.post(
+                QUIZ_ANSWER_ENDPOINT(session.sessionId), 
+                {
+                    answer: selectedAnswer,
+                    timeSpent: timeSpent 
+                }
+            );
 
-        // Display result inline first
-        setLastResult(simulatedResponse);
-        
-        // Then pass it back to the parent component after a short delay
-        // (Simulating network latency before processing the next step)
-        setTimeout(() => {
-            onAnswerSubmit(simulatedResponse, session.sessionId);
+            const responseData = response.data.data; // { isCorrect, xpEarned, nextQuestion, etc. }
+
+            // 3. Display Result Inline
+            setLastResult(responseData); 
+            // The onAnswerSubmit function will handle the next question transition or showing results
+        } catch (e) {
+            console.error("Error submitting answer:", e);
+            alert(`Error: ${e.response?.data?.message || e.message}`);
             setIsSubmitting(false);
-        }, 1000); 
+        }
     };
     
-    // Handles continuing to the next step (called after reviewing lastResult)
+    // Handles transition to the next question/results after user reviews the answer
     const handleContinue = () => {
         if (!lastResult) return;
         
-        // Triggers the state updates in the parent component (QuestsTab)
+        // Pass the result data back to the parent to update the session state
         onAnswerSubmit(lastResult, session.sessionId);
     };
 
@@ -151,6 +151,11 @@ const IntegratedQuizPanel = ({ session, onAnswerSubmit, onClose }) => {
         <div className={`mt-4 p-3 border-2 border-black rounded ${lastResult.isCorrect ? 'bg-green-700' : 'bg-red-700'}`}>
             <p className="font-bold text-lg">{lastResult.isCorrect ? 'Correct!' : 'Incorrect!'}</p>
             <p className="text-sm">{lastResult.explanation}</p>
+            <div className='flex justify-between text-xs mt-2'>
+                <span>XP: +{lastResult.xpEarned}</span>
+                <span>Coins: +{lastResult.coinsEarned}</span>
+                <span>Streak: {lastResult.currentStreak}</span>
+            </div>
         </div>
     ) : null;
 
@@ -232,33 +237,26 @@ const IntegratedQuizPanel = ({ session, onAnswerSubmit, onClose }) => {
 
 
 const QuestsTab = ({ trainerData }) => {
-    const [activeQuest, setActiveQuest] = useState(null); 
-    const [quizSession, setQuizSession] = useState(null); 
-    const [resultAlert, setResultAlert] = useState(null); // This state is now redundant but kept for structure compatibility
-    const [quizResultsData, setQuizResultsData] = useState([]); 
+    const [activeQuest, setActiveQuest] = useState(null); // Used to show DifficultySelectionModal
+    const [quizSession, setQuizSession] = useState(null); // Stores sessionId, currentQuestion, progress
+    const [quizResultsData, setQuizResultsData] = useState([]); // Stores accumulated results for final display
+    const [quizLoading, setQuizLoading] = useState(false);
+    const [quizError, setQuizError] = useState(null);
     
-    // --- DUMMY DATA ---
+    // --- DUMMY QUEST DATA (Should be fetched from an API in a production app) ---
     const questsData = [
         { 
             name: 'MATH PRACTICE: ALGEBRA', 
             type: 'quiz', 
             subject: 'math', 
-            questionCount: 2, 
+            questionCount: 10, 
             reward: '50 COINS', 
             progress: 3, 
             total: 10, 
             completed: false, 
             gif: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif',
             isAdaptive: false,
-            description: "Complete a standard 2-question quiz on Algebraic Fundamentals.",
-            nextQuestionData: {
-                _id: "q1_math",
-                question: "If 3x + 5 = 17, what is the value of x?",
-                questionType: "multiple_choice",
-                options: ["3", "4", "5", "6"],
-                correctAnswer: "4",
-                explanation: "3x = 12, therefore x = 4."
-            }
+            description: "Complete a standard 10-question quiz on Algebraic Fundamentals.",
         },
         { 
             name: 'ADAPTIVE SCIENCE QUIZ', 
@@ -272,14 +270,6 @@ const QuestsTab = ({ trainerData }) => {
             gif: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif',
             isAdaptive: true,
             description: "Challenge yourself with an adaptive quiz that adjusts difficulty based on your answers.",
-            nextQuestionData: {
-                _id: "q1_science",
-                question: "Which organelle is the 'powerhouse' of the cell?",
-                questionType: "multiple_choice",
-                options: ["Nucleus", "Ribosome", "Mitochondria", "Vacuole"],
-                correctAnswer: "Mitochondria",
-                explanation: "Mitochondria generate ATP."
-            }
         },
         { 
             name: '7-DAY STREAK (IN PROGRESS)', 
@@ -300,55 +290,64 @@ const QuestsTab = ({ trainerData }) => {
 
     const handleStartQuest = (quest) => {
         if (quest.type === 'quiz' && !quest.isAdaptive) {
-            setActiveQuest(quest);
+            setActiveQuest(quest); // Show Difficulty Modal
         } else if (quest.type === 'quiz' && quest.isAdaptive) {
-            handleLaunchQuiz(null, quest); 
+            handleLaunchQuiz(null, quest); // Launch Adaptive directly
         } else {
             alert(`Quest ${quest.name} activated! (Non-quiz action simulated)`);
         }
     };
     
-    const handleLaunchQuiz = (difficulty, questOverride = null) => {
+    // --- API CALL: START QUIZ SESSION ---
+    const handleLaunchQuiz = async (difficulty, questOverride = null) => {
         const quest = questOverride || activeQuest;
         if (!quest) return;
 
-        let route;
+        setActiveQuest(null); // Close modal
+        setQuizLoading(true);
+        setQuizError(null);
+        setQuizResultsData([]); // Clear old results
+
+        let endpoint;
         let requestBody;
         
         if (quest.isAdaptive) {
-            route = '/api/v1/quizzes/start-adaptive';
+            endpoint = QUIZ_START_ADAPTIVE_ENDPOINT;
             requestBody = { subject: quest.subject, questionCount: quest.questionCount };
         } else {
-            route = '/api/v1/quizzes/start';
+            endpoint = QUIZ_START_ENDPOINT;
             requestBody = { subject: quest.subject, difficulty: difficulty, questionCount: quest.questionCount, useAdaptive: false };
         }
         
-        const simulatedResponse = {
-            success: true,
-            data: {
-                sessionId: `sess_${Math.random().toString(16).slice(2)}`,
-                currentQuestion: quest.nextQuestionData,
-                progress: { current: 1, total: quest.questionCount },
-                currentStreak: 0
-            }
-        };
+        try {
+            const response = await axiosInstance.post(endpoint, requestBody);
+            const data = response.data.data;
 
-        setQuizResultsData([]); // Clear previous results
-        setQuizSession({ ...simulatedResponse.data, subject: quest.subject });
-        setActiveQuest(null); 
+            setQuizSession({ 
+                ...data, 
+                subject: quest.subject,
+                currentStreak: trainerData?.dailyStreak || 0 // Initial streak from trainer data
+            });
+
+        } catch (e) {
+            console.error("Error launching quiz:", e);
+            setQuizError(`Failed to start quiz: ${e.response?.data?.message || e.message}`);
+        } finally {
+            setQuizLoading(false);
+        }
     };
 
-    // FIXED: Simplified the answer submission handler to manage the inline result and state transition
+    // --- API CALL: HANDLE ANSWER SUBMISSION AND STATE TRANSITION ---
     const handleAnswerSubmit = (responseData, sessionId) => {
-        // 1. Log the result
+        // 1. Log the result data to accumulate for the final summary card
         setQuizResultsData(prev => [...prev, responseData]);
         
-        // 2. If completed, end the session cleanly
+        // 2. Determine the next step based on API response
         if (responseData.isCompleted) {
+            // Quiz is finished, clear session to show results card
             setQuizSession(null);
-            console.log(`Quiz completed! Results data is stored and ready for display.`);
         } else if (responseData.nextQuestion) {
-            // 3. Otherwise, prepare the session for the next question
+            // Use the next question data returned in the response
             setQuizSession(prev => ({
                 ...prev,
                 currentQuestion: responseData.nextQuestion,
@@ -358,8 +357,11 @@ const QuestsTab = ({ trainerData }) => {
                 },
                 currentStreak: responseData.currentStreak
             }));
+        } else {
+            // Fallback for an unfinished quiz with no next question (e.g., API error on the last question)
+            alert("Unexpected error: Quiz not completed but no next question received.");
+            setQuizSession(null); 
         }
-        // Note: The IntegratedQuizPanel handles setting the inline result (lastResult) automatically.
     };
 
     const handleCloseResultsCard = () => {
@@ -388,6 +390,7 @@ const QuestsTab = ({ trainerData }) => {
                             variant="primary"
                             className="w-full py-3 text-lg tracking-wider capitalize"
                             onClick={() => handleLaunchQuiz(difficulty)}
+                            disabled={quizLoading}
                         >
                             {difficulty} ({quest.questionCount} Questions)
                         </PixelButton>
@@ -398,6 +401,7 @@ const QuestsTab = ({ trainerData }) => {
                     variant="default"
                     className="w-full py-2 text-sm mt-6 bg-gray-700 hover:bg-gray-800"
                     onClick={() => setActiveQuest(null)}
+                    disabled={quizLoading}
                 >
                     Cancel
                 </PixelButton>
@@ -408,7 +412,6 @@ const QuestsTab = ({ trainerData }) => {
 
 
     // RENDER LOGIC
-    // We check the states in order of dominance: Results > Quiz > Difficulty > Quest List
     return (
         <>
             <h2 className="text-3xl font-bold text-center text-shadow-pixel mb-8 text-[#ffcc00]">🎯 DAILY QUESTS</h2>
@@ -424,12 +427,26 @@ const QuestsTab = ({ trainerData }) => {
                     session={quizSession}
                     onAnswerSubmit={handleAnswerSubmit}
                     onClose={handleCloseSession}
-                    key={quizSession.currentQuestion._id}
                 />
             )}
+
+            {/* Loading Spinner */}
+            {quizLoading && (
+                <div className="text-center text-xl p-8 text-yellow-300">
+                    <div className="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-yellow-300 border-opacity-25 rounded-full"></div>
+                    <p className="mt-2">Starting Quiz Session...</p>
+                </div>
+            )}
             
-            {/* 3. MAIN QUEST LIST (Rendered when IDLE or Difficulty Modal is open underneath) */}
-            {!quizSession && quizResultsData.length === 0 && (
+            {/* API Error Alert */}
+            {quizError && !quizLoading && (
+                <div className="text-center p-4 bg-red-800 border-2 border-red-600 rounded mb-4">
+                    ⚠️ {quizError}
+                </div>
+            )}
+            
+            {/* 3. MAIN QUEST LIST (Rendered when IDLE) */}
+            {!quizSession && quizResultsData.length === 0 && !quizLoading && (
                 <>
                     <div className="space-y-4">
                         {questsData.map((quest, index) => {
