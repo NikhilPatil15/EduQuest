@@ -1,524 +1,345 @@
-import React, { useState, useEffect, useRef } from 'react';
-// Import the centralized Axios instance
-import axiosInstance from '../../utils/axiosInstance'; 
+import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import { gsap } from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin'; // 👈 ADD THIS IMPORT
 
-// --- API Endpoints ---
-const QUIZ_START_ENDPOINT = '/quiz/start';
-const QUIZ_START_ADAPTIVE_ENDPOINT = '/quiz/start-adaptive';
-const QUIZ_ANSWER_ENDPOINT = (sessionId) => `/quiz/${sessionId}/answer`;
-const QUIZ_NEXT_ENDPOINT = (sessionId) => `/quiz/${sessionId}/next`;
-const QUIZ_RESULTS_ENDPOINT = (sessionId) => `/quiz/${sessionId}/results`;
+gsap.registerPlugin(TextPlugin); // 👈 AND REGISTER THE PLUGIN HERE
 
-// --- Placeholder for PixelButton component (Kept for completeness) ---
-const PixelButton = ({ children, variant = 'primary', className, onClick, disabled }) => {
-    const baseClasses = "font-bold border-4 border-black transition-all duration-150 active:translate-y-0 active:shadow-[2px_2px_0_#000]";
-    let variantClasses = '';
-    
-    switch (variant) {
-        case 'primary':
-            variantClasses = "bg-red-700 text-white shadow-[4px_4px_0_#000] hover:bg-red-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-            break;
-        case 'success':
-            variantClasses = "bg-green-700 text-white shadow-[4px_4px_0_#000] hover:bg-green-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-            break;
-        default:
-            variantClasses = "bg-gray-700 text-white shadow-[4px_4px_0_#000] hover:bg-gray-800 disabled:bg-gray-500 disabled:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed";
-    }
-
-    return (
-        <button
-            className={`${baseClasses} ${variantClasses} ${className}`}
-            onClick={onClick}
-            disabled={disabled}
-        >
-            {children}
-        </button>
-    );
+// --- POKEMON & QUIZ DATA (EXPANDED) ---
+const pokemonSprites = {
+  player: { name: 'Pikachu', sprite: 'https://play.pokemonshowdown.com/sprites/gen5ani-back/pikachu.gif' },
+  Science: { name: 'Magneton', sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/82.gif' },
+  Math: { name: 'Drowzee', sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/96.gif' },
+  Coding: { name: 'Porygon', sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/137.gif' },
 };
-// ---------------------------------------------
 
-// === QUIZ RESULTS CARD COMPONENT ===
-// NOTE: In a real app, this should fetch results from QUIZ_RESULTS_ENDPOINT,
-// but for simplicity, we use the accumulated local results array.
-const QuizResultsCard = ({ results, onClose }) => {
-    const totalCorrect = results.filter(r => r.isCorrect).length;
-    const totalXP = results.reduce((sum, r) => sum + r.xpEarned, 0);
-    const totalCoins = results.reduce((sum, r) => sum + r.coinsEarned, 0);
-    const totalQuestions = results.length;
-    const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+// GIF for damage effect
+const DAMAGE_EXPLOSION_GIF = 'https://s3.amazonaws.com/files.dorkly.com/assets/dorkly_fireball.gif'; // A pixelated explosion
 
-    return (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[70] p-4">
-            <div className="bg-gradient-to-br from-[#100000] to-[#600000] border-4 border-black p-8 rounded-lg shadow-[10px_10px_0_#ffcc00] max-w-md w-full text-white text-center">
-                
-                <h3 className="text-4xl font-extrabold text-yellow-300 mb-4 pixelated-text">
-                    QUEST COMPLETE!
-                </h3>
-                <p className="text-lg mb-6">Your training session results:</p>
-                
-                <div className="bg-black/50 p-4 rounded mb-6 border-2 border-gray-700">
-                    <div className="flex justify-between text-xl font-bold mb-2">
-                        <span>Accuracy:</span>
-                        <span className="text-green-400">{accuracy}%</span>
-                    </div>
-                    <div className="flex justify-between text-xl font-bold mb-2">
-                        <span>Score:</span>
-                        <span className="text-white">{totalCorrect} / {totalQuestions}</span>
-                    </div>
-                </div>
-
-                <div className="flex justify-around mb-8">
-                    <div className="text-center">
-                        <p className="text-3xl font-bold text-yellow-300">+{totalXP}</p>
-                        <span className="text-sm">XP Earned</span>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-3xl font-bold text-yellow-300">+{totalCoins}</p>
-                        <span className="text-sm">Coins Found</span>
-                    </div>
-                </div>
-
-                <PixelButton
-                    variant="success"
-                    className="w-full py-3 text-lg"
-                    onClick={onClose}
-                >
-                    RETURN TO QUESTS
-                </PixelButton>
-            </div>
-        </div>
-    );
+const quizData = {
+  Coding: {
+    Easy: [
+      { question: "What does HTML stand for?", options: ["Hyper Tool Markup Language", "Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Management Link"], answer: "Hyper Text Markup Language" },
+      { question: "Which tag is used to create a paragraph in HTML?", options: ["<p>", "<h1>", "<div>", "<par>"], answer: "<p>" },
+      { question: "What does CSS stand for?", options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Syntax", "Colorful Styling System"], answer: "Cascading Style Sheets" },
+      { question: "Which symbol is used for single-line comments in JavaScript?", options: ["//", "/*", "#", "<!--"], answer: "//" }
+    ],
+    Medium: [
+      { question: "Which of these is NOT a primitive data type in JavaScript?", options: ["String", "Number", "Array", "Boolean"], answer: "Array" },
+      { question: "What is the purpose of a 'for' loop?", options: ["To declare a function", "To style an element", "To iterate over a block of code", "To handle user clicks"], answer: "To iterate over a block of code" },
+      { question: "What does API stand for?", options: ["Application Programming Interface", "Advanced Program Interaction", "Automated Python Integration", "Applied Protocol Interface"], answer: "Application Programming Interface" },
+      { question: "In CSS, what property is used to change the text color?", options: ["font-color", "text-color", "color", "font-style"], answer: "color" }
+    ],
+    Hard: [
+      { question: "What is 'Big O notation' used to describe?", options: ["The size of a program", "The algorithm's time/space complexity", "The number of functions", "The type of data"], answer: "The algorithm's time/space complexity" },
+      { question: "What is recursion?", options: ["A loop that never ends", "A function that calls itself", "A way to store data", "A type of variable"], answer: "A function that calls itself" },
+      { question: "Which version control system is the most widely used?", options: ["SVN", "Mercurial", "Git", "CVS"], answer: "Git" },
+      { question: "What does 'DOM' stand for in web development?", options: ["Document Object Model", "Data Object Module", "Digital Ordinance Map", "Desktop Organization Method"], answer: "Document Object Model" }
+    ]
+  },
+  Science: {
+    Easy: [
+      { question: "What is the chemical symbol for water?", options: ["O₂", "H₂O", "CO₂", "NaCl"], answer: "H₂O" },
+      { question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], answer: "Mars" },
+      { question: "What is the center of an atom called?", options: ["Electron", "Proton", "Molecule", "Nucleus"], answer: "Nucleus" },
+      { question: "What gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" }
+    ],
+    Medium: [
+      { question: "What is the most abundant gas in Earth's atmosphere?", options: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"], answer: "Nitrogen" },
+      { question: "What measurement scale is used to determine wind speed?", options: ["Richter", "Beaufort", "Kelvin", "pH"], answer: "Beaufort" },
+      { question: "What is the hardest known natural material?", options: ["Gold", "Iron", "Quartz", "Diamond"], answer: "Diamond" },
+      { question: "What is the process of a liquid turning into a gas called?", options: ["Condensation", "Evaporation", "Sublimation", "Freezing"], answer: "Evaporation" }
+    ],
+    Hard: [
+      { question: "What is the name for the study of fungi?", options: ["Mycology", "Virology", "Botany", "Geology"], answer: "Mycology" },
+      { question: "The Heisenberg Uncertainty Principle is related to what field?", options: ["Relativity", "Genetics", "Quantum Mechanics", "Acoustics"], answer: "Quantum Mechanics" },
+      { question: "What is the chemical symbol for Gold?", options: ["Ag", "Go", "Au", "Gd"], answer: "Au" },
+      { question: "What is escape velocity?", options: ["Speed of sound", "Speed of light", "Speed to exit gravity", "Rotational speed"], answer: "Speed to exit gravity" }
+    ]
+  },
+  Math: {
+    Easy: [
+      { question: "What is 12 x 12?", options: ["144", "124", "156", "132"], answer: "144" },
+      { question: "How many sides does a hexagon have?", options: ["5", "8", "6", "7"], answer: "6" },
+      { question: "What is 25 + 9 - 4?", options: ["28", "30", "32", "20"], answer: "30" },
+      { question: "How many degrees are in a right angle?", options: ["45", "90", "180", "360"], answer: "90" }
+    ],
+    Medium: [
+      { question: "What is the square root of 625?", options: ["15", "25", "35", "45"], answer: "25" },
+      { question: "What comes after a million, billion, and trillion?", options: ["Quadrillion", "Quintillion", "Sextillion", "Zillion"], answer: "Quadrillion" },
+      { question: "What is the value of Pi to two decimal places?", options: ["3.12", "3.18", "3.16", "3.14"], answer: "3.14" },
+      { question: "A prime number is a number greater than 1 with only two factors: 1 and itself. Is 51 a prime number?", options: ["Yes", "No"], answer: "No" }
+    ],
+    Hard: [
+      { question: "In calculus, what is the derivative of x²?", options: ["2x", "x³/3", "x", "2"], answer: "2x" },
+      { question: "What is the next prime number after 7?", options: ["9", "13", "11", "15"], answer: "11" },
+      { question: "What is the sum of the interior angles of a triangle?", options: ["90°", "180°", "270°", "360°"], answer: "180°" },
+      { question: "What does the 'C' represent in Roman numerals?", options: ["50", "100", "500", "1000"], answer: "100" }
+    ]
+  }
 };
-// ===================================
 
-// === INTEGRATED QUIZ PANEL COMPONENT ===
-const IntegratedQuizPanel = ({ session, onAnswerSubmit, onClose }) => {
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [lastResult, setLastResult] = useState(null); // Stores last result for inline display
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+// --- REUSABLE COMPONENTS ---
+// --- REUSABLE COMPONENTS ---
+const PixelButton = ({ children, className = '', ...props }) => ( <button {...props} className={`relative select-none bg-[#b30000] text-white border-4 border-black px-6 py-3 font-bold shadow-[6px_6px_0px_#000] hover:bg-[#cc0000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all duration-150 disabled:bg-gray-600 disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 disabled:cursor-not-allowed ${className}`}><span className="relative z-10">{children}</span></button>);
+
+// CORRECTED DialogueBox
+const DialogueBox = ({ text }) => {
+    const textRef = useRef(null);
+    useEffect(() => {
+        if (textRef.current) {
+            // Use the 'text' property for the plugin, not 'textContent'
+            gsap.fromTo(textRef.current, 
+                { text: '' }, 
+                { text: text, duration: text.length * 0.03, ease: 'none' }
+            );
+        }
+    }, [text]);
+    return (
+        <div className="bg-black/70 border-4 border-black p-4 shadow-[8px_8px_0_#000] min-h-[100px]">
+            <p ref={textRef} className="text-2xl leading-tight"></p>
+        </div>
+    );
+};
+
+const HealthBar = ({ currentHp, maxHp, isPlayer = false }) => { const percentage = (currentHp / maxHp) * 100; const barColor = percentage > 50 ? 'bg-green-500' : percentage > 20 ? 'bg-yellow-500' : 'bg-red-600'; return ( <div className={`w-full bg-black/50 border-4 border-black p-1 shadow-[4px_4px_0_#000] ${isPlayer ? 'text-right' : 'text-left'}`}><div className={`h-4 ${barColor} transition-all duration-500`} style={{ width: `${percentage}%` }}></div><span className="font-bold text-sm px-2">{currentHp} / {maxHp}</span></div> );};
+const BattleCharacter = ({ id, spriteUrl, name, hp, maxHp, isPlayer = false, showHit = false, className = '' }) => (
+    <div className={`flex flex-col items-center gap-2 relative ${className}`}>
+    {showHit && (
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <img src={DAMAGE_EXPLOSION_GIF} alt="Hit" className="w-24 h-24 pixelated-rendering" />
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-pixel text-4xl text-red-500 text-shadow-pixel-white">HIT!</span>
+      </div>
+    )}
+    <img id={id} src={spriteUrl} alt={name} className="h-32 md:h-48 pixelated-rendering drop-shadow-[4px_4px_0_rgba(0,0,0,0.5)]" />
+    <div className="w-48">
+      <h3 className="font-bold text-lg mb-1">{name}</h3>
+      <HealthBar currentHp={hp} maxHp={maxHp} isPlayer={isPlayer} />
+    </div>
+  </div>
+);
+
+
+// --- QUIZ CONTEXT ---
+const QuizContext = createContext();
+export const QuizProvider = ({ children }) => {
+    const [gameState, setGameState] = useState('selection');
+    const [settings, setSettings] = useState({ subject: 'Science', difficulty: 'Easy' });
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [score, setScore] = useState(0);
+    const [playerHp, setPlayerHp] = useState(100);
+    const [opponentHp, setOpponentHp] = useState(100);
+    const MAX_HP = 100;
+
+    useEffect(() => {
+        if (gameState !== 'in_progress') return;
+        const isGameOver = playerHp <= 0 || opponentHp <= 0 || currentQuestionIndex >= questions.length;
+        if (isGameOver) {
+            const timer = setTimeout(() => { setGameState('finished'); }, 1200); 
+            return () => clearTimeout(timer);
+        }
+    }, [playerHp, opponentHp, currentQuestionIndex, questions.length, gameState]);
+
+    const startQuiz = (newSettings) => {
+        setSettings(newSettings);
+        const fetchedQuestions = quizData[newSettings.subject]?.[newSettings.difficulty] || [];
+        setQuestions(fetchedQuestions);
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setPlayerHp(MAX_HP);
+        setOpponentHp(MAX_HP);
+        setGameState('in_progress');
+    };
+
+    const answerQuestion = (isCorrect) => {
+        let baseDamage = 20;
+        if (settings.difficulty === 'Medium') baseDamage = 25;
+        if (settings.difficulty === 'Hard') baseDamage = 35;
+        const damage = baseDamage + Math.floor(Math.random() * 8);
+
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            setOpponentHp(prev => Math.max(0, prev - damage));
+        } else {
+            setPlayerHp(prev => Math.max(0, prev - damage));
+        }
+
+        setTimeout(() => {
+            setCurrentQuestionIndex(prev => prev + 1);
+        }, 2000);
+    };
     
-    // Ref to track time spent on the question
-    const startTimeRef = useRef(Date.now());
+    const resetQuiz = () => setGameState('selection');
+    const value = { gameState, settings, questions, currentQuestion: questions[currentQuestionIndex], currentQuestionIndex, score, startQuiz, answerQuestion, resetQuiz, playerHp, opponentHp, MAX_HP, };
+    return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
+};
+export const useQuiz = () => useContext(QuizContext);
 
-    // Reset state for new question
+// --- PAGE COMPONENTS ---
+
+function QuizSelection() {
+    const { startQuiz } = useQuiz();
+    const [selection, setSelection] = useState({ subject: 'Science', difficulty: 'Easy' });
+    const handleUpdate = (type, value) => { setSelection(prev => ({...prev, [type]: value})); }
+    return (
+      <div className="animate-fade-in text-center">
+        <h2 className="text-3xl md:text-5xl font-bold text-shadow-pixel mb-8">CHOOSE YOUR CHALLENGE!</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {Object.keys(quizData).map(subject => (
+                <div key={subject} onClick={() => handleUpdate('subject', subject)} className={`bg-black/40 border-4 p-6 shadow-[8px_8px_0_#000] cursor-pointer transition-all duration-200 hover:scale-105 hover:border-yellow-400 ${selection.subject === subject ? 'border-yellow-400 scale-105 shadow-[8px_8px_0_#eab308]' : 'border-black'}`}>
+                    <img src={pokemonSprites[subject].sprite} alt={pokemonSprites[subject].name} className="h-32 mx-auto pixelated-rendering" />
+                    <h3 className="text-2xl font-bold mt-4">{subject}</h3>
+                    <p className="text-yellow-300">{pokemonSprites[subject].name}</p>
+                </div>
+            ))}
+        </div>
+        <div className="mt-12">
+            <h3 className="text-2xl font-bold text-shadow-pixel mb-4">SELECT DIFFICULTY</h3>
+            <div className="flex justify-center gap-4">
+                {['Easy', 'Medium', 'Hard'].map(level => (
+                    <button key={level} onClick={() => handleUpdate('difficulty', level)} className={`border-4 text-lg border-black px-6 py-3 font-bold shadow-[4px_4px_0_#000] transition-all duration-150 ${selection.difficulty === level ? 'bg-yellow-400 text-black' : 'bg-black/40 hover:bg-red-900/50'}`}>{level}</button>
+                ))}
+            </div>
+        </div>
+        <div className="mt-12"><PixelButton onClick={() => startQuiz(selection)}>Start Battle!</PixelButton></div>
+      </div>
+    );
+}
+
+function QuizSession() {
+    const { currentQuestion, currentQuestionIndex, questions, answerQuestion, settings, playerHp, opponentHp, MAX_HP } = useQuiz();
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [timer, setTimer] = useState(15);
+    const timerRef = useRef(null);
+    const [showPlayerHit, setShowPlayerHit] = useState(false);
+    const [showOpponentHit, setShowOpponentHit] = useState(false);
+
+    const handleAnswer = useCallback((option) => {
+        if (isAnimating || selectedAnswer) return;
+        
+        clearInterval(timerRef.current);
+        setIsAnimating(true);
+        setSelectedAnswer(option ?? 'Timeout');
+        const isCorrect = option === currentQuestion.answer;
+        
+        const tl = gsap.timeline({
+            onStart: () => {
+                if (isCorrect) {
+                    setShowOpponentHit(true);
+                } else {
+                    setShowPlayerHit(true);
+                }
+                 gsap.to(".quiz-page-container", { x: 'random(-5, 5)', y: 'random(-5, 5)', duration: 0.1, repeat: 3, yoyo: true, ease: 'power1.inOut', clearProps: 'x,y' });
+            },
+            onComplete: () => {
+                answerQuestion(isCorrect);
+                setIsAnimating(false);
+                setShowPlayerHit(false);
+                setShowOpponentHit(false);
+            }
+        });
+
+        if (isCorrect) {
+            tl.to("#player-char", { x: 20, repeat: 1, yoyo: true, duration: 0.15 })
+              .to("#opponent-char", { x: '+=10', yoyo: true, repeat: 3, duration: 0.08, filter: 'brightness(80%)' }, "<")
+              .to("#opponent-char", { opacity: 0, repeat: 1, yoyo: true, duration: 0.1 }, "-=0.2");
+        } else {
+            tl.to("#opponent-char", { x: -40, duration: 0.1, ease: 'power2.in' })
+              .to("#player-char", { x: 'random(-8, 8)', duration: 0.05, repeat: 5, yoyo: true, ease: 'power1.inOut' }, "<")
+              .to("#player-char", { filter: 'brightness(80%) sepia(100%) hue-rotate(-20deg) saturate(200%)', duration: 0.1, yoyo: true, repeat: 1 }, "<")
+              .to("#opponent-char", { x: 0, duration: 0.3, ease: 'power2.out' });
+        }
+    }, [isAnimating, selectedAnswer, currentQuestion, answerQuestion]);
+
+
     useEffect(() => {
         setSelectedAnswer(null);
-        setLastResult(null);
-        setIsSubmitting(false);
-        startTimeRef.current = Date.now(); // Reset timer
-    }, [session.currentQuestion._id]);
+        setTimer(15);
 
-    const handleSubmit = async () => {
-        if (!selectedAnswer || isSubmitting) return;
+        timerRef.current = setInterval(() => {
+            setTimer(prev => prev - 1);
+        }, 1000);
 
-        setIsSubmitting(true);
-        const timeSpent = (Date.now() - startTimeRef.current) / 1000;
-        
-        try {
-            // 2. Submit Answer API Call
-            const response = await axiosInstance.post(
-                QUIZ_ANSWER_ENDPOINT(session.sessionId), 
-                {
-                    answer: selectedAnswer,
-                    timeSpent: timeSpent 
-                }
-            );
+        return () => clearInterval(timerRef.current);
+    }, [currentQuestion]);
 
-            const responseData = response.data.data; // { isCorrect, xpEarned, nextQuestion, etc. }
-
-            // 3. Display Result Inline
-            setLastResult(responseData); 
-            // The onAnswerSubmit function will handle the next question transition or showing results
-        } catch (e) {
-            console.error("Error submitting answer:", e);
-            alert(`Error: ${e.response?.data?.message || e.message}`);
-            setIsSubmitting(false);
+    useEffect(() => {
+        if (timer === 0) {
+            clearInterval(timerRef.current);
+            handleAnswer(null);
         }
-    };
+    }, [timer, handleAnswer]);
     
-    // Handles transition to the next question/results after user reviews the answer
-    const handleContinue = () => {
-        if (!lastResult) return;
-        
-        // Pass the result data back to the parent to update the session state
-        onAnswerSubmit(lastResult, session.sessionId);
-    };
-
-    const isAnswerSubmitted = lastResult !== null;
-    const isCompleted = lastResult?.isCompleted;
-
-    const resultMessage = lastResult ? (
-        <div className={`mt-4 p-3 border-2 border-black rounded ${lastResult.isCorrect ? 'bg-green-700' : 'bg-red-700'}`}>
-            <p className="font-bold text-lg">{lastResult.isCorrect ? 'Correct!' : 'Incorrect!'}</p>
-            <p className="text-sm">{lastResult.explanation}</p>
-            <div className='flex justify-between text-xs mt-2'>
-                <span>XP: +{lastResult.xpEarned}</span>
-                <span>Coins: +{lastResult.coinsEarned}</span>
-                <span>Streak: {lastResult.currentStreak}</span>
-            </div>
-        </div>
-    ) : null;
+    const getButtonClass = (option) => { if (!selectedAnswer) return 'hover:bg-[#cc0000]'; if (option === currentQuestion.answer) return '!bg-green-600 !shadow-none'; if (option === selectedAnswer) return '!bg-red-800 !shadow-none'; return '!bg-gray-700 !shadow-none opacity-60'; };
+    
+    if (!currentQuestion) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[70] p-4">
-            <div className="bg-gradient-to-br from-[#100000] to-[#400000] border-4 border-black p-6 rounded-lg shadow-[10px_10px_0_#000] max-w-xl w-full text-white">
-                
-                {/* Header and Progress */}
-                <div className="flex justify-between items-center pb-3 border-b border-yellow-500 mb-4">
-                    <h3 className="text-2xl font-bold text-yellow-300">
-                        QUEST QUIZ
-                    </h3>
-                    <div className="text-right">
-                        <span className="text-lg font-bold block">
-                            Q: {session.progress.current} / {session.progress.total}
-                        </span>
-                        <button onClick={onClose} className="text-xs text-gray-400 hover:text-red-400">
-                            (Quit Session)
-                        </button>
-                    </div>
+        <div className="animate-fade-in flex flex-col h-[75vh]">
+            {/* Top Row: Characters and Timer */}
+            <div className="flex-grow flex justify-between items-center px-4 relative">
+                <BattleCharacter id="player-char" spriteUrl={pokemonSprites.player.sprite} name={pokemonSprites.player.name} hp={playerHp} maxHp={MAX_HP} isPlayer showHit={showPlayerHit} />
+                {/* TIMER UI */}
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-20 h-20 flex items-center justify-center font-bold text-4xl border-4 border-black bg-black/50 rounded-full shadow-[4px_4px_0_#000] transition-colors duration-300 ${timer <= 5 ? 'text-red-500' : 'text-yellow-300'}`}>
+                    {timer}
                 </div>
-
-                {/* Question */}
-                <div className="text-center mb-6">
-                    <p className="text-3xl font-extrabold mt-2 text-white pixelated-text">
-                        {session.currentQuestion.question}
-                    </p>
-                </div>
-
-                {/* Answer Options (Disabled when submitted) */}
-                <div className="space-y-3 mb-6">
-                    {session.currentQuestion.options.map((option, index) => (
-                        <div
-                            key={index}
-                            className={`p-3 border-2 border-black rounded transition-all ${
-                                isAnswerSubmitted ? 'cursor-not-allowed opacity-70' : 'cursor-pointer hover:bg-black/80'
-                            } ${
-                                selectedAnswer === option 
-                                ? 'bg-blue-600 shadow-[4px_4px_0_#000] border-white' 
-                                : 'bg-black/50 shadow-[2px_2px_0_#000]'
-                            }`}
-                            onClick={() => !isAnswerSubmitted && setSelectedAnswer(option)}
-                        >
-                            <span className="font-mono text-lg">{option}</span>
-                        </div>
+                <BattleCharacter id="opponent-char" spriteUrl={pokemonSprites[settings.subject].sprite} name={pokemonSprites[settings.subject].name} hp={opponentHp} maxHp={MAX_HP} showHit={showOpponentHit} />
+            </div>
+            {/* Bottom Row: Battle Console (Dialogue and Options) */}
+            <div className="bg-black/60 border-4 border-black p-4 shadow-[8px_8px_0_#000]">
+                <p className="text-right text-yellow-300 mb-2 font-bold">Question {currentQuestionIndex + 1} / {questions.length}</p>
+                <DialogueBox text={currentQuestion.question} />
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                    {currentQuestion.options.map(option => (
+                        <PixelButton key={option} onClick={() => handleAnswer(option)} disabled={!!selectedAnswer} className={`w-full text-sm md:text-base !px-2 transition-colors duration-300 ${getButtonClass(option)}`}>{option}</PixelButton>
                     ))}
                 </div>
-
-                {/* Submit/Continue Button Area */}
-                <div className="h-20 flex flex-col justify-end">
-                    {isAnswerSubmitted ? (
-                        <PixelButton
-                            variant={isCompleted ? 'success' : (lastResult.isCorrect ? 'success' : 'primary')}
-                            className="w-full py-3 text-xl animate-pulse"
-                            onClick={handleContinue}
-                            disabled={isSubmitting}
-                        >
-                            {isCompleted ? 'VIEW RESULTS' : 'CONTINUE'}
-                        </PixelButton>
-                    ) : (
-                        <PixelButton
-                            variant="primary"
-                            className="w-full py-3 text-xl"
-                            onClick={handleSubmit}
-                            disabled={!selectedAnswer || isSubmitting}
-                        >
-                            {isSubmitting ? 'PROCESSING...' : 'SUBMIT ANSWER'}
-                        </PixelButton>
-                    )}
-                </div>
-
-                {/* Inline Result Message */}
-                {resultMessage}
             </div>
         </div>
     );
-};
-// ===================================
+}
 
-
-const QuestsTab = ({ trainerData }) => {
-    const [activeQuest, setActiveQuest] = useState(null); // Used to show DifficultySelectionModal
-    const [quizSession, setQuizSession] = useState(null); // Stores sessionId, currentQuestion, progress
-    const [quizResultsData, setQuizResultsData] = useState([]); // Stores accumulated results for final display
-    const [quizLoading, setQuizLoading] = useState(false);
-    const [quizError, setQuizError] = useState(null);
-    
-    // --- DUMMY QUEST DATA (Should be fetched from an API in a production app) ---
-    const questsData = [
-        { 
-            name: 'MATH PRACTICE: ALGEBRA', 
-            type: 'quiz', 
-            subject: 'math', 
-            questionCount: 10, 
-            reward: '50 COINS', 
-            progress: 3, 
-            total: 10, 
-            completed: false, 
-            gif: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif',
-            isAdaptive: false,
-            description: "Complete a standard 10-question quiz on Algebraic Fundamentals.",
-        },
-        { 
-            name: 'ADAPTIVE SCIENCE QUIZ', 
-            type: 'quiz', 
-            subject: 'science', 
-            questionCount: 8, 
-            reward: '100 XP', 
-            progress: 0, 
-            total: 1, 
-            completed: false, 
-            gif: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif',
-            isAdaptive: true,
-            description: "Challenge yourself with an adaptive quiz that adjusts difficulty based on your answers.",
-        },
-        { 
-            name: '7-DAY STREAK (IN PROGRESS)', 
-            type: 'streak', 
-            subject: null, 
-            reward: '200 COINS', 
-            progress: 6, 
-            total: 7, 
-            completed: false, 
-            gif: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/38.gif',
-            isAdaptive: false,
-            description: "Log in and complete any quiz quest for 7 days in a row."
-        },
-    ];
-    // ------------------------------------
-
-    const availableDifficulties = ['beginner', 'intermediate', 'advanced'];
-
-    const handleStartQuest = (quest) => {
-        if (quest.type === 'quiz' && !quest.isAdaptive) {
-            setActiveQuest(quest); // Show Difficulty Modal
-        } else if (quest.type === 'quiz' && quest.isAdaptive) {
-            handleLaunchQuiz(null, quest); // Launch Adaptive directly
-        } else {
-            alert(`Quest ${quest.name} activated! (Non-quiz action simulated)`);
-        }
-    };
-    
-    // --- API CALL: START QUIZ SESSION ---
-    const handleLaunchQuiz = async (difficulty, questOverride = null) => {
-        const quest = questOverride || activeQuest;
-        if (!quest) return;
-
-        setActiveQuest(null); // Close modal
-        setQuizLoading(true);
-        setQuizError(null);
-        setQuizResultsData([]); // Clear old results
-
-        let endpoint;
-        let requestBody;
-        
-        if (quest.isAdaptive) {
-            endpoint = QUIZ_START_ADAPTIVE_ENDPOINT;
-            requestBody = { subject: quest.subject, questionCount: quest.questionCount };
-        } else {
-            endpoint = QUIZ_START_ENDPOINT;
-            requestBody = { subject: quest.subject, difficulty: difficulty, questionCount: quest.questionCount, useAdaptive: false };
-        }
-        
-        try {
-            const response = await axiosInstance.post(endpoint, requestBody);
-            const data = response.data.data;
-
-            setQuizSession({ 
-                ...data, 
-                subject: quest.subject,
-                currentStreak: trainerData?.dailyStreak || 0 // Initial streak from trainer data
-            });
-
-        } catch (e) {
-            console.error("Error launching quiz:", e);
-            setQuizError(`Failed to start quiz: ${e.response?.data?.message || e.message}`);
-        } finally {
-            setQuizLoading(false);
-        }
-    };
-
-    // --- API CALL: HANDLE ANSWER SUBMISSION AND STATE TRANSITION ---
-    const handleAnswerSubmit = (responseData, sessionId) => {
-        // 1. Log the result data to accumulate for the final summary card
-        setQuizResultsData(prev => [...prev, responseData]);
-        
-        // 2. Determine the next step based on API response
-        if (responseData.isCompleted) {
-            // Quiz is finished, clear session to show results card
-            setQuizSession(null);
-        } else if (responseData.nextQuestion) {
-            // Use the next question data returned in the response
-            setQuizSession(prev => ({
-                ...prev,
-                currentQuestion: responseData.nextQuestion,
-                progress: {
-                    ...prev.progress,
-                    current: prev.progress.current + 1
-                },
-                currentStreak: responseData.currentStreak
-            }));
-        } else {
-            // Fallback for an unfinished quiz with no next question (e.g., API error on the last question)
-            alert("Unexpected error: Quiz not completed but no next question received.");
-            setQuizSession(null); 
-        }
-    };
-
-    const handleCloseResultsCard = () => {
-        setQuizResultsData([]); // Clear results after closing card
-    };
-
-    const handleCloseSession = () => {
-        if (window.confirm("Are you sure you want to quit this quiz session? Your progress will be lost.")) {
-            setQuizSession(null);
-            setQuizResultsData([]); // Clear any partial results
-        }
-    };
-
-
-    // --- Difficulty Selection Modal Component ---
-    const DifficultySelectionModal = ({ quest }) => (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <div className="bg-gradient-to-br from-[#600000] to-[#400000] border-4 border-black rounded-lg shadow-[8px_8px_0_#000] max-w-lg w-full p-6 text-white">
-                <h3 className="text-2xl font-bold text-yellow-300 mb-2">{quest.name}</h3>
-                <p className="text-gray-300 mb-6">Select a difficulty for this {quest.subject.toUpperCase()} quiz:</p>
-                
-                <div className="space-y-4">
-                    {availableDifficulties.map((difficulty) => (
-                        <PixelButton 
-                            key={difficulty}
-                            variant="primary"
-                            className="w-full py-3 text-lg tracking-wider capitalize"
-                            onClick={() => handleLaunchQuiz(difficulty)}
-                            disabled={quizLoading}
-                        >
-                            {difficulty} ({quest.questionCount} Questions)
-                        </PixelButton>
-                    ))}
-                </div>
-
-                <PixelButton 
-                    variant="default"
-                    className="w-full py-2 text-sm mt-6 bg-gray-700 hover:bg-gray-800"
-                    onClick={() => setActiveQuest(null)}
-                    disabled={quizLoading}
-                >
-                    Cancel
-                </PixelButton>
-            </div>
-        </div>
-    );
-    // ---------------------------------------------
-
-
-    // RENDER LOGIC
+function QuizResults() {
+    const { score, questions, resetQuiz, playerHp, settings } = useQuiz();
+    const isVictory = playerHp > 0;
     return (
-        <>
-            <h2 className="text-3xl font-bold text-center text-shadow-pixel mb-8 text-[#ffcc00]">🎯 DAILY QUESTS</h2>
+        <div className="animate-fade-in text-center">
+            {isVictory ? ( <div><h2 className="text-4xl md:text-6xl font-bold text-shadow-pixel text-yellow-300 mb-4">YOU WON!</h2><p className="text-xl mb-6">Your knowledge was super effective!</p></div>) : ( <div><h2 className="text-4xl md:text-6xl font-bold text-shadow-pixel text-red-500 mb-4">DEFEATED...</h2><p className="text-xl mb-6">Time to hit the books and train harder!</p></div>)}
             
-            {/* 1. QUIZ RESULTS CARD (Highest Priority) */}
-            {quizResultsData.length > 0 && !quizSession && (
-                <QuizResultsCard results={quizResultsData} onClose={handleCloseResultsCard} />
-            )}
+            <div className="flex justify-center items-center gap-8 mb-8">
+                 <img src={pokemonSprites.player.sprite} alt={pokemonSprites.player.name} className={`h-32 pixelated-rendering drop-shadow-[4px_4px_0_rgba(0,0,0,0.5)] transition-all ${isVictory ? '' : 'grayscale'}`} />
+                 <span className="text-4xl font-bold">VS</span>
+                 <img src={pokemonSprites[settings.subject].sprite} alt={pokemonSprites[settings.subject].name} className="h-32 pixelated-rendering drop-shadow-[4px_4px_0_rgba(0,0,0,0.5)]" />
+            </div>
 
-            {/* 2. QUIZ VIEWER (Next Priority) */}
-            {quizSession && (
-                <IntegratedQuizPanel 
-                    session={quizSession}
-                    onAnswerSubmit={handleAnswerSubmit}
-                    onClose={handleCloseSession}
-                />
-            )}
-
-            {/* Loading Spinner */}
-            {quizLoading && (
-                <div className="text-center text-xl p-8 text-yellow-300">
-                    <div className="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-yellow-300 border-opacity-25 rounded-full"></div>
-                    <p className="mt-2">Starting Quiz Session...</p>
+            <div className="bg-black/40 border-4 border-black p-8 shadow-[8px_8px_0_#000] max-w-lg mx-auto">
+                <h3 className="text-2xl font-bold mb-4">Battle Summary</h3>
+                <div className="text-left space-y-2">
+                    <p className="text-xl">Correct Answers: <span className="font-bold text-green-400">{score} / {questions.length}</span></p>
+                    <p className="text-xl">XP Gained: <span className="font-bold text-yellow-300">+{score * 150}</span></p>
+                    <p className="text-xl">HP Remaining: <span className="font-bold text-red-400">{playerHp}</span></p>
                 </div>
-            )}
-            
-            {/* API Error Alert */}
-            {quizError && !quizLoading && (
-                <div className="text-center p-4 bg-red-800 border-2 border-red-600 rounded mb-4">
-                    ⚠️ {quizError}
-                </div>
-            )}
-            
-            {/* 3. MAIN QUEST LIST (Rendered when IDLE) */}
-            {!quizSession && quizResultsData.length === 0 && !quizLoading && (
-                <>
-                    <div className="space-y-4">
-                        {questsData.map((quest, index) => {
-                            const progressPercent = (quest.progress / quest.total) * 100;
-                            const primaryActionText = quest.type === 'quiz' ? '🎯 START QUIZ' : '⚡ VIEW PROGRESS';
-
-                            return (
-                                <div key={index} className="dashboard-card bg-gradient-to-br from-[#600000] to-[#400000] border-4 border-black p-5 rounded-lg shadow-[6px_6px_0_#000] hover:shadow-[8px_8px_0_#cc0000] hover:-translate-y-1 transition-all duration-300">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <div className="flex items-center space-x-3">
-                                            <div className="w-12 h-12 bg-white border-4 border-black rounded flex items-center justify-center shadow-[3px_3px_0_#000]">
-                                                <img 
-                                                    src={quest.gif}
-                                                    alt={quest.name}
-                                                    className="w-10 h-10 pixelated-rendering pokemon-gif"
-                                                />
-                                            </div>
-                                            <h3 className="font-bold text-xl text-shadow-pixel tracking-wider">
-                                                {quest.name}
-                                                {quest.isAdaptive && <span className="ml-2 text-xs bg-purple-600 px-2 py-1 rounded border border-black shadow-[1px_1px_0_#000]">ADAPTIVE</span>}
-                                            </h3>
-                                        </div>
-                                        <span className="text-sm bg-[#ffcc00] px-3 py-1 border-2 border-black font-bold shadow-[2px_2px_0_#000] tracking-wider text-black">
-                                            REWARD: {quest.reward}
-                                        </span>
-                                    </div>
-                                    
-                                    <div className="mb-4">
-                                        <p className="text-xs text-gray-300 mb-2">{quest.description}</p>
-                                        <div className="flex justify-between text-sm mb-2 font-bold tracking-wider">
-                                            <span>PROGRESS</span>
-                                            <span>{quest.progress}/{quest.total}</span>
-                                        </div>
-                                        <div className="w-full bg-[#300000] border-2 border-black h-4 shadow-[2px_2px_0_#000]">
-                                            <div 
-                                                className={`progress-bar h-full transition-all duration-500 pixelated-rendering ${
-                                                    quest.completed ? 'bg-gradient-to-r from-[#00cc00] to-[#00ff00]' : 'bg-gradient-to-r from-[#0066cc] to-[#0088ff]'
-                                                }`}
-                                                style={{ width: `${progressPercent}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <PixelButton 
-                                        variant={quest.completed ? 'success' : 'primary'}
-                                        className="w-full py-3 text-lg tracking-wider"
-                                        onClick={() => handleStartQuest(quest)}
-                                        disabled={quest.completed}
-                                    >
-                                        {quest.completed ? '✅ CLAIMED' : primaryActionText}
-                                    </PixelButton>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    
-                    <div className="mt-6 p-4 bg-gradient-to-r from-[#ffcc00]/20 to-[#ffaa00]/20 border-2 border-[#ffcc00] rounded-lg">
-                        <div className="text-center font-bold text-lg text-[#ffcc00] tracking-wider mb-2">
-                            DAILY QUEST PROGRESS SUMMARY
-                        </div>
-                        <div className="flex justify-between text-sm font-bold mb-2">
-                            <span>QUIZ QUESTS PENDING: {questsData.filter(q => q.type === 'quiz' && !q.completed).length}</span>
-                            <span>TOTAL REWARDS CLAIMED: {questsData.filter(q => q.completed).map(q => q.reward).join(', ')}</span> 
-                        </div>
-                    </div>
-                </>
-            )}
-
-            {/* 4. Render Difficulty Modal (Overlays main content, z-index 50) */}
-            {activeQuest && <DifficultySelectionModal quest={activeQuest} />}
-        </>
+            </div>
+            <div className="mt-12"><PixelButton onClick={resetQuiz} className="bg-blue-700 hover:bg-blue-800">Rematch!</PixelButton></div>
+        </div>
     );
-};
+}
 
-export default QuestsTab;
+
+// --- MAIN APP COMPONENT ---
+export default function QuizPage() {
+  const QuizFlow = () => { const { gameState } = useQuiz(); switch (gameState) { case 'in_progress': return <QuizSession />; case 'finished': return <QuizResults />; default: return <QuizSelection />; } };
+  return (
+    <QuizProvider>
+      <div className="min-h-screen text-white overflow-hidden relative font-pixel bg-[#1a0a0a] quiz-page-container">
+        <style>{` @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); body { background-color: #1a0a0a; transition: background-color 0.1s; } .quiz-page-container { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMWEwYTBhIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDJINCIgc3Ryb2tlPSIjMDUwMjAyIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9wYXRoPgo8L3N2Zz4='); } .font-pixel { font-family: 'Press Start 2P', cursive; } .text-shadow-pixel { text-shadow: 4px 4px 0 #000; } .text-shadow-pixel-white { text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 2px 0 0 #fff, -2px 0 0 #fff; } .pixelated-rendering { image-rendering: pixelated; image-rendering: -moz-crisp-edges; } .animate-fade-in { animation: fadeIn 0.7s ease-in-out; } @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } } `}</style>
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(255,136,68,0.2),rgba(179,0,0,0.15),transparent_80%)]"></div>
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ boxShadow: 'inset 0 0 180px 40px rgba(0,0,0,0.75)' }}></div>
+        <header className="bg-black/50 border-b-4 border-red-600 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"><div className="container mx-auto px-4 py-4 text-center"><span className="font-bold text-2xl text-shadow-pixel bg-gradient-to-r from-white via-red-200 to-yellow-300 bg-clip-text text-transparent">EduQuest Arena</span></div></header>
+        <main className="container mx-auto px-4 py-8 md:py-12"><div className="max-w-5xl mx-auto"><QuizFlow /></div></main>
+      </div>
+    </QuizProvider>
+  );
+}

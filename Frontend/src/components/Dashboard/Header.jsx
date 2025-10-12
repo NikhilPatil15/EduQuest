@@ -75,7 +75,7 @@ const TrainerProfile = ({ trainerData }) => {
             <div className="relative">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#ffcc00] to-[#ffaa00] border-4 border-black rounded flex items-center justify-center shadow-[3px_3px_0_#000] animate-pulse">
                     <img 
-                        src={getTrainerGif(level, badges)}
+                        src={'/trainer1.png'}
                         alt="Trainer"
                         className="w-14 h-14 pixelated-rendering transform hover:scale-110 transition-transform duration-300"
                     />

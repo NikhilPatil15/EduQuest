@@ -160,31 +160,31 @@ const LearnTab = ({ trainerData }) => {
   const [selectedModule, setSelectedModule] = useState(null);
   const [flashcardMaterial, setFlashcardMaterial] = useState(null);
   const [moduleFilter, setModuleFilter] = useState("");
-
-  const subjects = {
+const subjects = {
     math: {
       name: "Mathematics",
       icon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png", // Dragonite
       description:
-        "Master numbers, algebra, geometry, and problem-solving skills",
+        "Master numbers, algebra, geometry, and problem-solving skills.",
     },
     science: {
       name: "Science",
       icon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", // Bulbasaur
       description:
-        "Explore physics, chemistry, biology, and scientific methods",
+        "Explore physics, chemistry, biology, and scientific methods.",
     },
-    history: {
-      name: "History",
-      icon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png", // Gyarados (ancient power!)
-      description:
-        "Discover world history, civilizations, and historical events",
+    coding: {
+        name: "Coding",
+        icon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png", // Porygon
+        description:
+          "Learn programming logic, web development, and algorithms.",
     },
   };
-  // Data structure with plain text math formulas
+
+  // Data structure with expanded dummy data
   const learningModules = {
     math: [
-      {
+        {
         id: "math_1",
         name: "ALGEBRA FUNDAMENTALS",
         difficulty: "INTERMEDIATE",
@@ -192,190 +192,162 @@ const LearnTab = ({ trainerData }) => {
         duration: "25 MIN",
         gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
         submodules: [
-          // Submodule 1: Need of Algebra
-          {
-            id: "math_1_need",
-            title: "Need of Algebra (Introduction)",
-            content:
-              "This section explains the fundamental rationale for using algebraic concepts across different scientific and real-world applications.",
-            icon: "❓",
-            flashcardData: [
-              {
-                term: "Why do we use letters in math?",
-                definition:
-                  "Letters (variables) allow us to represent **unknown quantities** or universal values, making formulas applicable across many problems.",
-              },
-              {
-                term: "How does Algebra improve logic?",
-                definition:
-                  "It teaches **step-by-step logical reasoning** and balancing, which is crucial for complex problem-solving in any field.",
-              },
-              {
-                term: "Algebra in **Science**?",
-                definition:
-                  "Used to rearrange and solve **physics equations** (like calculating force or velocity) and balance chemical equations.",
-              },
-              {
-                term: "Algebra in **Technology**?",
-                definition:
-                  "It is the foundation of **computer programming** and algorithm development, particularly in game logic and data processing.",
-              },
-              {
-                term: "FINAL CARD: Need Summary",
-                definition:
-                  "Algebra is the **universal language of logic and relationship**. It allows us to move beyond specific numbers to understand patterns and structures.",
-                type: "imp_topic",
-              },
-            ],
-          },
-          // Submodule 2: Key Terminology
-          {
+            {
             id: "math_1_terms",
             title: "Key Terminology",
-            content:
-              "Drill the core vocabulary required before solving algebraic equations.",
+            content: "Drill the core vocabulary for solving algebraic equations.",
             icon: "🏷️",
             flashcardData: [
-              {
-                term: "What is a **Variable**?",
-                definition:
-                  "A symbol (usually a letter) representing a quantity that may change.",
-              },
-              {
-                term: "What is a **Coefficient**?",
-                definition:
-                  "The numerical factor multiplied by a variable in an algebraic term (e.g., '3' in 3x).",
-              },
-              {
-                term: "What are **Like Terms**?",
-                definition:
-                  "Terms whose variables and exponents are identical.",
-              },
-              {
-                term: "What is an **Equation**?",
-                definition:
-                  "A statement that two expressions are equal, separated by an equal sign (e.g., 3x + 1 = 10).",
-              },
-              {
-                term: "What is an **Expression**?",
-                definition:
-                  "A combination of numbers, variables, and operation symbols, but NO equal sign (e.g., 5x^2 - 4).",
-              },
-              {
-                term: "FINAL CARD: Important Topics",
-                definition:
-                  "Master **Combining Like Terms** and the **Distributive Property** as they are essential for all future algebra concepts.",
-                type: "imp_topic",
-              },
+                { term: "What is a **Variable**?", definition: "A symbol (e.g., x, y) representing a quantity that can change." },
+                { term: "What is a **Coefficient**?", definition: "The numerical factor multiplied by a variable (e.g., the '5' in 5x)." },
+                { term: "What is an **Equation**?", definition: "A statement that two expressions are equal, indicated by an equal sign (=)." },
+                { term: "What is an **Expression**?", definition: "A combination of numbers, variables, and operators with NO equal sign." },
+                { term: "FINAL CARD: Core Principle", definition: "The key to solving equations is to perform the **same operation on both sides** to maintain balance.", type: "imp_topic" },
             ],
-          },
+            },
         ],
-      },
-      // Statistics Module
-      {
+        },
+        {
         id: "math_13",
-        name: "STATISTICS: Measures of Central Tendency",
+        name: "STATISTICS",
         difficulty: "ADVANCED",
         xp: 300,
         duration: "45 MIN",
         gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
         submodules: [
-          {
+            {
             id: "math_13_mean",
-            title: "Mean Calculation Formulas",
-            content:
-              "Review the formulas and methods for calculating the mean of grouped data sets.",
+            title: "Measures of Central Tendency",
+            content: "Learn to calculate mean, median, and mode.",
             icon: "📊",
             flashcardData: [
-              {
-                term: "What does the symbol Σ mean?",
-                definition:
-                  "It is the Greek capital letter **Sigma**. In math, it denotes the **summation** (adding up) of a series of numbers.",
-              },
-              {
-                term: "Mean (Direct Method)",
-                definition:
-                  "Formula: **x̄ = (Σ fᵢ xᵢ) / (Σ fᵢ)**. Requires calculating the product of frequency (fᵢ) and class midpoint (xᵢ).",
-              },
-              {
-                term: "Mean (Assumed Mean Method)",
-                definition:
-                  "Formula: **x̄ = a + (Σ fᵢ dᵢ) / (Σ fᵢ)**. More efficient for large numbers, where 'a' is the assumed mean.",
-              },
-              {
-                term: "Median Formula",
-                definition:
-                  "Formula: **Median = L + [ (n/2 - cf) / f ] * h**. (Where L is lower limit, n/2 is half the total, cf is cumulative frequency, f is frequency, h is class size).",
-              },
-              {
-                term: "Empirical Relationship",
-                definition:
-                  "The approximate relationship between the three measures: **3 Median ≈ Mode + 2 Mean**.",
-              },
-              {
-                term: "FINAL CARD: Statistics Focus",
-                definition:
-                  "The median is **unaffected by extreme values** (outliers), making it a more robust measure of central tendency than the mean in skewed datasets.",
-                type: "imp_topic",
-              },
+                { term: "What is the **Mean**?", definition: "The **average** of a set of numbers. Calculated by summing the values and dividing by the count of values." },
+                { term: "What is the **Median**?", definition: "The **middle value** in a sorted list of numbers. It is resistant to outliers." },
+                { term: "What is the **Mode**?", definition: "The value that appears **most frequently** in a data set." },
+                { term: "Empirical Relationship", definition: "A useful approximation: **3 Median ≈ Mode + 2 Mean**." },
+                { term: "FINAL CARD: Key Insight", definition: "The **median** is often a better measure of central tendency than the mean for skewed data because it is not affected by extreme outliers.", type: "imp_topic" },
             ],
-          },
+            },
         ],
-      },
-      // Probability Module
-      {
-        id: "math_14",
-        name: "PROBABILITY BASICS",
-        difficulty: "INTERMEDIATE",
-        xp: 220,
-        duration: "35 MIN",
-        gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+        },
+        {
+        id: "math_15",
+        name: "GEOMETRY BASICS",
+        difficulty: "BEGINNER",
+        xp: 150,
+        duration: "20 MIN",
+        gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png", // Geodude
         submodules: [
-          {
-            id: "math_14_basics",
-            title: "Core Probability Concepts",
-            content:
-              "Fundamentals including event definition, range, and common examples.",
-            icon: "🎲",
+            {
+            id: "math_15_area",
+            title: "Area & Perimeter",
+            content: "Learn the foundational formulas for common shapes.",
+            icon: "📏",
             flashcardData: [
-              {
-                term: "What is **Probability**?",
-                definition:
-                  "A numerical measure of the likelihood that a specific event will occur.",
-              },
-              {
-                term: "The basic calculation for P(E)",
-                definition:
-                  "P(E) = (Number of outcomes favorable to E) / (Total number of possible outcomes).",
-              },
-              {
-                term: "What is the **Range of Probability**?",
-                definition:
-                  "For any event E, the probability P(E) is always between 0 and 1, inclusive: **0 ≤ P(E) ≤ 1**.",
-              },
-              {
-                term: "Probability of a **Sure Event**?",
-                definition:
-                  "The probability of an event that is certain to happen is **1**.",
-              },
-              {
-                term: "Probability of an **Impossible Event**?",
-                definition:
-                  "The probability of an event that cannot happen is **0**.",
-              },
-              {
-                term: "FINAL CARD: Probability Focus",
-                definition:
-                  "Remember that the sum of the probability of an event happening (P(E)) and not happening (P(Ē)) must always equal 1: **P(E) + P(Ē) = 1**.",
-                type: "imp_topic",
-              },
+                { term: "Perimeter of a **Rectangle**?", definition: "Formula: **P = 2(length + width)**. It's the total distance around the outside." },
+                { term: "Area of a **Rectangle**?", definition: "Formula: **A = length × width**. It's the total space inside the shape." },
+                { term: "Area of a **Triangle**?", definition: "Formula: **A = (1/2) × base × height**. Half the area of a rectangle with the same base and height." },
+                { term: "Circumference of a **Circle**?", definition: "Formula: **C = 2πr**, where 'r' is the radius. It is the 'perimeter' of a circle." },
+                { term: "FINAL CARD: Key Difference", definition: "**Perimeter** is a one-dimensional measurement (length), while **Area** is a two-dimensional measurement (space).", type: "imp_topic" },
             ],
-          },
+            },
         ],
-      },
+        },
     ],
-    science: [],
-    history: [],
+    science: [
+        {
+            id: "science_1",
+            name: "PHYSICS: NEWTON'S LAWS",
+            difficulty: "INTERMEDIATE",
+            xp: 250,
+            duration: "30 MIN",
+            gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png", // Machamp
+            submodules: [
+                {
+                    id: "science_1_laws",
+                    title: "The Three Laws of Motion",
+                    content: "Understand the fundamental principles governing motion.",
+                    icon: "🍎",
+                    flashcardData: [
+                        { term: "What is the **First Law**?", definition: "An object at rest stays at rest and an object in motion stays in motion unless acted upon by an external force. This is the law of **Inertia**." },
+                        { term: "What is the **Second Law**?", definition: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass. Formula: **F = ma**." },
+                        { term: "What is the **Third Law**?", definition: "For every action, there is an equal and opposite reaction." },
+                        { term: "FINAL CARD: Core Concept", definition: "Newton's laws connect **force, mass, and motion**, forming the foundation of classical mechanics.", type: "imp_topic" },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "science_2",
+            name: "BIOLOGY: THE CELL",
+            difficulty: "BEGINNER",
+            xp: 180,
+            duration: "20 MIN",
+            gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/579.png", // Reuniclus
+            submodules: [
+                {
+                    id: "science_2_organelles",
+                    title: "Key Cell Organelles",
+                    content: "Learn the functions of the main parts of a eukaryotic cell.",
+                    icon: "🔬",
+                    flashcardData: [
+                        { term: "What is the **Nucleus**?", definition: "The 'brain' of the cell. It contains the cell's genetic material (DNA) and controls its activities." },
+                        { term: "What is the **Mitochondrion**?", definition: "The 'powerhouse' of the cell. It generates most of the cell's supply of adenosine triphosphate (ATP)." },
+                        { term: "What is the **Ribosome**?", definition: "Responsible for protein synthesis. They link amino acids together in the order specified by messenger RNA." },
+                        { term: "What is the **Cell Membrane**?", definition: "The semipermeable membrane surrounding the cytoplasm of a cell, controlling what enters and leaves." },
+                        { term: "FINAL CARD: Key Distinction", definition: "**Eukaryotic** cells have a nucleus and other membrane-bound organelles, while **Prokaryotic** cells (like bacteria) do not.", type: "imp_topic" },
+                    ],
+                },
+            ],
+        },
+    ],
+    coding: [
+        {
+            id: "coding_1",
+            name: "WEB DEV: HTML & CSS",
+            difficulty: "BEGINNER",
+            xp: 150,
+            duration: "20 MIN",
+            gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png", // Porygon
+            submodules: [
+                {
+                    id: "coding_1_basics",
+                    title: "Core Concepts",
+                    content: "Understand the building blocks of all websites.",
+                    icon: "🖥️",
+                    flashcardData: [
+                        { term: "What is **HTML**?", definition: "HyperText Markup Language. It provides the **structure** and content of a web page (headings, paragraphs, images)." },
+                        { term: "What is **CSS**?", definition: "Cascading Style Sheets. It provides the **style** and presentation of a web page (colors, fonts, layout)." },
+                        { term: "What is the **Box Model**?", definition: "A core CSS concept describing how every element is a rectangular box with: Content, Padding, Border, and Margin." },
+                        { term: "FINAL CARD: Separation of Concerns", definition: "The best practice is to keep **HTML (structure)** and **CSS (style)** in separate files to make code cleaner and easier to maintain.", type: "imp_topic" },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "coding_2",
+            name: "JAVASCRIPT FUNDAMENTALS",
+            difficulty: "INTERMEDIATE",
+            xp: 220,
+            duration: "35 MIN",
+            gif: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png", // Porygon2
+            submodules: [
+                {
+                    id: "coding_2_vars",
+                    title: "Variables & Data Types",
+                    content: "Learn how to store and manage data in JavaScript.",
+                    icon: "📜",
+                    flashcardData: [
+                        { term: "`var`, `let`, or `const`?", definition: "`const` is for variables that won't be reassigned. `let` is for variables that will be reassigned. Avoid using `var`." },
+                        { term: "What is a **String**?", definition: "A data type used to represent text, enclosed in quotes (e.g., 'hello world')." },
+                        { term: "What is a **Number**?", definition: "A data type for numeric values, including integers and decimals (e.g., 42, 3.14)." },
+                        { term: "What is a **Boolean**?", definition: "A data type with only two possible values: **true** or **false**." },
+                        { term: "FINAL CARD: Best Practice", definition: "Declare variables with **`const` by default** and only switch to `let` when you know you need to reassign the value. This prevents accidental changes.", type: "imp_topic" },
+                    ],
+                },
+            ],
+        },
+    ]
   };
 
   const difficultyColors = {

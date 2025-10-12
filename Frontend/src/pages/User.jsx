@@ -477,7 +477,7 @@ const User = ({ trainerData }) => {
                         <div className="relative">
                             <div className="w-20 h-20 bg-white border-4 border-black rounded flex items-center justify-center shadow-[4px_4px_0_#000] floating-element">
                                 <img 
-                                    src={user.avatar || "/tranier.png"}
+                                    src={   "/trainer1.png"}
                                     alt={user.userName}
                                     className="w-16 h-16 transform-gpu hover:scale-110 transition-transform duration-300"
                                 />
