@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import axiosInstance from '../../utils/axiosInstance'; 
 
 // --- API Endpoints ---
-const QUIZ_START_ENDPOINT = '/quizzes/start';
-const QUIZ_START_ADAPTIVE_ENDPOINT = '/quizzes/start-adaptive';
-const QUIZ_ANSWER_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/answer`;
-const QUIZ_NEXT_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/next`;
-const QUIZ_RESULTS_ENDPOINT = (sessionId) => `/quizzes/${sessionId}/results`;
+const QUIZ_START_ENDPOINT = '/quiz/start';
+const QUIZ_START_ADAPTIVE_ENDPOINT = '/quiz/start-adaptive';
+const QUIZ_ANSWER_ENDPOINT = (sessionId) => `/quiz/${sessionId}/answer`;
+const QUIZ_NEXT_ENDPOINT = (sessionId) => `/quiz/${sessionId}/next`;
+const QUIZ_RESULTS_ENDPOINT = (sessionId) => `/quiz/${sessionId}/results`;
 
 // --- Placeholder for PixelButton component (Kept for completeness) ---
 const PixelButton = ({ children, variant = 'primary', className, onClick, disabled }) => {
