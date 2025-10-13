@@ -460,6 +460,7 @@ const User = ({ trainerData }) => {
         const totalQuizzes = user.totalQuizzes || 0;
         const correctAnswers = user.correctAnswers || 0;
         const accuracy = totalQuizzes * 10 > 0 ? Math.round((correctAnswers / (totalQuizzes * 10)) * 100) : 0;
+        console.log(userData);
         
         return (
             <div ref={tabContentRef} className="space-y-6 tab-content">

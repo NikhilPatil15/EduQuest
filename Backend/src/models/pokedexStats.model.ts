@@ -8,7 +8,6 @@ const PokedexStatsSchema = new Schema<IPokedexStats>(
 			type: Schema.Types.ObjectId,
 			ref: 'User',
 			required: true,
-			unique: true,
 		},
 		totalPokemon: {
 			type: Number,
