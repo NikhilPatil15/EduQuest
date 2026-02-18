@@ -27,9 +27,9 @@ Our mission is to make learning addictive and fun, leveraging the power of gamif
 
 Experience the adventure firsthand! Watch our gameplay demo below:
 
-<video src="./demo.mp4" controls width="100%"></video>
 
-> **Note:** If the video doesn't play, you can [download it here](./demo.mp4).
+https://github.com/user-attachments/assets/4de959fc-0012-4c95-8dc9-a69abd4650d3
+
 
 ---
 
