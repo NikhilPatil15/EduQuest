@@ -1,96 +1,163 @@
+# 🎮 EduQuest: A Pokémon-Inspired Gamified Learning Adventure
 
+[![EduQuest](https://img.shields.io/badge/EduQuest-Gamified_Learning-blue?style=for-the-badge)](https://github.com/your-username/eduquest)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-# EduQuest: A Pokémon-Inspired Gamified Learning Adventure 🎮
+**EduQuest** is a cutting-edge gamified learning platform that transforms education into an immersive adventure. Inspired by the mechanics of Pokémon, it turns studying into a quest where users battle, evolve, and conquer challenges to master new subjects.
 
-EduQuest is a gamified learning platform designed to make education an engaging and interactive adventure. Inspired by the world of Pokémon, it transforms monotonous studying into a thrilling quest where users can learn, battle, and grow. Our mission is to blend education with entertainment, boosting student motivation and knowledge retention through competitive, fun-filled play.
+Our mission is to make learning addictive and fun, leveraging the power of gamification, AI, and real-time interaction to boost student motivation and retention.
 
+---
 
+## ✨ Key Features
 
+- **🏆 Gamified Learning Ecosystem:** An RPG-style progression system where learning earns you XP, badges, and rewards.
+- **⚔️ Real-Time PvP Battles:** Challenge friends to live quiz duels powered by **Socket.io**. Speed and accuracy determine the winner!
+- **🤖 AI-Powered Content:**
+  - **Smart Question Generation:** Automatically generates quizzes from uploaded PDFs using AI (`pdf-parse`, `@xenova/transformers`).
+  - **Adaptive Difficulty:** Algorithms that adjust challenge levels based on your performance.
+- **🌍 Interactive World Map:** Explore a 3D-enhanced world built with **Three.js** and **GSAP** to unlock new chapters and challenges.
+- **📊 Comprehensive Analytics:** Track your progress, strengths, and weaknesses with detailed performance insights.
+- **📅 Daily Quests & Streaks:** Scheduled daily challenges powered by **node-cron** to keep your learning habit consistent.
+- **📄 Document Processing:** Upload study materials (PDFs) and let our system parse and convert them into interactive study sessions.
 
------
+---
 
-## ✨ Features
+## 🎥 Demo Video
 
-  * [cite\_start]**Pokémon-Inspired Learning:** A unique fusion of beloved Pokémon mechanics with an educational technology platform[cite: 24].
-  * [cite\_start]**Real-Time Duels:** Challenge your friends and peers to real-time quiz battles to test your knowledge and speed[cite: 20, 25].
-  * [cite\_start]**XP & Reward System:** Earn experience points (XP) for every correct answer, level up, earn badges, and maintain daily streaks[cite: 17, 7].
-  * [cite\_start]**Competitive Leaderboards:** Climb the ranks and see how you stack up against other trainers on the leaderboard[cite: 16].
-  * [cite\_start]**AI-Powered Learning:** The platform uses AI for question generation, adaptive difficulty, and a mentor chatbot to create personalized learning paths[cite: 7].
+Experience the adventure firsthand! Watch our gameplay demo below:
 
------
+<video src="./demo.mp4" controls width="100%"></video>
 
-## 🛠️ Tech Stack & Architecture
+> **Note:** If the video doesn't play, you can [download it here](./demo.mp4).
 
-EduQuest is built with a modern, scalable tech stack to ensure a responsive and real-time experience.
+---
 
-  * [cite\_start]**Frontend:** **React.js** & **Tailwind CSS** for a responsive and fun user interface[cite: 10].
-  * [cite\_start]**Backend:** **Node.js** with **Express** for the server logic[cite: 11].
-  * [cite\_start]**Real-Time Communication:** **Socket.io** to power the live quiz duels[cite: 11].
-  * [cite\_start]**Database:** **MongoDB** (cloud-hosted) for scalable and flexible data storage[cite: 12].
-  * [cite\_start]**Authentication:** **JSON Web Tokens (JWT)** for secure user authentication[cite: 14].
+## 🛠️ Tech Stack & Methods
 
------
+### Frontend (Client-Side)
+
+- **Framework:** [React.js](https://reactjs.org/) (v19)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v4)
+- **3D & Animation:** [Three.js](https://threejs.org/) (@react-three/fiber) & [GSAP](https://greensock.com/gsap/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **State & Routing:** React Router DOM
+- **Build Tool:** Vite
+
+### Backend (Server-Side)
+
+- **Runtime:** [Node.js](https://nodejs.org/) & [Express.js](https://expressjs.com/)
+- **Language:** TypeScript
+- **Database:** [MongoDB](https://www.mongodb.com/) (Mongoose ODM)
+- **Real-Time Engine:** [Socket.io](https://socket.io/)
+- **AI & Processing:**
+  - `@xenova/transformers` for AI tasks
+  - `puppeteer` & `cheerio` for web scraping
+  - `pdf-parse` & `pdfjs-dist` for document handling
+  - `cosine-similarity` for recommendation logic
+- **Scheduling:** `node-cron` for periodic tasks
+
+---
 
 ## 🚀 Getting Started
 
-To get a local copy up and running, follow these simple steps.
+Follow these instructions to set up the project locally.
 
 ### Prerequisites
 
-  * Node.js and npm (or yarn) installed
-  * MongoDB Atlas account (or a local MongoDB instance)
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Local or Atlas account)
+- [Git](https://git-scm.com/)
 
 ### Installation
 
-1.  **Clone the repo**
-    ```sh
+1.  **Clone the Repository**
+
+    ```bash
     git clone https://github.com/your-username/eduquest.git
+    cd EduQuest
     ```
-2.  **Install Backend Dependencies**
-    ```sh
-    cd server
+
+2.  **Backend Setup**
+
+    Navigate to the backend directory and install dependencies:
+
+    ```bash
+    cd Backend
     npm install
+    # Create a .env file based on your configuration
+    cp .env.example .env
     ```
-3.  **Install Frontend Dependencies**
-    ```sh
-    cd client
-    npm install
-    ```
-4.  **Set up Environment Variables**
-    Create a `.env` file in the `server` directory and add the following:
-    ```
+
+    _Configure your `.env` file with:_
+
+    ```env
+    PORT=5000
     MONGO_URI=your_mongodb_connection_string
-    JWT_SECRET=your_jwt_secret
-    ```
-5.  **Run the Backend Server**
-    ```sh
-    cd server
-    npm start
-    ```
-6.  **Run the Frontend App**
-    ```sh
-    cd client
-    npm start
+    JWT_SECRET=your_secret_key
     ```
 
------
+    Start the backend server:
 
-## 🔮 Future Scope
+    ```bash
+    npm run dev
+    ```
 
-We're constantly working to make EduQuest even better\! [cite\_start]Here are some features on our horizon[cite: 27]:
+3.  **Frontend Setup**
 
-  * [cite\_start]**AI Tutor Companions:** Personalized AI tutors to provide students with dedicated support[cite: 28].
-  * [cite\_start]**Augmented Reality (AR):** An AR-based exploration mode to find and solve subject-based challenges in the real world[cite: 29].
-  * [cite\_start]**Teacher Dashboards:** Tools for educators to assign tasks and track student progress[cite: 30].
-  * [cite\_start]**Mobile App:** A dedicated mobile application with push notifications and streak reminders to keep learning on the go[cite: 31].
+    Open a new terminal, navigate to the frontend directory, and install dependencies:
 
------
+    ```bash
+    cd Frontend
+    npm install
+    ```
 
-## 🧑‍💻 The EduQuest Trainers
+    Start the frontend development server:
 
-This project was brought to life by a dedicated team of developers.
+    ```bash
+    npm run dev
+    ```
 
-  * [cite\_start]Nikhil Patil (A135) [cite: 3]
-  * [cite\_start]Himanshu Khairnar (A130) [cite: 4]
-  * [cite\_start]Raj Patil (A103) [cite: 5]
-  * [cite\_start]Megh Bari (A134) [cite: 6]
+4.  **Access the App**
+
+    Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal).
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+
+## 🔮 Roadmap
+
+- [ ] **Mobile App:** React Native mobile application for learning on the go.
+- [ ] **Teacher Dashboard:** Admin interface for educators to track class progress.
+- [ ] **AR Mode:** Augmented Reality exploration features.
+- [ ] **Voice Integration:** Voice-controlled quiz answers.
+
+---
+
+## 👥 The Team
+
+**EduQuest** was brought to life by a dedicated team of developers:
+
+|         Name          |   Role    |  ID  |
+| :-------------------: | :-------: | :--: |
+| **Himanshu Khairnar** | Developer | A130 |
+|   **Nikhil Patil**    | Developer | A135 |
+|     **Raj Patil**     | Developer | A103 |
+|     **Megh Bari**     | Developer | A134 |
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
