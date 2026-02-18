@@ -1,4 +1,4 @@
-// PokedexTab.jsx
+// src/components/PokedexTab.jsx
 import React, { useState, useEffect } from 'react';
 // 1. Import the centralized Axios instance
 import axiosInstance from '../../utils/axiosInstance'; 
@@ -28,36 +28,60 @@ const PokedexTab = ({ trainerData }) => {
   // Hardcoded fallback data (used if API fails or returns unexpected structure)
   const hardcodedPokedexData = [
     {
-      pokemon: { pokedexNumber: 1, name: "Mathchu", type: "math", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", description: "Loves solving equations and mathematical puzzles" },
+      pokemon: { pokedexNumber: 1, name: "Mathchu", type: "math", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", description: "Loves solving equations and mathematical puzzles." },
       discovered: true, discoveredAt: "2024-01-15T10:30:00.000Z", timesEncountered: 5, timesCaught: 2, isFavorite: true, researchProgress: 85, isCaught: true
     },
     {
-      pokemon: { pokedexNumber: 2, name: "Sciencor", type: "science", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", description: "Excels in scientific experiments and discoveries" },
+      pokemon: { pokedexNumber: 2, name: "Sciencor", type: "science", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", description: "Excels in scientific experiments and discoveries." },
       discovered: true, discoveredAt: "2024-01-20T14:15:00.000Z", timesEncountered: 3, timesCaught: 1, isFavorite: false, researchProgress: 60, isCaught: true
     },
     {
-      pokemon: { pokedexNumber: 3, name: "Historia", type: "history", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", description: "Knowledgeable about historical events and figures" },
+      pokemon: { pokedexNumber: 3, name: "Historia", type: "history", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", description: "Knowledgeable about historical events and figures." },
       discovered: true, discoveredAt: "2024-02-01T09:45:00.000Z", timesEncountered: 2, timesCaught: 1, isFavorite: true, researchProgress: 75, isCaught: true
     },
     {
-      pokemon: { pokedexNumber: 4, name: "Codegon", type: "coding", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", description: "Master of algorithms and programming logic" },
+      pokemon: { pokedexNumber: 4, name: "Codegon", type: "coding", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", description: "Master of algorithms and programming logic." },
       discovered: false, discoveredAt: null, timesEncountered: 0, timesCaught: 0, isFavorite: false, researchProgress: 0, isCaught: false
     },
     {
-      pokemon: { pokedexNumber: 5, name: "Literatops", type: "english", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png", description: "Expert in literature and language arts" },
+      pokemon: { pokedexNumber: 5, name: "Literatops", type: "english", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png", description: "Expert in literature and language arts." },
       discovered: true, discoveredAt: "2024-01-25T16:20:00.000Z", timesEncountered: 4, timesCaught: 2, isFavorite: false, researchProgress: 90, isCaught: true
     },
     {
-      pokemon: { pokedexNumber: 6, name: "Geographix", type: "geography", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png", description: "Knows all about countries, capitals, and landscapes" },
+      pokemon: { pokedexNumber: 6, name: "Geographix", type: "geography", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png", description: "Knows all about countries, capitals, and landscapes." },
       discovered: false, discoveredAt: null, timesEncountered: 0, timesCaught: 0, isFavorite: false, researchProgress: 0, isCaught: false
     },
     {
-      pokemon: { pokedexNumber: 7, name: "Algebrat", type: "math", rarity: "legendary", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png", description: "Legendary Pokémon that solves complex algebraic problems" },
+      pokemon: { pokedexNumber: 7, name: "Algebrat", type: "math", rarity: "legendary", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png", description: "A legendary creature that embodies complex algebraic theories." },
       discovered: false, discoveredAt: null, timesEncountered: 0, timesCaught: 0, isFavorite: false, researchProgress: 0, isCaught: false
     },
     {
-      pokemon: { pokedexNumber: 8, name: "Physiquake", type: "science", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png", description: "Understands the fundamental laws of physics" },
+      pokemon: { pokedexNumber: 8, name: "Physiquake", type: "science", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png", description: "Understands the fundamental laws of physics." },
       discovered: true, discoveredAt: "2024-02-05T11:10:00.000Z", timesEncountered: 1, timesCaught: 1, isFavorite: true, researchProgress: 95, isCaught: true
+    },
+    {
+        pokemon: { pokedexNumber: 9, name: "Verbosaur", type: "english", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png", description: "Its vocabulary is vast and it communicates with complex sentences." },
+        discovered: true, discoveredAt: "2024-02-10T08:00:00.000Z", timesEncountered: 3, timesCaught: 1, isFavorite: false, researchProgress: 45, isCaught: true
+    },
+    {
+        pokemon: { pokedexNumber: 10, name: "Pythos", type: "coding", rarity: "rare", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png", description: "A serpent-like creature that understands Python and scripting." },
+        discovered: true, discoveredAt: "2024-02-12T18:30:00.000Z", timesEncountered: 2, timesCaught: 0, isFavorite: false, researchProgress: 55, isCaught: false
+    },
+    {
+        pokemon: { pokedexNumber: 11, name: "Calculix", type: "math", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png", description: "Haunts libraries, solving calculus problems left on whiteboards." },
+        discovered: false, discoveredAt: null, timesEncountered: 0, timesCaught: 0, isFavorite: false, researchProgress: 0, isCaught: false
+    },
+    {
+        pokemon: { pokedexNumber: 12, name: "Chemeleon", type: "science", rarity: "common", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png", description: "Changes its color based on the chemical composition of its surroundings." },
+        discovered: true, discoveredAt: "2024-01-28T12:00:00.000Z", timesEncountered: 6, timesCaught: 4, isFavorite: true, researchProgress: 100, isCaught: true
+    },
+    {
+        pokemon: { pokedexNumber: 13, name: "Civirex", type: "history", rarity: "legendary", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png", description: "An ancient Pokémon that has witnessed the rise and fall of civilizations." },
+        discovered: false, discoveredAt: null, timesEncountered: 0, timesCaught: 0, isFavorite: false, researchProgress: 0, isCaught: false
+    },
+    {
+        pokemon: { pokedexNumber: 14, name: "Atlasphere", type: "geography", rarity: "epic", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png", description: "Carries a globe on its back and can predict changes in tectonic plates." },
+        discovered: true, discoveredAt: "2024-02-15T15:00:00.000Z", timesEncountered: 1, timesCaught: 1, isFavorite: false, researchProgress: 80, isCaught: true
     }
   ];
 
@@ -79,6 +103,7 @@ const PokedexTab = ({ trainerData }) => {
 
   /**
    * Fetches the Pokédex data using the Axios instance.
+   * If the API call succeeds but returns no data, it uses the hardcoded fallback data.
    */
   const fetchPokedex = async () => {
     setLoading(true);
@@ -87,24 +112,23 @@ const PokedexTab = ({ trainerData }) => {
     const params = buildQueryParams(filters);
     
     try {
-      // 2. Use axiosInstance.get()
       const response = await axiosInstance.get(POKEDEX_ENDPOINT, { params });
-      
-      // Axios puts the response data under the 'data' property
       const result = response.data;
       
-      if (result.success && result.data && Array.isArray(result.data.pokedex)) {
+      // ✅ MODIFICATION: Check if the returned pokedex array has data.
+      // If the API returns a valid structure but the array is empty, fall back to hardcoded data.
+      if (result.success && result.data && Array.isArray(result.data.pokedex) && result.data.pokedex.length > 0) {
         setApiPokedexData(result.data.pokedex);
       } else {
-        console.error("API response structure unexpected, using fallback:", result);
+        // This block now runs if the API response is malformed OR if the pokedex array is empty.
+        console.warn("API response was empty or malformed, using fallback data:", result);
         setApiPokedexData(hardcodedPokedexData); 
       }
     } catch (e) {
-      // The interceptor handles 401. Other errors are caught here.
       console.error("Error fetching Pokédex:", e.message);
       
       let message = "An unknown error occurred.";
-      if (e.response && e.response.data && e.response.data.message) {
+      if (e.response?.data?.message) {
           message = e.response.data.message; // Use backend error message
       } else if (e.message) {
           message = e.message; // Use Axios/Network message
@@ -120,6 +144,9 @@ const PokedexTab = ({ trainerData }) => {
   // useEffect hook: Run the fetch function whenever the filters state changes
   useEffect(() => {
     fetchPokedex();
+    // The dependency array should be a stringified version of the filters object
+    // to prevent re-fetching on every render if the object reference changes but values don't.
+    // However, for simplicity and since filters are updated explicitly, [filters] is acceptable here.
   }, [filters]); 
 
   /**
@@ -134,15 +161,14 @@ const PokedexTab = ({ trainerData }) => {
     ));
 
     try {
-      // 2. Use axiosInstance.patch()
       await axiosInstance.patch(`${POKEDEX_ENDPOINT}/${pokedexNumber}/favorite`);
       console.log(`Favorite toggled for ${pokedexNumber}`);
-      // No explicit state update needed if optimistic update was successful
     } catch (e) {
-      console.error(e);
+      console.error("Failed to update favorite status:", e);
       setError("Failed to update favorite status. Please try again.");
       
       // 3. Revert optimistic update on failure
+      setTimeout(() => setError(null), 3000); // Clear error after 3s
       setApiPokedexData(prevData => prevData.map(p => 
           p.pokemon.pokedexNumber === pokedexNumber 
               ? { ...p, isFavorite: !p.isFavorite } // Revert the change
@@ -225,12 +251,12 @@ const PokedexTab = ({ trainerData }) => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 p-4 bg-black/20 rounded-lg border border-gray-700">
         {/* Type Filter */}
         <select 
           value={filters.type}
           onChange={(e) => setFilters({...filters, type: e.target.value})}
-          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold"
+          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option value="all">All Types</option>
           <option value="math">Math</option>
@@ -245,7 +271,7 @@ const PokedexTab = ({ trainerData }) => {
         <select 
           value={filters.rarity}
           onChange={(e) => setFilters({...filters, rarity: e.target.value})}
-          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold"
+          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option value="all">All Rarities</option>
           <option value="common">Common</option>
@@ -258,7 +284,7 @@ const PokedexTab = ({ trainerData }) => {
         <select 
           value={filters.discovered}
           onChange={(e) => setFilters({...filters, discovered: e.target.value})}
-          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold"
+          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option value="all">All</option>
           <option value="discovered">Discovered</option>
@@ -268,8 +294,8 @@ const PokedexTab = ({ trainerData }) => {
         {/* Favorite Filter */}
         <button
           onClick={() => setFilters({...filters, favorite: !filters.favorite})}
-          className={`px-3 py-2 border-2 border-black rounded font-bold ${
-            filters.favorite ? 'bg-yellow-600 text-white' : 'bg-[#600000] text-white'
+          className={`px-3 py-2 border-2 border-black rounded font-bold transition-colors ${
+            filters.favorite ? 'bg-yellow-600 text-white' : 'bg-[#600000] text-white hover:bg-red-800'
           }`}
         >
           ⭐ Favorites
@@ -279,7 +305,7 @@ const PokedexTab = ({ trainerData }) => {
         <select 
           value={filters.sortBy}
           onChange={(e) => setFilters({...filters, sortBy: e.target.value})}
-          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold"
+          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold ml-auto focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option value="pokedexNumber">Number</option>
           <option value="name">Name</option>
@@ -290,9 +316,9 @@ const PokedexTab = ({ trainerData }) => {
 
         <button
           onClick={() => setFilters({...filters, sortOrder: filters.sortOrder === 'asc' ? 'desc' : 'asc'})}
-          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold"
+          className="bg-[#600000] border-2 border-black text-white px-3 py-2 rounded font-bold hover:bg-red-800 transition-colors"
         >
-          {filters.sortOrder === 'asc' ? '↑' : '↓'}
+          {filters.sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
         </button>
       </div>
       
@@ -316,72 +342,61 @@ const PokedexTab = ({ trainerData }) => {
           {pokedexDisplayData.map((entry) => (
             <div
               key={entry.pokemon.pokedexNumber}
-              // Conditional styling based on discovered status
               className={`dashboard-card group relative border-4 p-4 rounded-lg transition-all duration-300 hover:-translate-y-1 ${
                 entry.discovered 
                   ? 'bg-gradient-to-br from-[#600000] to-[#400000] border-black hover:shadow-[6px_6px_0_#000]' 
                   : 'bg-gradient-to-br from-[#300000] to-[#200000] border-gray-800 opacity-70'
               } shadow-[4px_4px_0_#000]`}
             >
-              {/* Pokémon Header */}
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <div className="text-sm text-gray-400">#{entry.pokemon.pokedexNumber.toString().padStart(3, '0')}</div>
                   <h3 className={`font-bold text-lg capitalize ${getRarityColor(entry.pokemon.rarity)}`}>
-                    {entry.pokemon.name}
+                    {entry.discovered ? entry.pokemon.name : "????"}
                   </h3>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <span className="text-lg">{getRarityBadge(entry.pokemon.rarity)}</span>
+                  <span className="text-lg" title={`Rarity: ${entry.pokemon.rarity}`}>{getRarityBadge(entry.pokemon.rarity)}</span>
                   <button
                     onClick={() => toggleFavorite(entry.pokemon.pokedexNumber)}
-                    className={`text-lg ${entry.isFavorite ? 'text-yellow-400' : 'text-gray-400'}`}
-                    disabled={!entry.discovered} // Cannot favorite an undiscovered Pokémon
+                    className={`text-lg transition-colors ${entry.isFavorite ? 'text-yellow-400 hover:text-yellow-300' : 'text-gray-600 hover:text-gray-400'}`}
+                    disabled={!entry.discovered}
+                    title={entry.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                   >
                     {entry.isFavorite ? '★' : '☆'}
                   </button>
                 </div>
               </div>
 
-              {/* Pokémon Image */}
-              <div className="w-24 h-24 mx-auto mb-3 bg-white border-4 border-black rounded flex items-center justify-center shadow-[3px_3px_0_#000]">
-                {entry.discovered ? (
-                  <img 
-                    src={entry.pokemon.image}
-                    alt={entry.pokemon.name}
-                    className="w-20 h-20"
-                  />
-                ) : (
-                  <div className="text-4xl">❓</div>
-                )}
+              <div className="w-24 h-24 mx-auto mb-3 bg-white/90 border-4 border-black rounded flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <img 
+                  src={entry.pokemon.image}
+                  alt={entry.discovered ? entry.pokemon.name : 'Undiscovered Pokémon'}
+                  className={`w-20 h-20 object-contain ${!entry.discovered ? 'filter brightness-0' : ''}`}
+                />
               </div>
 
-              {/* Type Badge */}
               <div className="flex justify-center mb-3">
-                <span className={`px-3 py-1 border-2 border-black font-bold text-white rounded text-sm ${getTypeColor(entry.pokemon.type)}`}>
+                <span className={`px-3 py-1 border-2 border-black font-bold text-white rounded text-sm shadow-[2px_2px_0_#000] ${getTypeColor(entry.pokemon.type)}`}>
                   {entry.pokemon.type.toUpperCase()}
                 </span>
               </div>
 
-              {/* Pokémon Info */}
               {entry.discovered ? (
                 <div className="space-y-2 text-sm">
-                  <div className="text-center text-gray-300 italic">
+                  <div className="text-center text-gray-300 italic min-h-[40px]">
                     {entry.pokemon.description}
                   </div>
-                  
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="text-center">
-                      <div className="font-bold">Encountered</div>
+                  <div className="grid grid-cols-2 gap-2 text-xs pt-2">
+                    <div className="text-center bg-black/20 p-1 rounded border border-gray-700">
+                      <div className="font-bold text-gray-400">Encountered</div>
                       <div>{entry.timesEncountered} times</div>
                     </div>
-                    <div className="text-center">
-                      <div className="font-bold">Caught</div>
+                    <div className="text-center bg-black/20 p-1 rounded border border-gray-700">
+                      <div className="font-bold text-gray-400">Caught</div>
                       <div>{entry.timesCaught} times</div>
                     </div>
                   </div>
-
-                  {/* Research Progress */}
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span>Research</span>
@@ -394,16 +409,9 @@ const PokedexTab = ({ trainerData }) => {
                       ></div>
                     </div>
                   </div>
-
-                  {/* Status */}
-                  <div className={`text-center text-xs font-bold px-2 py-1 border-2 border-black ${
-                    entry.isCaught ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                  }`}>
-                    {entry.isCaught ? '✅ CAUGHT' : '❌ NOT CAUGHT'}
-                  </div>
                 </div>
               ) : (
-                <div className="text-center text-gray-400">
+                <div className="text-center text-gray-400 min-h-[124px] flex flex-col justify-center">
                   <div className="text-lg mb-2">???</div>
                   <div className="text-sm">Not yet discovered</div>
                 </div>
@@ -412,11 +420,11 @@ const PokedexTab = ({ trainerData }) => {
           ))}
         </div>
       ) : !loading && (
-        <div className="text-center p-8 text-gray-400 border-2 border-gray-700 rounded-lg">
-          No Pokémon matched your current filters. Try adjusting them!
+        <div className="text-center p-8 text-gray-400 border-2 border-dashed border-gray-700 rounded-lg">
+          <h3 className="text-xl font-bold text-white">No Pokémon Found</h3>
+          <p className="mt-2">Try adjusting your filters or discover more Pokémon on your journey!</p>
         </div>
       )}
-
 
       {/* Completion Progress */}
       <div className="mt-6 p-4 bg-gradient-to-r from-[#600000] to-[#400000] border-2 border-yellow-600 rounded-lg">
@@ -426,7 +434,7 @@ const PokedexTab = ({ trainerData }) => {
         <div className="w-full bg-[#300000] border-2 border-black h-4 shadow-[2px_2px_0_#000]">
           <div 
             className="bg-gradient-to-r from-yellow-500 to-yellow-400 h-full transition-all duration-500"
-            style={{ width: `${(discoveredCount / totalCount) * 100}%` }}
+            style={{ width: `${totalCount > 0 ? (discoveredCount / totalCount) * 100 : 0}%` }}
           ></div>
         </div>
       </div>
@@ -434,4 +442,4 @@ const PokedexTab = ({ trainerData }) => {
   );
 };
 
-export default PokedexTab;
+export default PokedexTab;  

@@ -1,3 +1,4 @@
+// src/components/DuelsTab.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -8,12 +9,88 @@ const mockOpponent = {
   level: 2,
 };
 
-const mockQuestion = {
-  _id: "q1",
-  question: "Which of these is a water-type Pokémon?",
-  options: ["Charmander", "Squirtle", "Bulbasaur", "Pikachu"],
-  correctAnswer: "Squirtle", // The correct string, not the index
+// --- NEW QUESTION BANK ---
+const questionBank = {
+  math: [
+    {
+      _id: "m1",
+      question: "What is 8 multiplied by 7?",
+      options: ["49", "54", "56", "63"],
+      correctAnswer: "56",
+    },
+    {
+      _id: "m2",
+      question: "What is the value of 'x' in the equation x + 5 = 12?",
+      options: ["5", "6", "7", "8"],
+      correctAnswer: "7",
+    },
+    {
+      _id: "m3",
+      question: "How many sides does a hexagon have?",
+      options: ["5", "6", "7", "8"],
+      correctAnswer: "6",
+    },
+    {
+      _id: "m4",
+      question: "What is 15% of 200?",
+      options: ["15", "20", "30", "40"],
+      correctAnswer: "30",
+    },
+  ],
+  science: [
+    {
+      _id: "s1",
+      question: "What is the chemical symbol for water?",
+      options: ["O2", "H2O", "CO2", "NaCl"],
+      correctAnswer: "H2O",
+    },
+    {
+      _id: "s2",
+      question: "Which planet is known as the Red Planet?",
+      options: ["Earth", "Mars", "Jupiter", "Saturn"],
+      correctAnswer: "Mars",
+    },
+    {
+      _id: "s3",
+      question: "What is the powerhouse of the cell?",
+      options: ["Nucleus", "Ribosome", "Mitochondrion", "Chloroplast"],
+      correctAnswer: "Mitochondrion",
+    },
+    {
+      _id: "s4",
+      question: "What force pulls objects toward the center of the Earth?",
+      options: ["Magnetism", "Friction", "Gravity", "Tension"],
+      correctAnswer: "Gravity",
+    },
+  ],
+  coding: [
+    {
+      _id: "c1",
+      question: "What does HTML stand for?",
+      options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyperlink and Text Markup Language", "Home Tool Markup Language"],
+      correctAnswer: "Hyper Text Markup Language",
+    },
+    {
+      _id: "c2",
+      question: "Which of these is NOT a programming language?",
+      options: ["Python", "Java", "HTML", "C++"],
+      correctAnswer: "HTML",
+    },
+    {
+      _id: "c3",
+      question: "In programming, what does a 'for' loop typically do?",
+      options: ["Make a decision", "Store a value", "Repeat a block of code", "Stop the program"],
+      correctAnswer: "Repeat a block of code",
+    },
+    {
+      _id: "c4",
+      question: "What is the result of 'true && false' in most languages?",
+      options: ["true", "false", "null", "error"],
+      correctAnswer: "false",
+    },
+  ],
 };
+
 
 // --- Helper Components ---
 const P = (props) => <p className="pixel-font" {...props} />;
@@ -144,12 +221,20 @@ const DuelsTab = ({
 
   useEffect(() => console.log("🔍 Current battle state:", battleState), [battleState]);
 
-  // Clean up timer on unmount
   useEffect(() => () => {
     if (timerRef.current) clearInterval(timerRef.current);
   }, []);
 
-  // --- BATTLE LOGIC & STATE TRANSITIONS (SIMULATED) ---
+  const getRandomQuestion = (subject) => {
+    if (!questionBank[subject] || questionBank[subject].length === 0) {
+      // Fallback to a default question if subject has no questions
+      return { _id: "fallback", question: "Which is the best Pokémon?", options: ["Pikachu", "Pikachu", "Pikachu", "Pikachu"], correctAnswer: "Pikachu"};
+    }
+    const questions = questionBank[subject];
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    return questions[randomIndex];
+  };
+
   const addBattleLog = (message) => {
     setBattleState((prev) => ({
       ...prev,
@@ -202,7 +287,6 @@ const DuelsTab = ({
     addChatMessage("I'm ready!", "player");
     addBattleLog("✅ You are ready!");
 
-    // Simulate opponent readying up and starting the battle
     setTimeout(() => {
       addBattleLog(`✅ ${opponentName} is ready!`);
       setBattleState((prev) => ({ ...prev, opponentReady: true }));
@@ -212,8 +296,8 @@ const DuelsTab = ({
         setBattleState((prev) => ({
           ...prev,
           status: "active",
-          currentQuestion: mockQuestion,
-          player1Pokemon: "pikachu", // Assign Pokémon for the battle
+          currentQuestion: getRandomQuestion(prev.selectedSubject),
+          player1Pokemon: "pikachu",
           player2Pokemon: subjectPokemon[prev.selectedSubject] || "bulbasaur",
         }));
         startTimer();
@@ -227,7 +311,7 @@ const DuelsTab = ({
     if (timerRef.current) clearInterval(timerRef.current);
     setBattleState((prev) => ({ ...prev, answered: true }));
 
-    const myAnswer = battleState.currentQuestion.options[selectedIndex];
+    const myAnswer = selectedIndex >= 0 ? battleState.currentQuestion.options[selectedIndex] : "Time Out";
     const myTime = 15 - battleState.timer;
     const myResult = {
       isCorrect: myAnswer === battleState.currentQuestion.correctAnswer,
@@ -236,13 +320,11 @@ const DuelsTab = ({
 
     addBattleLog(`📝 You answered: ${myAnswer}`);
 
-    // Simulate opponent's answer
     const oppResult = {
-      isCorrect: Math.random() > 0.4, // 60% chance to be correct
-      time: Math.random() * 5 + 2,    // 2-7 seconds
+      isCorrect: Math.random() > 0.4,
+      time: Math.random() * 5 + 2,
     };
 
-    // --- Process Round Results ---
     let attacker = null;
     let logMessage = null;
 
@@ -259,7 +341,7 @@ const DuelsTab = ({
     }
 
     if (attacker) {
-      const damage = 20; // Hardcoded damage
+      const damage = 20;
       const target = attacker === "player" ? "opponent" : "player";
       const attackerName = attacker === "player" ? "You" : opponentName;
       addBattleLog(`⚡ ${attackerName} strikes for ${damage} damage!`);
@@ -276,7 +358,6 @@ const DuelsTab = ({
         opponentCorrect: prev.opponentCorrect + (attacker === "opponent" ? 1 : 0),
       }));
 
-      // Check for winner after attack animation
       setTimeout(() => {
         if (newPlayerHealth <= 0 || newOpponentHealth <= 0) {
           handleGameOver(newPlayerHealth <= 0 ? opponent._id : player._id);
@@ -296,7 +377,7 @@ const DuelsTab = ({
       ...prev,
       answered: false,
       timer: 15,
-      currentQuestion: { ...mockQuestion, _id: `q${Date.now()}` }, // Give new ID to re-trigger effects
+      currentQuestion: getRandomQuestion(prev.selectedSubject),
       attackAnimation: null,
     }));
     startTimer();
@@ -316,7 +397,6 @@ const DuelsTab = ({
   
   const leaveBattle = () => {
     if (timerRef.current) clearInterval(timerRef.current);
-    // Reset to initial state
     setBattleState({
       roomId: null, player1: null, player2: null, player1Pokemon: null,
       player2Pokemon: null, currentQuestion: null, status: "idle", winner: null,
@@ -327,7 +407,6 @@ const DuelsTab = ({
     });
   };
 
-  // --- TIMER & ANIMATIONS ---
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     setBattleState((prev) => ({ ...prev, timer: 15 }));
@@ -337,8 +416,7 @@ const DuelsTab = ({
         if (prev.timer <= 1) {
           if (timerRef.current) clearInterval(timerRef.current);
           if (!prev.answered && prev.status === "active") {
-            // Auto-submit a wrong answer if time runs out
-            submitAnswer(-1); // Pass an invalid index to guarantee wrong answer
+            submitAnswer(-1);
           }
           return { ...prev, timer: 0 };
         }
@@ -395,7 +473,6 @@ const DuelsTab = ({
   };
 
 
-  // --- RENDER FUNCTIONS ---
   const renderBattleContent = () => {
     switch (battleState.status) {
       case "idle":

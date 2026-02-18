@@ -12,11 +12,9 @@ const FRIEND_SUGGESTIONS_ENDPOINT = '/leaderboard/friends/suggestions';
 const BADGES_ENDPOINT = '/leaderboard/badges';
 const BADGE_STATS_ENDPOINT = '/leaderboard/badges/stats';
 const SHARES_ENDPOINT = '/leaderboard/shares';
-const SHARE_BADGE_ENDPOINT = (badgeId) => `/leaderboard/badges/share`;
 
-const User = ({ trainerData }) => {
+const User = () => {
     const [activeTab, setActiveTab] = useState('profile');
-    const [hoveredCard, setHoveredCard] = useState(null);
     const rootRef = useRef(null);
     const threeContainerRef = useRef(null);
     const tabContentRef = useRef(null);
@@ -35,12 +33,12 @@ const User = ({ trainerData }) => {
     
     const [error, setError] = useState(null);
 
-    // --- DUMMY/FALLBACK DATA GETTERS (Updated to match the new API fields) ---
+    // --- DUMMY/FALLBACK DATA GETTERS (EXPANDED) ---
 
     const getDummyUserData = () => ({
         user: {
             userName: "ashketchum", level: 15, xp: 12500, coins: 450, dailyStreak: 7,
-            totalQuizzes: 42, correctAnswers: 315, unlockedSubjects: ["math", "science", "history"],
+            totalQuizzes: 42, correctAnswers: 378, unlockedSubjects: ["Math", "Science", "History", "Coding"],
             avatar: "/tranier.png", joinDate: "2024-01-01T00:00:00.000Z",
             rank: 10, nextLevelXP: 13000, progressToNextLevel: 50,
             totalBattles: 10, battlesWon: 6, longestStreak: 14
@@ -49,28 +47,35 @@ const User = ({ trainerData }) => {
 
     const getDummyFriendsData = () => ({
         friends: [
-            { _id: "friend_1", userName: "mistywater", level: 12, xp: 9800, status: "online", avatar: "/tranier.png", lastActive: "2025-10-12T15:30:00.000Z" },
-            { _id: "friend_2", userName: "brockstone", level: 14, xp: 11500, status: "offline", avatar: "/tranier.png", lastActive: "2025-10-11T20:15:00.000Z" }
+            { _id: "friend_1", userName: "mistywater", level: 12, xp: 9800, status: "online", avatar: "/trainer1.png", lastActive: "2025-10-13T14:30:00.000Z" },
+            { _id: "friend_2", userName: "brockstone", level: 14, xp: 11500, status: "offline", avatar: "/trainer1.png", lastActive: "2025-10-12T20:15:00.000Z" },
+            { _id: "friend_3", userName: "garyoak", level: 16, xp: 14500, status: "online", avatar: "/trainer1.png", lastActive: "2025-10-13T15:05:00.000Z" }
         ],
         requests: [
-            { _id: "req_1", userName: "dawnlight", level: 11, avatar: "/tranier.png", sentAt: "2025-10-12T10:30:00.000Z" }
+            { _id: "req_1", userName: "dawnlight", level: 11, avatar: "/trainer1.png", sentAt: "2025-10-12T10:30:00.000Z" }
         ],
         suggestions: [
-            { _id: "sug_1", userName: "mayberry", level: 13, xp: 10500, avatar: "/tranier.png", commonSubjects: ["math", "science"] }
+            { _id: "sug_1", userName: "mayberry", level: 13, xp: 10500, avatar: "/trainer1.png", commonSubjects: ["Math", "Science"] },
+            { _id: "sug_2", userName: "serenastar", level: 15, xp: 12800, avatar: "/trainer1.png", commonSubjects: ["History"] }
         ]
     });
 
     const getDummyBadgesData = () => ({
         badges: [
             { _id: "badge_4", name: "Quiz Champion", description: "Win 25 PvP battles", icon: "🏆", progress: 100, unlocked: true, rarity: "epic" },
-            { _id: "badge_1", name: "Math Master", description: "Complete 50 math quizzes with 90%+ accuracy", icon: "🧮", progress: 85, unlocked: false, rarity: "rare" }
+            { _id: "badge_1", name: "Math Master", description: "Complete 50 math quizzes with 90%+ accuracy", icon: "🧮", progress: 85, unlocked: false, rarity: "rare" },
+            { _id: "badge_2", name: "Science Wiz", description: "Unlock all science topics.", icon: "🔬", progress: 40, unlocked: false, rarity: "rare" },
+            { _id: "badge_3", name: "Legendary Learner", description: "Reach Level 50.", icon: "🌟", progress: 30, unlocked: false, rarity: "legendary" },
+            { _id: "badge_5", name: "First Steps", description: "Complete your first quiz.", icon: "👟", progress: 100, unlocked: true, rarity: "common" },
+
         ],
-        stats: { totalBadges: 6, unlockedBadges: 1, completionRate: 17, epicBadges: 1 }
+        stats: { totalBadges: 10, unlockedBadges: 2, completionRate: 20, epicBadges: 1 }
     });
     
     const getDummySharesData = () => ({
         shares: [
-            { _id: "share_1", type: "victory", title: "Quiz Victory!", message: "Scored 95% in Math Quiz!", data: { score: 95, subject: "math", correctAnswers: 19, totalQuestions: 20 }, createdAt: "2025-10-12T14:30:00.000Z", likes: 12, comments: 3 }
+            { _id: "share_1", type: "victory", title: "Quiz Victory!", message: "Scored 95% in Math Quiz!", data: { score: 95, subject: "math", correctAnswers: 19, totalQuestions: 20 }, createdAt: "2025-10-12T14:30:00.000Z", likes: 12, comments: 3 },
+            { _id: "share_2", type: "level_up", title: "Leveled Up!", message: "Just reached Level 15! Onwards and upwards!", data: { newLevel: 15 }, createdAt: "2025-10-11T18:00:00.000Z", likes: 25, comments: 6 }
         ]
     });
     
@@ -78,23 +83,18 @@ const User = ({ trainerData }) => {
 
     const fetchProfile = async () => {
         setProfileLoading(true);
+        setError(null);
         try {
             const response = await axiosInstance.get(PROFILE_ENDPOINT);
-            
-            // 💡 Handle the new API response structure: response.data.data is the user object
             if (response.data.success && response.data.data) {
-                 // The response data has a different structure than the old dummy data, 
-                 // we wrap the core data in a 'user' property to maintain component compatibility.
                 setUserData({ user: response.data.data });
             } else {
-                throw new Error("Invalid response structure.");
+                throw new Error("Invalid response structure from profile API.");
             }
-            setError(null);
         } catch (e) {
             console.error("Error fetching profile:", e);
-            setError(`Failed to load profile: ${e.response?.data?.message || e.message}`);
-            // Use dummy data as fallback
-            setUserData({ user: getDummyUserData().user }); 
+            setError(`Failed to load profile. Displaying sample data.`);
+            setUserData(getDummyUserData()); 
         } finally {
             setProfileLoading(false);
         }
@@ -102,8 +102,8 @@ const User = ({ trainerData }) => {
 
     const fetchFriends = async () => {
         setSocialLoading(true);
+        setError(null);
         try {
-            // Note: The friends API might now return the full object structure, including requests and suggestions
             const [friendsRes, requestsRes, suggestionsRes] = await Promise.all([
                 axiosInstance.get(FRIENDS_ENDPOINT),
                 axiosInstance.get(FRIEND_REQUESTS_ENDPOINT),
@@ -111,14 +111,13 @@ const User = ({ trainerData }) => {
             ]);
 
             setFriendsData({
-                friends: friendsRes.data.data.friends || [],
-                requests: requestsRes.data.data.requests || [],
-                suggestions: suggestionsRes.data.data.suggestions || [],
+                friends: friendsRes.data?.data?.friends || [],
+                requests: requestsRes.data?.data?.requests || [],
+                suggestions: suggestionsRes.data?.data?.suggestions || [],
             });
-            setError(null);
         } catch (e) {
             console.error("Error fetching friends data:", e);
-            setError(`Failed to load social data: ${e.message}`);
+            setError(`Failed to load social data. Displaying sample data.`);
             setFriendsData(getDummyFriendsData());
         } finally {
             setSocialLoading(false);
@@ -127,20 +126,28 @@ const User = ({ trainerData }) => {
 
     const fetchBadges = async () => {
         setBadgesLoading(true);
+        setError(null);
         try {
             const [badgesRes, statsRes] = await Promise.all([
                 axiosInstance.get(BADGES_ENDPOINT),
                 axiosInstance.get(BADGE_STATS_ENDPOINT),
             ]);
 
-            setBadgesData({
-                badges: badgesRes.data.data.badges || [],
-                stats: statsRes.data.data.stats || {},
-            });
-            setError(null);
+            const fetchedBadges = badgesRes.data?.data?.badges;
+            const fetchedStats = statsRes.data?.data?.stats;
+
+            if (Array.isArray(fetchedBadges) && fetchedStats) {
+                 setBadgesData({
+                    badges: fetchedBadges,
+                    stats: fetchedStats,
+                });
+            } else {
+                throw new Error("Invalid data structure received from badges API.");
+            }
+
         } catch (e) {
             console.error("Error fetching badges data:", e);
-            setError(`Failed to load badges: ${e.message}`);
+            setError(`Failed to load badges. Displaying sample data as a fallback.`);
             setBadgesData(getDummyBadgesData());
         } finally {
             setBadgesLoading(false);
@@ -149,13 +156,13 @@ const User = ({ trainerData }) => {
 
     const fetchShares = async () => {
         setSharesLoading(true);
+        setError(null);
         try {
             const response = await axiosInstance.get(SHARES_ENDPOINT);
-            setSharesData({ shares: response.data.data.shares || [] });
-            setError(null);
+            setSharesData({ shares: response.data?.data?.shares || [] });
         } catch (e) {
             console.error("Error fetching shares:", e);
-            setError(`Failed to load shares feed: ${e.message}`);
+            setError(`Failed to load shares feed. Displaying sample data.`);
             setSharesData(getDummySharesData());
         } finally {
             setSharesLoading(false);
@@ -170,24 +177,27 @@ const User = ({ trainerData }) => {
     useEffect(() => {
         switch (activeTab) {
             case 'friends':
-                fetchFriends();
+                if (friendsData.friends.length === 0) fetchFriends();
                 break;
             case 'badges':
-                fetchBadges();
+                if (badgesData.badges.length === 0) fetchBadges();
                 break;
             case 'shares':
-                fetchShares();
+                if (sharesData.shares.length === 0) fetchShares();
                 break;
             default:
                 break;
         }
     }, [activeTab]);
 
-    // --- Action Handlers (API Calls) ---
-    // (sendFriendRequest, acceptFriendRequest, declineFriendRequest, removeFriend, shareBadge remain the same using axiosInstance)
+    // --- Action Handlers ---
+    const handleBack = () => {
+        window.history.back();
+    };
+    
     const sendFriendRequest = async (friendUsername) => {
         try {
-            await axiosInstance.post('/social/friends/request', { friendUsername });
+            await axiosInstance.post('/leaderboard/friends/request', { friendUsername });
             alert(`Friend request sent to ${friendUsername}!`);
             fetchFriends();
         } catch (e) {
@@ -197,7 +207,7 @@ const User = ({ trainerData }) => {
 
     const acceptFriendRequest = async (requestId) => {
         try {
-            await axiosInstance.post(`/social/friends/requests/${requestId}/accept`);
+            await axiosInstance.post(`/leaderboard/friends/requests/${requestId}/accept`);
             alert(`Friend request accepted!`);
             fetchFriends();
         } catch (e) {
@@ -207,7 +217,7 @@ const User = ({ trainerData }) => {
 
     const declineFriendRequest = async (requestId) => {
         try {
-            await axiosInstance.delete(`/social/friends/requests/${requestId}/decline`);
+            await axiosInstance.delete(`/leaderboard/friends/requests/${requestId}/decline`);
             alert(`Friend request declined.`);
             fetchFriends();
         } catch (e) {
@@ -218,7 +228,7 @@ const User = ({ trainerData }) => {
     const removeFriend = async (friendId) => {
         if (!window.confirm("Are you sure you want to remove this friend?")) return;
         try {
-            await axiosInstance.delete(`/social/friends/${friendId}`);
+            await axiosInstance.delete(`/leaderboard/friends/${friendId}`);
             alert(`Friend removed.`);
             fetchFriends();
         } catch (e) {
@@ -228,20 +238,18 @@ const User = ({ trainerData }) => {
 
     const shareBadge = async (badgeId) => {
         try {
-            await axiosInstance.post(`/social/badges/share`, { badgeId });
+            await axiosInstance.post(`/leaderboard/badges/share`, { badgeId });
             alert('Badge shared successfully!');
         } catch (e) {
             alert(`Failed to share badge: ${e.response?.data?.message || e.message}`);
         }
     };
 
-    // --- Utility Functions and GSAP (Retained from previous code block) ---
-    // (GSAP hooks, formatTime, getRarityColor, handleCardHover/Leave, handleButtonHover/Leave are included below)
+    // --- Utility Functions and GSAP ---
     
     useEffect(() => {
         const timer = setTimeout(() => {
             const ctx = gsap.context(() => {
-                // Initial page load animation
                 gsap.fromTo('.page-title', 
                   { opacity: 0, y: -50, scale: 0.8 },
                   { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'back.out(1.7)' }
@@ -252,13 +260,11 @@ const User = ({ trainerData }) => {
                   { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' }
                 );
         
-                // Tab content animation
                 gsap.fromTo('.tab-content',
                   { opacity: 0, x: 50 },
                   { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' }
                 );
         
-                // Enhanced floating animations
                 const floatingElements = gsap.utils.toArray('.floating-element');
                 floatingElements.forEach((el, i) => {
                   gsap.to(el, {
@@ -273,7 +279,6 @@ const User = ({ trainerData }) => {
                   });
                 });
         
-                // Pulsing glow effect for main cards
                 gsap.to('.pulse-glow', {
                   opacity: 0.6,
                   scale: 1.05,
@@ -283,7 +288,6 @@ const User = ({ trainerData }) => {
                   ease: 'sine.inOut'
                 });
         
-                // Three.js Background
                 (async () => {
                   try {
                     const container = threeContainerRef.current;
@@ -385,7 +389,6 @@ const User = ({ trainerData }) => {
         return () => clearTimeout(timer);
     }, []);
 
-    // Animation when tab changes
     useEffect(() => {
         if (tabContentRef.current) {
             gsap.fromTo(tabContentRef.current,
@@ -395,30 +398,6 @@ const User = ({ trainerData }) => {
         }
     }, [activeTab]);
 
-    const handleCardHover = (cardId) => {
-        setHoveredCard(cardId);
-        const card = document.getElementById(`card-${cardId}`);
-        if (card) {
-            gsap.to(card, { scale: 1.02, y: -5, rotationY: 5, duration: 0.3, ease: 'power2.out' });
-        }
-    };
-
-    const handleCardLeave = (cardId) => {
-        setHoveredCard(null);
-        const card = document.getElementById(`card-${cardId}`);
-        if (card) {
-            gsap.to(card, { scale: 1, y: 0, rotationY: 0, duration: 0.3, ease: 'power2.out' });
-        }
-    };
-
-    const handleButtonHover = (button) => {
-        gsap.to(button, { scale: 1.05, y: -2, duration: 0.2, ease: 'power2.out' });
-    };
-
-    const handleButtonLeave = (button) => {
-        gsap.to(button, { scale: 1, y: 0, duration: 0.2, ease: 'power2.out' });
-    };
-
     const formatTime = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
@@ -426,6 +405,7 @@ const User = ({ trainerData }) => {
         const diffHours = Math.floor(diffMs / 3600000);
         const diffDays = Math.floor(diffMs / 86400000);
 
+        if (diffHours < 1) return `LESS THAN AN HOUR AGO`;
         if (diffHours < 24) return `${diffHours} HOUR${diffHours > 1 ? 'S' : ''} AGO`;
         return `${diffDays} DAY${diffDays > 1 ? 'S' : ''} AGO`;
     };
@@ -459,49 +439,35 @@ const User = ({ trainerData }) => {
         const user = userData.user;
         const totalQuizzes = user.totalQuizzes || 0;
         const correctAnswers = user.correctAnswers || 0;
-        const accuracy = totalQuizzes * 10 > 0 ? Math.round((correctAnswers / (totalQuizzes * 10)) * 100) : 0;
+        const accuracy = totalQuizzes > 0 ? Math.round((correctAnswers / (totalQuizzes * 10)) * 100) : 0;
         
         return (
             <div ref={tabContentRef} className="space-y-6 tab-content">
-                {/* User Card with enhanced hover */}
-                <div 
-                    id="card-profile"
-                    className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000] pixelated-rendering transform-gpu cursor-pointer hover:shadow-[12px_12px_0_#000] transition-all duration-300"
-                    onMouseEnter={() => handleCardHover('profile')}
-                    onMouseLeave={() => handleCardLeave('profile')}
-                >
+                {error && <ErrorAlert />}
+                <div id="card-profile" className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000] pixelated-rendering transform-gpu">
                     <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px] pulse-glow"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-yellow-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-yellow-500/10"></div>
                     
                     <div className="flex items-center space-x-6">
                         <div className="relative">
                             <div className="w-20 h-20 bg-white border-4 border-black rounded flex items-center justify-center shadow-[4px_4px_0_#000] floating-element">
-                                <img 
-                                    src={   "/trainer1.png"}
-                                    alt={user.userName}
-                                    className="w-16 h-16 transform-gpu hover:scale-110 transition-transform duration-300"
-                                />
+                                <img src={"/trainer1.png"} alt={user.userName} className="w-16 h-16"/>
                             </div>
                             <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-black animate-pulse"></div>
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-yellow-300 mb-2 capitalize text-shadow-pixel hover:text-yellow-200 transition-colors duration-300">
+                            <h3 className="text-2xl font-bold text-yellow-300 mb-2 capitalize text-shadow-pixel">
                                 {user.userName}
                             </h3>
-                            {/* New: XP Progress Bar */}
                             <div className="mb-4">
                                 <div className="flex justify-between text-sm font-bold mb-1">
                                     <span>LEVEL {user.level}</span>
                                     <span>XP: {user.xp.toLocaleString()} / {user.nextLevelXP.toLocaleString()}</span>
                                 </div>
                                 <div className="w-full bg-red-900/50 border-2 border-black h-3 shadow-[2px_2px_0_#000]">
-                                    <div 
-                                        className="bg-green-500 h-full transition-all duration-500"
-                                        style={{ width: `${user.progressToNextLevel}%` }}
-                                    ></div>
+                                    <div className="bg-green-500 h-full" style={{ width: `${user.progressToNextLevel}%` }}></div>
                                 </div>
                             </div>
-
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                 {[
                                     { value: `#${user.rank}`, label: 'Rank', color: 'text-white' },
@@ -509,9 +475,9 @@ const User = ({ trainerData }) => {
                                     { value: `${user.dailyStreak} days`, label: 'Streak', color: 'text-green-400' },
                                     { value: user.longestStreak, label: 'Longest Streak', color: 'text-red-400' }
                                 ].map((stat, index) => (
-                                    <div key={index} className="text-center group">
-                                        <div className="text-red-200 group-hover:text-red-100 transition-colors duration-300">{stat.label}</div>
-                                        <div className={`font-bold text-lg ${stat.color} group-hover:scale-110 transition-transform duration-300`}>{stat.value}</div>
+                                    <div key={index} className="text-center">
+                                        <div className="text-red-200">{stat.label}</div>
+                                        <div className={`font-bold text-lg ${stat.color}`}>{stat.value}</div>
                                     </div>
                                 ))}
                             </div>
@@ -519,8 +485,7 @@ const User = ({ trainerData }) => {
                     </div>
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
                         { value: totalQuizzes, label: 'Quizzes Taken', color: 'text-blue-400', icon: '📝' },
                         { value: correctAnswers, label: 'Correct Answers', color: 'text-green-400', icon: '✅' },
@@ -529,33 +494,21 @@ const User = ({ trainerData }) => {
                         { value: user.battlesWon || 0, label: 'Battles Won', color: 'text-pink-400', icon: '🥇' },
                         { value: user.unlockedSubjects?.length || 0, label: 'Subjects', color: 'text-cyan-400', icon: '📚' }
                     ].map((stat, index) => (
-                        <div 
-                            key={index}
-                            id={`card-stat-${index}`}
-                            className="relative p-4 bg-black/70 border-4 border-red-800/80 shadow-[4px_4px_0_#000] text-center transform-gpu cursor-pointer group hover:border-yellow-500 transition-all duration-300"
-                            onMouseEnter={() => handleCardHover(`stat-${index}`)}
-                            onMouseLeave={() => handleCardLeave(`stat-${index}`)}
-                        >
-                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px] group-hover:border-yellow-400/60 transition-all duration-300"></div>
-                            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-                            <div className={`text-2xl font-bold ${stat.color} text-shadow-pixel group-hover:scale-105 transition-transform duration-300`}>{stat.value}</div>
-                            <div className="text-sm text-red-200 group-hover:text-yellow-200 transition-colors duration-300">{stat.label}</div>
+                        <div key={index} className="relative p-4 bg-black/70 border-4 border-red-800/80 shadow-[4px_4px_0_#000] text-center transform-gpu">
+                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px]"></div>
+                            <div className="text-2xl mb-2">{stat.icon}</div>
+                            <div className={`text-2xl font-bold ${stat.color} text-shadow-pixel`}>{stat.value}</div>
+                            <div className="text-sm text-red-200">{stat.label}</div>
                         </div>
                     ))}
                 </div>
 
-                {/* Unlocked Subjects */}
                 <div className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
                     <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px]"></div>
                     <h4 className="text-xl font-bold text-yellow-300 mb-4 text-shadow-pixel">Unlocked Subjects</h4>
                     <div className="flex flex-wrap gap-3">
                         {user.unlockedSubjects?.map((subject, index) => (
-                            <span 
-                                key={index}
-                                className="bg-red-600 text-white px-4 py-2 rounded border-2 border-black font-bold capitalize shadow-[2px_2px_0_#000] floating-element hover:bg-red-500 hover:scale-105 hover:shadow-[4px_4px_0_#000] transition-all duration-300 cursor-pointer transform-gpu"
-                                onMouseEnter={(e) => { gsap.to(e.target, { scale: 1.1, y: -3, duration: 0.2, ease: 'back.out(1.7)' }); }}
-                                onMouseLeave={(e) => { gsap.to(e.target, { scale: 1, y: 0, duration: 0.2, ease: 'power2.out' }); }}
-                            >
+                            <span key={index} className="bg-red-600 text-white px-4 py-2 rounded border-2 border-black font-bold capitalize shadow-[2px_2px_0_#000] floating-element">
                                 {subject}
                             </span>
                         ))}
@@ -567,112 +520,71 @@ const User = ({ trainerData }) => {
 
     const renderFriends = () => {
         if (socialLoading) return <LoadingState message="Fetching Friends and Requests..." />;
-        
         const { friends, requests, suggestions } = friendsData;
-
         return (
             <div ref={tabContentRef} className="space-y-6 tab-content">
                 {error && <ErrorAlert />}
-                
-                {/* Friend Requests */}
                 {requests.length > 0 && (
                     <div className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
                         <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px]"></div>
                         <h4 className="text-xl font-bold text-yellow-300 mb-4 text-shadow-pixel">Friend Requests ({requests.length})</h4>
                         <div className="space-y-3">
                             {requests.map(request => (
-                                <div 
-                                    key={request._id}
-                                    className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded transform-gpu hover:bg-red-800/40 hover:scale-[1.02] hover:border-yellow-500 transition-all duration-300"
-                                >
+                                <div key={request._id} className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded">
                                     <div className="flex items-center space-x-3">
-                                        <img src={request.avatar || "/tranier.png"} alt={request.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000] hover:scale-110 transition-transform duration-300" />
+                                        <img src={request.avatar || "/trainer1.png"} alt={request.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000]" />
                                         <div>
-                                            <div className="font-bold text-white capitalize hover:text-yellow-300 transition-colors duration-300">{request.userName}</div>
+                                            <div className="font-bold text-white capitalize">{request.userName}</div>
                                             <div className="text-sm text-red-200">Level {request.level}</div>
                                         </div>
                                     </div>
                                     <div className="flex space-x-2">
-                                        <button 
-                                            onMouseEnter={(e) => handleButtonHover(e.target)} onMouseLeave={(e) => handleButtonLeave(e.target)}
-                                            onClick={() => acceptFriendRequest(request._id)}
-                                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded border-2 border-black font-bold shadow-[2px_2px_0_#000] transform-gpu"
-                                        >
-                                            Accept
-                                        </button>
-                                        <button 
-                                            onMouseEnter={(e) => handleButtonHover(e.target)} onMouseLeave={(e) => handleButtonLeave(e.target)}
-                                            onClick={() => declineFriendRequest(request._id)}
-                                            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded border-2 border-black font-bold shadow-[2px_2px_0_#000] transform-gpu"
-                                        >
-                                            Decline
-                                        </button>
+                                        <PixelButton onClick={() => acceptFriendRequest(request._id)} className="!px-3 !py-1 !text-sm !bg-green-600 hover:!bg-green-700">Accept</PixelButton>
+                                        <PixelButton onClick={() => declineFriendRequest(request._id)} className="!px-3 !py-1 !text-sm">Decline</PixelButton>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
-
-                {/* Friends List */}
                 <div className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
                     <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px]"></div>
                     <h4 className="text-xl font-bold text-yellow-300 mb-4 text-shadow-pixel">Friends ({friends.length})</h4>
                     <div className="space-y-3">
                         {friends.map(friend => (
-                            <div 
-                                key={friend._id}
-                                className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded transform-gpu hover:bg-red-800/40 hover:scale-[1.02] hover:border-yellow-500 transition-all duration-300 group"
-                            >
+                            <div key={friend._id} className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded">
                                 <div className="flex items-center space-x-3">
                                     <div className="relative">
-                                        <img src={friend.avatar || "/tranier.png"} alt={friend.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000] group-hover:scale-110 transition-transform duration-300" />
-                                        <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-black animate-pulse ${friend.status === 'online' ? 'bg-green-500' : 'bg-gray-500'}`}></div>
+                                        <img src={friend.avatar || "/trainer1.png"} alt={friend.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000]" />
+                                        <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-black ${friend.status === 'online' ? 'bg-green-500' : 'bg-gray-500'}`}></div>
                                     </div>
                                     <div>
-                                        <div className="font-bold text-white capitalize group-hover:text-yellow-300 transition-colors duration-300">{friend.userName}</div>
+                                        <div className="font-bold text-white capitalize">{friend.userName}</div>
                                         <div className="text-sm text-red-200">Level {friend.level} • {friend.xp?.toLocaleString() || 'N/A'} XP</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <span className="text-sm text-red-300 group-hover:text-yellow-300 transition-colors duration-300">{friend.lastActive ? formatTime(friend.lastActive) : 'Unknown'}</span>
-                                    <button 
-                                        onMouseEnter={(e) => handleButtonHover(e.target)} onMouseLeave={(e) => handleButtonLeave(e.target)}
-                                        onClick={() => removeFriend(friend._id)}
-                                        className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded border-2 border-black font-bold shadow-[2px_2px_0_#000] transform-gpu"
-                                    >
-                                        Remove
-                                    </button>
+                                    <span className="text-sm text-red-300">{friend.lastActive ? formatTime(friend.lastActive) : 'Unknown'}</span>
+                                    <PixelButton onClick={() => removeFriend(friend._id)} className="!px-3 !py-1 !text-sm">Remove</PixelButton>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-
-                {/* Friend Suggestions */}
                 <div className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
                     <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px]"></div>
                     <h4 className="text-xl font-bold text-yellow-300 mb-4 text-shadow-pixel">Friend Suggestions ({suggestions.length})</h4>
                     <div className="space-y-3">
                         {suggestions.map(suggestion => (
-                            <div 
-                                key={suggestion._id}
-                                className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded transform-gpu hover:bg-red-800/40 hover:scale-[1.02] hover:border-blue-500 transition-all duration-300"
-                            >
+                            <div key={suggestion._id} className="flex items-center justify-between p-3 bg-red-900/30 border-2 border-red-700 rounded">
                                 <div className="flex items-center space-x-3">
-                                    <img src={suggestion.avatar || "/tranier.png"} alt={suggestion.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000] hover:scale-110 transition-transform duration-300" />
+                                    <img src={suggestion.avatar || "/trainer1.png"} alt={suggestion.userName} className="w-12 h-12 border-2 border-black rounded shadow-[2px_2px_0_#000]" />
                                     <div>
-                                        <div className="font-bold text-white capitalize hover:text-blue-300 transition-colors duration-300">{suggestion.userName}</div>
+                                        <div className="font-bold text-white capitalize">{suggestion.userName}</div>
                                         <div className="text-sm text-red-200">Level {suggestion.level} • {suggestion.commonSubjects?.join(', ') || 'N/A'}</div>
                                     </div>
                                 </div>
-                                <button 
-                                    onMouseEnter={(e) => handleButtonHover(e.target)} onMouseLeave={(e) => handleButtonLeave(e.target)}
-                                    onClick={() => sendFriendRequest(suggestion.userName)}
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded border-2 border-black font-bold shadow-[2px_2px_0_#000] transform-gpu"
-                                >
-                                    Add Friend
-                                </button>
+                                <PixelButton onClick={() => sendFriendRequest(suggestion.userName)} className="!px-3 !py-1 !text-sm !bg-blue-600 hover:!bg-blue-700">Add Friend</PixelButton>
                             </div>
                         ))}
                     </div>
@@ -683,90 +595,70 @@ const User = ({ trainerData }) => {
 
     const renderBadges = () => {
         if (badgesLoading) return <LoadingState message="Fetching Badges and Stats..." />;
-
         const { badges, stats } = badgesData;
-        const totalBadges = badges.length;
-        const unlockedBadges = badges.filter(b => b.unlocked).length;
+        
+        // Use live stats if available, otherwise calculate from badge list
+        const totalBadges = stats.totalBadges ?? badges.length;
+        const unlockedBadges = stats.earnedBadges ?? badges.filter(b => b.unlocked).length;
         const completionRate = totalBadges > 0 ? Math.round((unlockedBadges / totalBadges) * 100) : 0;
+        
+        if (!badgesLoading && badges.length === 0) {
+            return (
+                <div ref={tabContentRef} className="space-y-6 tab-content">
+                    {error && <ErrorAlert />}
+                    <div className="text-center p-8 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
+                        <div className="text-4xl mb-4">🛡️</div>
+                        <h4 className="text-xl font-bold text-yellow-300 mb-2">Your Badge Case is Empty!</h4>
+                        <p className="text-lg text-yellow-200">Complete quizzes and challenges to start earning badges.</p>
+                    </div>
+                </div>
+            );
+        }
 
         return (
             <div ref={tabContentRef} className="space-y-6 tab-content">
                 {error && <ErrorAlert />}
-                
-                {/* Badge Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
                         { value: `${unlockedBadges}/${totalBadges}`, label: 'Badges Unlocked', color: 'text-yellow-300', icon: '🏆' },
                         { value: `${completionRate}%`, label: 'Completion', color: 'text-green-400', icon: '📊' },
-                        { value: stats.epicBadges || 0, label: 'Epic Badges', color: 'text-purple-400', icon: '⭐' }
+                        { value: stats.byRarity?.find(r => r.rarity === 'epic')?.count || 0, label: 'Epic Badges', color: 'text-purple-400', icon: '⭐' }
                     ].map((stat, index) => (
-                        <div 
-                            key={index}
-                            className="relative p-4 bg-black/70 border-4 border-red-800/80 shadow-[4px_4px_0_#000] text-center transform-gpu hover:scale-105 hover:border-yellow-500 transition-all duration-300 cursor-pointer group"
-                        >
-                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px] group-hover:border-yellow-400/60 transition-all duration-300"></div>
-                            <div className="text-2xl mb-2 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">{stat.icon}</div>
-                            <div className="text-2xl font-bold text-shadow-pixel group-hover:scale-105 transition-transform duration-300" style={{color: stat.color}}>{stat.value}</div>
-                            <div className="text-sm text-red-200 group-hover:text-yellow-200 transition-colors duration-300">{stat.label}</div>
+                        <div key={index} className="relative p-4 bg-black/70 border-4 border-red-800/80 shadow-[4px_4px_0_#000] text-center">
+                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px]"></div>
+                            <div className="text-2xl mb-2">{stat.icon}</div>
+                            <div className={`text-2xl font-bold text-shadow-pixel ${stat.color}`}>{stat.value}</div>
+                            <div className="text-sm text-red-200">{stat.label}</div>
                         </div>
                     ))}
                 </div>
-
-                {/* Badges Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {badges.map(badge => (
-                        <div 
-                            key={badge._id}
-                            id={`card-badge-${badge._id}`}
-                            className={`relative p-4 border-4 shadow-[4px_4px_0_#000] transform-gpu cursor-pointer group hover:scale-105 hover:shadow-[8px_8px_0_#000] transition-all duration-500 ${
-                                badge.unlocked 
-                                    ? 'bg-green-900/50 border-green-600 hover:border-green-400 hover:bg-green-800/60' 
-                                    : 'bg-black/70 border-red-800/80 hover:border-yellow-500'
-                            }`}
-                            onMouseEnter={() => handleCardHover(`badge-${badge._id}`)}
-                            onMouseLeave={() => handleCardLeave(`badge-${badge._id}`)}
-                        >
-                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px] group-hover:border-yellow-400/60 transition-all duration-300"></div>
+                        <div key={badge._id} className={`relative p-4 border-4 shadow-[4px_4px_0_#000] ${badge.unlocked ? 'bg-green-900/50 border-green-600' : 'bg-black/70 border-red-800/80'}`}>
+                            <div className="absolute -inset-1 border-2 border-red-400/40 blur-[1px]"></div>
                             <div className="text-center">
-                                <div className="text-4xl mb-2 floating-element group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
-                                    {badge.icon}
-                                </div>
-                                <h5 className={`font-bold text-lg mb-1 ${getRarityColor(badge.rarity)} text-shadow-pixel group-hover:scale-105 transition-transform duration-300`}>
-                                    {badge.name}
-                                </h5>
-                                <p className="text-sm text-red-200 mb-3 group-hover:text-yellow-200 transition-colors duration-300">{badge.description}</p>
-                                
+                                <div className="text-4xl mb-2 floating-element">{badge.icon}</div>
+                                <h5 className={`font-bold text-lg mb-1 ${getRarityColor(badge.rarity)} text-shadow-pixel`}>{badge.name}</h5>
+                                <p className="text-sm text-red-200 mb-3">{badge.description}</p>
                                 {!badge.unlocked && (
                                     <div className="mb-3">
                                         <div className="flex justify-between text-xs mb-1">
-                                            <span className="text-red-200 group-hover:text-yellow-200 transition-colors duration-300">Progress</span>
-                                            <span className="text-yellow-300 group-hover:text-yellow-200 transition-colors duration-300">{badge.progress}%</span>
+                                            <span>Progress</span>
+                                            <span>{badge.progress}%</span>
                                         </div>
-                                        <div className="w-full bg-red-900/50 border-2 border-black h-2 group-hover:bg-red-800/60 transition-colors duration-300">
-                                            <div 
-                                                className="bg-yellow-500 h-full transition-all duration-500 group-hover:bg-yellow-400"
-                                                style={{ width: `${badge.progress}%` }}
-                                            ></div>
+                                        <div className="w-full bg-red-900/50 border-2 border-black h-2">
+                                            <div className="bg-yellow-500 h-full" style={{ width: `${badge.progress}%` }}></div>
                                         </div>
                                     </div>
                                 )}
-                                
                                 <div className="flex justify-between items-center">
-                                    <span className={`text-xs font-bold px-2 py-1 rounded border-2 border-black transform-gpu group-hover:scale-105 transition-transform duration-300 ${
+                                    <span className={`text-xs font-bold px-2 py-1 rounded border-2 border-black ${
                                         badge.rarity === 'common' ? 'bg-gray-600' :
                                         badge.rarity === 'rare' ? 'bg-blue-600' :
                                         badge.rarity === 'epic' ? 'bg-purple-600' : 'bg-yellow-600'
-                                    }`}>
-                                        {badge.rarity.toUpperCase()}
-                                    </span>
+                                    }`}>{badge.rarity.toUpperCase()}</span>
                                     {badge.unlocked && (
-                                        <button 
-                                            onMouseEnter={(e) => handleButtonHover(e.target)} onMouseLeave={(e) => handleButtonLeave(e.target)}
-                                            onClick={() => shareBadge(badge._id)}
-                                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 text-sm rounded border-2 border-black font-bold shadow-[2px_2px_0_#000] transform-gpu"
-                                        >
-                                            Share
-                                        </button>
+                                        <PixelButton onClick={() => shareBadge(badge._id)} className="!px-3 !py-1 !text-sm !bg-green-600 hover:!bg-green-700">Share</PixelButton>
                                     )}
                                 </div>
                             </div>
@@ -779,41 +671,30 @@ const User = ({ trainerData }) => {
 
     const renderShares = () => {
         if (sharesLoading) return <LoadingState message="Fetching Trainer Shares..." />;
-        
         const { shares } = sharesData;
-
         return (
             <div ref={tabContentRef} className="space-y-4 tab-content">
                 {error && <ErrorAlert />}
-                
                 {shares.length > 0 ? shares.map(share => (
-                    <div 
-                        key={share._id}
-                        id={`card-share-${share._id}`}
-                        className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000] transform-gpu cursor-pointer hover:scale-[1.02] hover:border-yellow-500 hover:shadow-[12px_12px_0_#000] transition-all duration-300 group"
-                        onMouseEnter={() => handleCardHover(`share-${share._id}`)}
-                        onMouseLeave={() => handleCardLeave(`share-${share._id}`)}
-                    >
-                        <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px] group-hover:border-yellow-400/60 transition-all duration-300"></div>
+                    <div key={share._id} className="relative p-6 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
+                        <div className="absolute -inset-1 border-2 border-red-400/60 blur-[1px]"></div>
                         <div className="flex items-start space-x-4">
-                            <div className="text-3xl floating-element group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <div className="text-3xl floating-element">
                                 {share.type === 'victory' && '🏆'}
                                 {share.type === 'level_up' && '🎉'}
-                                {share.type === 'pokemon_catch' && '⚡'}
-                                {share.type !== 'victory' && share.type !== 'level_up' && share.type !== 'pokemon_catch' && '📢'} 
+                                {share.type === 'badge_unlock' && '🌟'}
+                                {!['victory', 'level_up', 'badge_unlock'].includes(share.type) && '📢'} 
                             </div>
                             <div className="flex-1">
-                                <h5 className="font-bold text-yellow-300 text-lg mb-1 text-shadow-pixel group-hover:text-yellow-200 transition-colors duration-300">{share.title}</h5>
-                                <p className="text-white mb-2 group-hover:text-yellow-100 transition-colors duration-300">{share.message}</p>
-                                <div className="text-sm text-red-200 mb-3 group-hover:text-yellow-200 transition-colors duration-300">
-                                    {formatTime(share.createdAt)} • 👍 {share.likes || 0} • 💬 {share.comments || 0}
-                                </div>
+                                <h5 className="font-bold text-yellow-300 text-lg mb-1 text-shadow-pixel">{share.title}</h5>
+                                <p className="text-white mb-2">{share.message}</p>
+                                <div className="text-sm text-red-200 mb-3">{formatTime(share.createdAt)} • 👍 {share.likes || 0} • 💬 {share.comments || 0}</div>
                                 {share.type === 'victory' && share.data && (
-                                    <div className="bg-red-900/30 p-3 rounded border border-red-700 group-hover:bg-red-800/40 group-hover:border-yellow-500 transition-all duration-300">
+                                    <div className="bg-red-900/30 p-3 rounded border border-red-700">
                                         <div className="text-sm">
-                                            <span className="text-green-400 group-hover:text-green-300 transition-colors duration-300">{share.data.score}% Score</span> • 
-                                            <span className="text-blue-400 ml-2 group-hover:text-blue-300 transition-colors duration-300">{share.data.correctAnswers}/{share.data.totalQuestions} Correct</span> • 
-                                            <span className="text-yellow-400 ml-2 capitalize group-hover:text-yellow-300 transition-colors duration-300">{share.data.subject}</span>
+                                            <span className="text-green-400">{share.data.score}% Score</span> • 
+                                            <span className="text-blue-400 ml-2">{share.data.correctAnswers}/{share.data.totalQuestions} Correct</span> • 
+                                            <span className="text-yellow-400 ml-2 capitalize">{share.data.subject}</span>
                                         </div>
                                     </div>
                                 )}
@@ -822,7 +703,7 @@ const User = ({ trainerData }) => {
                     </div>
                 )) : (
                     <div className="text-center p-8 bg-black/70 border-4 border-red-800/80 shadow-[8px_8px_0_#000]">
-                        <p className="text-lg">No shares found. Go complete a quiz or catch a Pokémon to share your success!</p>
+                        <p className="text-lg text-yellow-200">No shares found. Go complete a quiz or win a battle to share your success!</p>
                     </div>
                 )}
             </div>
@@ -831,36 +712,36 @@ const User = ({ trainerData }) => {
 
     // --- Main Component Render ---
     return (
-        <div ref={rootRef} className="min-h-screen text-white overflow-hidden relative font-pixel p-4">
-            {/* Styles (omitted for brevity) */}
+        <div ref={rootRef} className="min-h-screen text-white overflow-hidden relative font-pixel bg-[#1a0a0a] p-4">
             <style>{`
-            @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-            .font-pixel { font-family: 'Press Start 2P', cursive; }
-            .text-shadow-pixel { text-shadow: 4px 4px 0 #000; }
-            .pixelated-rendering { image-rendering: pixelated; image-rendering: -moz-crisp-edges; }
-            .dither-overlay { background-image: linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.08) 75%), linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.08) 75%); background-size: 4px 4px; background-position: 0 0, 2px 2px; }
-            .transform-gpu { transform: translateZ(0); }
+                @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+                .font-pixel { font-family: 'Press Start 2P', cursive; }
+                .text-shadow-pixel { text-shadow: 2px 2px 0 #000; }
+                .pixelated-rendering { image-rendering: pixelated; image-rendering: -moz-crisp-edges; }
+                .dither-overlay { background-image: linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.08) 75%), linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.08) 75%); background-size: 4px 4px; background-position: 0 0, 2px 2px; }
+                .transform-gpu { transform: translateZ(0); }
             `}</style>
 
-            {/* Background layers (omitted for brevity) */}
             <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(255,136,68,0.4),rgba(179,0,0,0.25),transparent_70%),linear-gradient(180deg,#0a0303_0%,#1a0a0a_50%,#2d0f0f_100%)]"></div>
             <div aria-hidden className="dither-overlay absolute inset-0 -z-10 opacity-70"></div>
             <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none" style={{ boxShadow: 'inset 0 0 180px 40px rgba(0,0,0,0.75)' }}></div>
             <div ref={threeContainerRef} className="absolute inset-0 -z-10"></div>
-
-            {/* Enhanced decorative elements (omitted for brevity) */}
-            <div className="floating-element absolute top-8 left-8 w-12 h-12 bg-red-500 rounded-full border-4 border-black shadow-[4px_4px_0_#000] flex items-center justify-center hover:scale-110 hover:rotate-12 transition-transform duration-300 cursor-pointer">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokeball" className="w-8 h-8 pixelated-rendering" />
-            </div>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu" className="floating-element absolute top-4 right-8 w-20 h-20 pixelated-rendering drop-shadow-[4px_4px_0_#000] hover:scale-110 transition-transform duration-300 cursor-pointer" />
-            <div className="floating-element absolute bottom-8 right-8 w-10 h-10 bg-red-500 rounded-full border-4 border-black shadow-[4px_4px_0_#000] hover:scale-110 hover:bg-yellow-500 transition-all duration-300 cursor-pointer"></div>
+            
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu" className="floating-element absolute top-4 right-8 w-20 h-20 pixelated-rendering drop-shadow-[4px_4px_0_#000]" />
 
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-center mb-8 text-yellow-300 text-shadow-pixel bg-red-800/30 px-6 py-3 rounded border-4 border-red-700 page-title hover:scale-105 hover:border-yellow-500 transition-all duration-300 cursor-pointer">
-                    👤 TRAINER PROFILE
-                </h2>
+                <div className="relative flex justify-center items-center mb-8 page-title">
+                     <PixelButton 
+                        onClick={handleBack}
+                        className="!absolute left-0 top-1/2 -translate-y-1/2 !bg-gray-700 hover:!bg-gray-600 !px-4 !py-2"
+                    >
+                        ← Back
+                    </PixelButton>
+                    <h2 className="text-3xl font-bold text-center text-yellow-300 text-shadow-pixel bg-red-800/30 px-6 py-3 rounded border-4 border-red-700">
+                        👤 TRAINER PROFILE
+                    </h2>
+                </div>
                 
-                {/* Tab Navigation */}
                 <div className="flex flex-wrap gap-2 mb-8 justify-center">
                     {[
                         { key: 'profile', label: '👤 Profile', color: 'bg-red-600' },
@@ -871,20 +752,13 @@ const User = ({ trainerData }) => {
                         <button
                             key={tab.key}
                             onClick={() => setActiveTab(tab.key)}
-                            className={`px-6 py-3 rounded-lg border-4 border-black font-bold transition-all duration-300 transform-gpu hover:scale-105 hover:-translate-y-1 tab-button ${
-                                activeTab === tab.key 
-                                    ? `${tab.color} text-white shadow-[6px_6px_0_#000] hover:shadow-[8px_8px_0_#000]` 
-                                    : 'bg-gray-700 text-white hover:bg-gray-600 shadow-[6px_6px_0_#000] hover:shadow-[8px_8px_0_#222]'
-                            }`}
-                            onMouseEnter={(e) => { if (activeTab !== tab.key) { gsap.to(e.target, { y: -3, duration: 0.2, ease: 'power2.out' }); } }}
-                            onMouseLeave={(e) => { if (activeTab !== tab.key) { gsap.to(e.target, { y: 0, duration: 0.2, ease: 'power2.out' }); } }}
+                            className={`px-6 py-3 rounded-lg border-4 border-black font-bold transition-all duration-300 transform-gpu hover:scale-105 hover:-translate-y-1 tab-button ${ activeTab === tab.key ? `${tab.color} text-white shadow-[6px_6px_0_#000]` : 'bg-gray-700 text-white hover:bg-gray-600 shadow-[6px_6px_0_#000]' }`}
                         >
                             {tab.label}
                         </button>
                     ))}
                 </div>
 
-                {/* Content Area */}
                 <div className="min-h-[500px]">
                     {activeTab === 'profile' && renderProfile()}
                     {activeTab === 'friends' && renderFriends()}
