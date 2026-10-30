@@ -19,11 +19,11 @@ const router = Router();
 router.use(verifyJWT);
 
 // Pokédex routes
-router.route('/pokedex').get(getPokedex);
-router.route('/pokedex/stats').get(getPokedexStats);
-router.route('/pokedex/:pokemonId').get(getPokemonDetails);
-router.route('/pokedex/:pokemonId/favorite').patch(toggleFavorite);
-router.route('/pokedex/:pokemonId/notes').patch(addNotes);
+router.route(['/', '/pokedex']).get(getPokedex);
+router.route(['/stats', '/pokedex/stats']).get(getPokedexStats);
+router.route(['/:pokemonId', '/pokedex/:pokemonId']).get(getPokemonDetails);
+router.route(['/:pokemonId/favorite', '/pokedex/:pokemonId/favorite']).patch(toggleFavorite);
+router.route(['/:pokemonId/notes', '/pokedex/:pokemonId/notes']).patch(addNotes);
 
 // Evolution routes
 router.route('/evolutions/check').get(checkEvolutions);

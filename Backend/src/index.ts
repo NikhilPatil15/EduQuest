@@ -59,9 +59,11 @@ app.use('/api/v1/pokemons', PokemonRouter);
 app.use('/api/v1/battles', BattleRouter);
 app.use('/api/v1/quizzes', QuizRouter);
 app.use('/api/v1/leaderboard', LeaderboardRouter);
+app.use('/api/v1/social', LeaderboardRouter);
 app.use('/api/v1/feedback', FeedbackRouter);
 app.use('/api/v1/world-map', WorldMapRouter);
 app.use('/api/v1/adaptive-learning', AdaptiveLearningRouter);
+app.use('/api/v1/adaptive', AdaptiveLearningRouter);
 app.use('/api/v1/pokedex', PokedexRouter);
 app.use('/api/v1/data', DataRouter);
 

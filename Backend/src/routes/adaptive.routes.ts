@@ -13,6 +13,7 @@ const router = Router();
 router.use(verifyJWT);
 
 router.route('/start').post(startAdaptiveQuiz);
+router.route('/adaptive-quiz').post(startAdaptiveQuiz);
 router.route('/:sessionId/performance').post(updateAdaptivePerformance);
 router.route('/analytics').get(getPerformanceAnalytics);
 
