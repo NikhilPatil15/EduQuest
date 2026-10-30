@@ -95,7 +95,6 @@ const BattleSchema = new Schema<IBattle>(
 );
 
 // Indexes
-BattleSchema.index({ roomId: 1 });
 BattleSchema.index({ status: 1 });
 BattleSchema.index({ player1: 1, player2: 1 });
 

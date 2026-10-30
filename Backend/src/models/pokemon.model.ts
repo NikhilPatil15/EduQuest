@@ -82,6 +82,5 @@ const PokemonSchema = new Schema<IPokemon>(
 
 // Index for faster queries
 PokemonSchema.index({ type: 1, rarity: 1 });
-PokemonSchema.index({ pokedexId: 1 });
 
 export const Pokemon = model<IPokemon>('Pokemon', PokemonSchema);
