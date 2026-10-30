@@ -2,7 +2,7 @@ import { User } from '../models/user.model';
 import { ErrorResponse } from '../utils/errorResponse';
 import { asyncHandler } from '../utils/asyncHandler';
 import jwt from 'jsonwebtoken';
-import { NextFunction } from 'express';
+import { Request, NextFunction } from 'express';
 import { accessTokenSecret } from '../config/settings';
 
 export const verifyJWT = asyncHandler(async (req: Request | any, _, next: NextFunction) => {
