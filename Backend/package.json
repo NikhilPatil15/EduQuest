@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.json",
     "start": "npm run build && node dist/index.js",
     "dev": "nodemon -r dotenv/config src/index.ts",
     "format": "prettier --write .",
@@ -24,6 +24,7 @@
     "fs": "^0.0.1-security",
     "fs-extra": "^11.3.2",
     "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^11.3.0",
     "mongoose": "^8.18.2",
     "multer": "^2.0.2",
     "node-cron": "^4.2.1",
